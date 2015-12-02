@@ -1,0 +1,15 @@
+{namespace Templates.Simple}
+
+/**
+ */
+{template .content}
+	{call Simple.hello data="all" /}
+{/template}
+
+/**
+ * @param firstName
+ * @param? lastName
+ */
+{template .hello}
+	Hello {$firstName}{if $lastName} {$lastName}{/if}!
+{/template}

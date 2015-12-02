@@ -1,0 +1,14 @@
+{namespace Templates.Private}
+
+/**
+ */
+{template .content}
+	{call Private.hello data="all" /}
+{/template}
+
+/**
+ * @param name
+ */
+{template .hello private="true"}
+	Hello {$name}!
+{/template}

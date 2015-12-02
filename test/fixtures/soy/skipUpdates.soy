@@ -1,0 +1,17 @@
+{namespace Templates.SkipUpdates}
+
+/**
+ */
+{template .content}
+	{call SkipUpdates.hello data="all" /}
+{/template}
+
+/**
+ * @param foo
+ * @param? bar
+ * @param foobar
+ * @skipUpdates foo bar
+ */
+{template .hello}
+	{$foo}{$bar}{$foobar}
+{/template}

@@ -1,0 +1,15 @@
+{namespace Templates.Static}
+
+/**
+ */
+{template .content}
+	{call Static.hello data="all" /}
+{/template}
+
+/**
+ * @param name
+ * @static
+ */
+{template .hello}
+	Hello {$name}!
+{/template}

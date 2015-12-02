@@ -16,7 +16,7 @@
   },
   "scripts": {
     "lint": "jshint index.js",
-    "test": "mocha test/*.js"
+    "test": "mocha test/*.js test/lib/**/*.js --slow 1000 --timeout 3000"
   },
   "keywords": [
     "metal",
@@ -28,10 +28,14 @@
     "gulp-wrapper": "^1.0.0",
     "soyparser": "^0.2.2",
     "stream-combiner": "^0.2.2",
-    "through2": "^2.0.0"
+    "stream-consume": "^0.1.0",
+    "through2": "^2.0.0",
+    "vinyl-fs": "^2.2.1"
   },
   "devDependencies": {
+    "del": "^2.1.0",
     "jshint": "^2.7.0",
+    "merge": "^1.2.0",
     "mocha": "^2.2.5",
     "sinon": "^1.14.1"
   }
