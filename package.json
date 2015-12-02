@@ -1,0 +1,38 @@
+{
+  "name": "metal-tools-soy",
+  "version": "0.0.0",
+  "description": "Tool that can be used to compile metal soy files",
+  "license": "BSD",
+  "repository": "metal/metal-tools-soy",
+  "author": {
+    "name": "Maira Bello",
+    "email": "maira.araujo@liferay.com"
+  },
+  "engines": {
+    "node": ">=0.12.0"
+  },
+  "bin": {
+    "metal": "./index.js"
+  },
+  "scripts": {
+    "lint": "jshint index.js",
+    "test": "mocha test/*.js"
+  },
+  "keywords": [
+    "metal",
+    "soy"
+  ],
+  "dependencies": {
+    "gulp-ignore": "^2.0.1",
+    "gulp-soynode": "^1.5.1",
+    "gulp-wrapper": "^1.0.0",
+    "soyparser": "^0.2.2",
+    "stream-combiner": "^0.2.2",
+    "through2": "^2.0.0"
+  },
+  "devDependencies": {
+    "jshint": "^2.7.0",
+    "mocha": "^2.2.5",
+    "sinon": "^1.14.1"
+  }
+}
