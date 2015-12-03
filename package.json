@@ -11,9 +11,6 @@
   "engines": {
     "node": ">=0.12.0"
   },
-  "bin": {
-    "metal": "./index.js"
-  },
   "scripts": {
     "lint": "jshint index.js",
     "test": "mocha test/*.js test/lib/**/*.js --slow 1000 --timeout 3000"
