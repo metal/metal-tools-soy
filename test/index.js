@@ -8,7 +8,7 @@ var sinon = require('sinon');
 var vfs = require('vinyl-fs');
 
 describe('Metal Tools - Soy', function() {
-  describe('Default soySrc/soyDest', function() {
+  describe('Default src/dest', function() {
     beforeEach(function() {
       var pipe = {
         pipe: function() {
