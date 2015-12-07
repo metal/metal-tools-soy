@@ -27,6 +27,7 @@
     "gulp-ignore": "^2.0.1",
     "gulp-soynode": "^1.5.1",
     "gulp-wrapper": "^1.0.0",
+    "merge": "^1.2.0",
     "soyparser": "^0.2.2",
     "stream-combiner": "^0.2.2",
     "stream-consume": "^0.1.0",

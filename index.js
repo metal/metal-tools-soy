@@ -2,13 +2,15 @@
 
 var compileSoy = require('./lib/pipelines/compileSoy');
 var consume = require('stream-consume');
+var defaultOptions = require('./lib/options');
+var merge = require('merge');
 var vfs = require('vinyl-fs');
 
 module.exports = function (options) {
-	options  = options || {};
-	var stream = vfs.src(options.src || 'src/**/*.soy')
+	options = merge({}, defaultOptions, options);
+	var stream = vfs.src(options.src)
 		.pipe(compileSoy(options))
-		.pipe(vfs.dest(options.dest || 'src'));
+		.pipe(vfs.dest(options.dest));
 	consume(stream);
 	return stream;
 };
