@@ -11,6 +11,8 @@ module.exports = function (options) {
 	var stream = vfs.src(options.src)
 		.pipe(compileSoy(options))
 		.pipe(vfs.dest(options.dest));
-	consume(stream);
+	if (!options.skipConsume) {
+		consume(stream);
+	}
 	return stream;
 };
