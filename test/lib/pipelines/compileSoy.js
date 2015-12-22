@@ -2,6 +2,7 @@
 
 var assert = require('assert');
 var compileSoy = require('../../../lib/pipelines/compileSoy');
+var sinon = require('sinon');
 var vfs = require('vinyl-fs');
 
 describe('Compile Soy Pipeline', function() {
@@ -115,6 +116,22 @@ describe('Compile Soy Pipeline', function() {
 			assert.notStrictEqual(-1, contents.indexOf('class Simple extends Component'));
 			assert.notStrictEqual(-1, contents.indexOf('Simple.RENDERER = SoyRenderer;'));
       assert.notStrictEqual(-1, contents.indexOf('export default Simple;'));
+			done();
+		});
+	});
+
+	it('should not automatically generate and export component class if namespace is invalid', function(done) {
+    var stream = vfs.src('test/fixtures/soy/invalidNamespace.soy')
+      .pipe(compileSoy());
+		sinon.stub(console, 'warn');
+    stream.on('data', function(file) {
+      var contents = file.contents.toString();
+			assert.strictEqual(-1, contents.indexOf('class Simple extends Component'));
+			assert.strictEqual(-1, contents.indexOf('Simple.RENDERER = SoyRenderer;'));
+      assert.strictEqual(-1, contents.indexOf('export default Simple;'));
+			assert.strictEqual(1, console.warn.callCount);
+
+			console.warn.restore();
 			done();
 		});
 	});
