@@ -20,7 +20,7 @@ describe('Compile Soy Pipeline', function() {
       .pipe(compileSoy());
     stream.on('data', function(file) {
       var contents = file.contents.toString();
-      assert.notStrictEqual(-1, contents.indexOf('Templates.Simple.content.params = [];'));
+      assert.notStrictEqual(-1, contents.indexOf('Templates.Simple.render.params = [];'));
       assert.notStrictEqual(-1, contents.indexOf('Templates.Simple.hello.params = ["firstName","lastName"];'));
   		done();
     });
@@ -31,7 +31,7 @@ describe('Compile Soy Pipeline', function() {
       .pipe(compileSoy());
     stream.on('data', function(file) {
       var contents = file.contents.toString();
-      assert.strictEqual(-1, contents.indexOf('Templates.Private.content.private = true;'));
+      assert.strictEqual(-1, contents.indexOf('Templates.Private.render.private = true;'));
       assert.notStrictEqual(-1, contents.indexOf('Templates.Private.hello.private = true;'));
 			done();
 		});
@@ -42,7 +42,7 @@ describe('Compile Soy Pipeline', function() {
       .pipe(compileSoy());
     stream.on('data', function(file) {
       var contents = file.contents.toString();
-      assert.strictEqual(-1, contents.indexOf('Templates.Static.content.static = true;'));
+      assert.strictEqual(-1, contents.indexOf('Templates.Static.render.static = true;'));
       assert.notStrictEqual(-1, contents.indexOf('Templates.Static.hello.static = true;'));
 			done();
 		});
