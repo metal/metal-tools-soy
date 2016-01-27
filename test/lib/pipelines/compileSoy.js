@@ -63,10 +63,10 @@ describe('Compile Soy Pipeline', function() {
       .pipe(compileSoy());
     stream.on('data', function(file) {
       var contents = file.contents.toString();
-			assert.notStrictEqual(-1, contents.indexOf('import Component from \'npm:metal/src/component/Component\';'));
-			assert.notStrictEqual(-1, contents.indexOf('import SoyAop from \'npm:metal/src/soy/SoyAop\';'));
-			assert.notStrictEqual(-1, contents.indexOf('import SoyRenderer from \'npm:metal/src/soy/SoyRenderer\';'));
-			assert.notStrictEqual(-1, contents.indexOf('import SoyTemplates from \'npm:metal/src/soy/SoyTemplates\';'));
+			assert.notStrictEqual(-1, contents.indexOf('import Component from \'metal/src/component/Component\';'));
+			assert.notStrictEqual(-1, contents.indexOf('import SoyAop from \'metal/src/soy/SoyAop\';'));
+			assert.notStrictEqual(-1, contents.indexOf('import SoyRenderer from \'metal/src/soy/SoyRenderer\';'));
+			assert.notStrictEqual(-1, contents.indexOf('import SoyTemplates from \'metal/src/soy/SoyTemplates\';'));
 			done();
 		});
 	});
@@ -76,7 +76,7 @@ describe('Compile Soy Pipeline', function() {
       .pipe(compileSoy({corePathFromSoy: 'some/path'}));
     stream.on('data', function(file) {
       var contents = file.contents.toString();
-			assert.strictEqual(-1, contents.indexOf('import Component from \'npm:metal/src/component/Component\';'));
+			assert.strictEqual(-1, contents.indexOf('import Component from \'metal/src/component/Component\';'));
 			assert.notStrictEqual(-1, contents.indexOf('import Component from \'some/path/component/Component\';'));
 			done();
 		});
@@ -102,7 +102,7 @@ describe('Compile Soy Pipeline', function() {
       }));
     stream.on('data', function(file) {
       var contents = file.contents.toString();
-			assert.strictEqual(-1, contents.indexOf('import Component from \'npm:metal/src/component/Component\';'));
+			assert.strictEqual(-1, contents.indexOf('import Component from \'metal/src/component/Component\';'));
 			assert.notStrictEqual(-1, contents.indexOf('import Component from \'fn/path/component/Component\';'));
 			done();
 		});
