@@ -63,47 +63,8 @@ describe('Compile Soy Pipeline', function() {
       .pipe(compileSoy());
     stream.on('data', function(file) {
       var contents = file.contents.toString();
-			assert.notStrictEqual(-1, contents.indexOf('import Component from \'metal/src/component/Component\';'));
-			assert.notStrictEqual(-1, contents.indexOf('import SoyAop from \'metal/src/soy/SoyAop\';'));
-			assert.notStrictEqual(-1, contents.indexOf('import SoyRenderer from \'metal/src/soy/SoyRenderer\';'));
-			assert.notStrictEqual(-1, contents.indexOf('import SoyTemplates from \'metal/src/soy/SoyTemplates\';'));
-			done();
-		});
-	});
-
-	it('should import ES6 modules according to core path indicated by the corePathFromSoy option', function(done) {
-    var stream = vfs.src('test/fixtures/soy/simple.soy')
-      .pipe(compileSoy({corePathFromSoy: 'some/path'}));
-    stream.on('data', function(file) {
-      var contents = file.contents.toString();
-			assert.strictEqual(-1, contents.indexOf('import Component from \'metal/src/component/Component\';'));
-			assert.notStrictEqual(-1, contents.indexOf('import Component from \'some/path/component/Component\';'));
-			done();
-		});
-	});
-
-	it('should normalize import paths', function(done) {
-    var stream = vfs.src('test/fixtures/soy/simple.soy')
-      .pipe(compileSoy({corePathFromSoy: 'some\\path'}));
-    stream.on('data', function(file) {
-      var contents = file.contents.toString();
-			assert.strictEqual(-1, contents.indexOf('import Component from \'some\\path/component/Component\';'));
-			assert.notStrictEqual(-1, contents.indexOf('import Component from \'some/path/component/Component\';'));
-			done();
-		});
-	});
-
-	it('should import ES6 modules according to core path indicated by the result of the corePathFromSoy option fn', function(done) {
-    var stream = vfs.src('test/fixtures/soy/simple.soy')
-      .pipe(compileSoy({
-        corePathFromSoy: function() {
-          return 'fn/path';
-        }
-      }));
-    stream.on('data', function(file) {
-      var contents = file.contents.toString();
-			assert.strictEqual(-1, contents.indexOf('import Component from \'metal/src/component/Component\';'));
-			assert.notStrictEqual(-1, contents.indexOf('import Component from \'fn/path/component/Component\';'));
+			assert.notStrictEqual(-1, contents.indexOf('import Component from \'metal-component\';'));
+			assert.notStrictEqual(-1, contents.indexOf('import { SoyAop, SoyRenderer, SoyTemplates } from \'metal-soy\';'));
 			done();
 		});
 	});
