@@ -2,7 +2,6 @@
 
 var assert = require('assert');
 var compileSoy = require('../../../lib/pipelines/compileSoy');
-var sinon = require('sinon');
 var vfs = require('vinyl-fs');
 
 describe('Compile Soy Pipeline', function() {
@@ -20,42 +19,10 @@ describe('Compile Soy Pipeline', function() {
       .pipe(compileSoy());
     stream.on('data', function(file) {
       var contents = file.contents.toString();
-      assert.notStrictEqual(-1, contents.indexOf('Templates.Simple.render.params = [];'));
-      assert.notStrictEqual(-1, contents.indexOf('Templates.Simple.hello.params = ["firstName","lastName"];'));
+      assert.notStrictEqual(-1, contents.indexOf('exports.render.params = [];'));
+      assert.notStrictEqual(-1, contents.indexOf('exports.hello.params = ["firstName","lastName"];'));
   		done();
     });
-	});
-
-	it('should set the "private" variable to true for private templates', function(done) {
-    var stream = vfs.src('test/fixtures/soy/private.soy')
-      .pipe(compileSoy());
-    stream.on('data', function(file) {
-      var contents = file.contents.toString();
-      assert.strictEqual(-1, contents.indexOf('Templates.Private.render.private = true;'));
-      assert.notStrictEqual(-1, contents.indexOf('Templates.Private.hello.private = true;'));
-			done();
-		});
-	});
-
-	it('should set the "static" variable to true for templates with the @static doc tag', function(done) {
-    var stream = vfs.src('test/fixtures/soy/static.soy')
-      .pipe(compileSoy());
-    stream.on('data', function(file) {
-      var contents = file.contents.toString();
-      assert.strictEqual(-1, contents.indexOf('Templates.Static.render.static = true;'));
-      assert.notStrictEqual(-1, contents.indexOf('Templates.Static.hello.static = true;'));
-			done();
-		});
-	});
-
-	it('should not add params listed in "skipUpdates" to the "params" variable', function(done) {
-    var stream = vfs.src('test/fixtures/soy/skipUpdates.soy')
-      .pipe(compileSoy());
-    stream.on('data', function(file) {
-      var contents = file.contents.toString();
-      assert.notStrictEqual(-1, contents.indexOf('Templates.SkipUpdates.hello.params = ["foobar"];'));
-			done();
-		});
 	});
 
 	it('should add lines to generated soy js file that import some metal ES6 modules', function(done) {
@@ -64,9 +31,18 @@ describe('Compile Soy Pipeline', function() {
     stream.on('data', function(file) {
       var contents = file.contents.toString();
 			assert.notStrictEqual(-1, contents.indexOf('import Component from \'metal-component/src/Component\';'));
-			assert.notStrictEqual(-1, contents.indexOf('import SoyAop from \'metal-soy/src/SoyAop\';'));
-			assert.notStrictEqual(-1, contents.indexOf('import SoyRenderer from \'metal-soy/src/SoyRenderer\';'));
-			assert.notStrictEqual(-1, contents.indexOf('import SoyTemplates from \'metal-soy/src/SoyTemplates\';'));
+			assert.notStrictEqual(-1, contents.indexOf('import Soy from \'metal-soy-inc-dom-renderer/src/Soy\';'));
+			done();
+		});
+	});
+
+	it('should export the templates', function(done) {
+    var stream = vfs.src('test/fixtures/soy/simple.soy')
+      .pipe(compileSoy());
+    stream.on('data', function(file) {
+      var contents = file.contents.toString();
+			assert.notStrictEqual(-1, contents.indexOf('templates = exports;'));
+      assert.notStrictEqual(-1, contents.indexOf('export default templates;'));
 			done();
 		});
 	});
@@ -77,24 +53,8 @@ describe('Compile Soy Pipeline', function() {
     stream.on('data', function(file) {
       var contents = file.contents.toString();
 			assert.notStrictEqual(-1, contents.indexOf('class Simple extends Component'));
-			assert.notStrictEqual(-1, contents.indexOf('Simple.RENDERER = SoyRenderer;'));
-      assert.notStrictEqual(-1, contents.indexOf('export default Simple;'));
-			done();
-		});
-	});
-
-	it('should not automatically generate and export component class if namespace is invalid', function(done) {
-    var stream = vfs.src('test/fixtures/soy/invalidNamespace.soy')
-      .pipe(compileSoy());
-		sinon.stub(console, 'warn');
-    stream.on('data', function(file) {
-      var contents = file.contents.toString();
-			assert.strictEqual(-1, contents.indexOf('class Simple extends Component'));
-			assert.strictEqual(-1, contents.indexOf('Simple.RENDERER = SoyRenderer;'));
-      assert.strictEqual(-1, contents.indexOf('export default Simple;'));
-			assert.strictEqual(1, console.warn.callCount);
-
-			console.warn.restore();
+			assert.notStrictEqual(-1, contents.indexOf('Soy.register(Simple, templates);'));
+      assert.notStrictEqual(-1, contents.indexOf('export { Simple, templates };'));
 			done();
 		});
 	});
@@ -109,16 +69,7 @@ describe('Compile Soy Pipeline', function() {
 			assert.strictEqual(-1, contents.indexOf('import'));
 			assert.strictEqual(-1, contents.indexOf('extends Component'));
 			assert.strictEqual(-1, contents.indexOf('export default'));
-			done();
-		});
-	});
-
-	it('should call SoyAop.registerTemplates', function(done) {
-    var stream = vfs.src('test/fixtures/soy/simple.soy')
-      .pipe(compileSoy());
-    stream.on('data', function(file) {
-      var contents = file.contents.toString();
-			assert.notStrictEqual(-1, contents.indexOf('SoyAop.registerTemplates(\'Simple\');'));
+			assert.strictEqual(-1, contents.indexOf('export {'));
 			done();
 		});
 	});
