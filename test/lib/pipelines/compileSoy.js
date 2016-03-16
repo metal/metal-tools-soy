@@ -63,8 +63,10 @@ describe('Compile Soy Pipeline', function() {
       .pipe(compileSoy());
     stream.on('data', function(file) {
       var contents = file.contents.toString();
-			assert.notStrictEqual(-1, contents.indexOf('import Component from \'metal-component\';'));
-			assert.notStrictEqual(-1, contents.indexOf('import { SoyAop, SoyRenderer, SoyTemplates } from \'metal-soy\';'));
+			assert.notStrictEqual(-1, contents.indexOf('import Component from \'metal-component/src/Component\';'));
+			assert.notStrictEqual(-1, contents.indexOf('import SoyAop from \'metal-soy/src/SoyAop\';'));
+			assert.notStrictEqual(-1, contents.indexOf('import SoyRenderer from \'metal-soy/src/SoyRenderer\';'));
+			assert.notStrictEqual(-1, contents.indexOf('import SoyTemplates from \'metal-soy/src/SoyTemplates\';'));
 			done();
 		});
 	});
