@@ -99,6 +99,20 @@ describe('Compile Soy Pipeline', function() {
 		});
 	});
 
+	it('should not generate imports and component class if skipMetalGeneration is true', function(done) {
+		var stream = vfs.src('test/fixtures/soy/simple.soy')
+			.pipe(compileSoy({
+				skipMetalGeneration: true
+			}));
+		stream.on('data', function(file) {
+			var contents = file.contents.toString();
+			assert.strictEqual(-1, contents.indexOf('import'));
+			assert.strictEqual(-1, contents.indexOf('extends Component'));
+			assert.strictEqual(-1, contents.indexOf('export default'));
+			done();
+		});
+	});
+
 	it('should call SoyAop.registerTemplates', function(done) {
     var stream = vfs.src('test/fixtures/soy/simple.soy')
       .pipe(compileSoy());
