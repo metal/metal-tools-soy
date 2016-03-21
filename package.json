@@ -27,6 +27,7 @@
     "closure-templates-incrementaldom": "0.0.1",
     "gulp-if": "^2.0.0",
     "gulp-ignore": "^2.0.1",
+    "gulp-replace": "^0.5.4",
     "gulp-soynode": "^1.5.1",
     "gulp-util": "^3.0.7",
     "gulp-wrapper": "^1.0.0",
