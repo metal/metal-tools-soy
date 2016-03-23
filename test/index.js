@@ -60,6 +60,7 @@ describe('Metal Tools - Soy', function() {
   	it('should compile specified soy files to js', function(done) {
       var stream = metalToolsSoy({
         src: 'test/fixtures/soy/simple.soy',
+        srcDeps: false,
         dest: 'test/fixtures/soy'
       });
       stream.on('end', function() {

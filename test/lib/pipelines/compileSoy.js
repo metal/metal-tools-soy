@@ -7,7 +7,7 @@ var vfs = require('vinyl-fs');
 describe('Compile Soy Pipeline', function() {
 	it('should compile soy files to js', function(done) {
     var stream = vfs.src('test/fixtures/soy/simple.soy')
-      .pipe(compileSoy());
+      .pipe(compileSoy({srcDeps: false}));
     stream.on('data', function(file) {
       assert.strictEqual('simple.soy.js', file.relative);
   		done();
@@ -16,7 +16,7 @@ describe('Compile Soy Pipeline', function() {
 
 	it('should set the "params" variable for each template, with a list of its param names', function(done) {
     var stream = vfs.src('test/fixtures/soy/simple.soy')
-      .pipe(compileSoy());
+      .pipe(compileSoy({srcDeps: false}));
     stream.on('data', function(file) {
       var contents = file.contents.toString();
       assert.notStrictEqual(-1, contents.indexOf('exports.render.params = [];'));
@@ -27,7 +27,7 @@ describe('Compile Soy Pipeline', function() {
 
 	it('should add lines to generated soy js file that import some metal ES6 modules', function(done) {
     var stream = vfs.src('test/fixtures/soy/simple.soy')
-      .pipe(compileSoy());
+      .pipe(compileSoy({srcDeps: false}));
     stream.on('data', function(file) {
       var contents = file.contents.toString();
 			assert.notStrictEqual(-1, contents.indexOf('import Component from \'metal-component/src/Component\';'));
@@ -38,7 +38,7 @@ describe('Compile Soy Pipeline', function() {
 
 	it('should export the templates', function(done) {
     var stream = vfs.src('test/fixtures/soy/simple.soy')
-      .pipe(compileSoy());
+      .pipe(compileSoy({srcDeps: false}));
     stream.on('data', function(file) {
       var contents = file.contents.toString();
 			assert.notStrictEqual(-1, contents.indexOf('templates = exports;'));
@@ -49,7 +49,7 @@ describe('Compile Soy Pipeline', function() {
 
 	it('should automatically generate and export component class using SoyRenderer', function(done) {
     var stream = vfs.src('test/fixtures/soy/simple.soy')
-      .pipe(compileSoy());
+      .pipe(compileSoy({srcDeps: false}));
     stream.on('data', function(file) {
       var contents = file.contents.toString();
 			assert.notStrictEqual(-1, contents.indexOf('class Simple extends Component'));
@@ -62,7 +62,8 @@ describe('Compile Soy Pipeline', function() {
 	it('should not generate imports and component class if skipMetalGeneration is true', function(done) {
 		var stream = vfs.src('test/fixtures/soy/simple.soy')
 			.pipe(compileSoy({
-				skipMetalGeneration: true
+				skipMetalGeneration: true,
+				srcDeps: false
 			}));
 		stream.on('data', function(file) {
 			var contents = file.contents.toString();
