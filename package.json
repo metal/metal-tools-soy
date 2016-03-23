@@ -1,6 +1,6 @@
 {
   "name": "metal-tools-soy",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Tool that can be used to compile metal soy files",
   "license": "BSD",
   "repository": "metal/metal-tools-soy",
