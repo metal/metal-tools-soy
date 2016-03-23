@@ -2,6 +2,7 @@
 
 var assert = require('assert');
 var compileSoy = require('../../../lib/pipelines/compileSoy');
+var ignore = require('gulp-ignore');
 var vfs = require('vinyl-fs');
 
 describe('Compile Soy Pipeline', function() {
@@ -12,6 +13,15 @@ describe('Compile Soy Pipeline', function() {
       assert.strictEqual('simple.soy.js', file.relative);
   		done();
     });
+	});
+
+	it('should not throw error if no files are provided for compilation', function(done) {
+    var stream = vfs.src('test/fixtures/soy/simple.soy')
+			.pipe(ignore.exclude('*.soy'))
+			.pipe(compileSoy());
+		stream.on('end', function() {
+			done();
+		});
 	});
 
 	it('should set the "params" variable for each template, with a list of its param names', function(done) {
