@@ -83,4 +83,24 @@ describe('Compile Soy Pipeline', function() {
 			done();
 		});
 	});
+
+	it('should replace goog.require calls to other templates with Soy.getTemplate calls', function(done) {
+    var stream = vfs.src('test/fixtures/soy/*.soy')
+      .pipe(compileSoy());
+		var files = [];
+    stream.on('data', function(file) {
+			files.push(file);
+		});
+		stream.on('end', function() {
+			assert.strictEqual(2, files.length);
+      assert.strictEqual('external.soy.js', files[0].relative);
+			assert.strictEqual('simple.soy.js', files[1].relative);
+
+			var contents = files[0].contents.toString();
+			assert.strictEqual(-1, contents.indexOf('goog.require(\'Simple.incrementaldom\')'));
+			assert.notStrictEqual(-1, contents.indexOf('Soy.getTemplate(\'Simple.incrementaldom\', \'render\')'));
+			assert.notStrictEqual(-1, contents.indexOf('Soy.getTemplate(\'Simple.incrementaldom\', \'hello\')'));
+  		done();
+    });
+	});
 });
