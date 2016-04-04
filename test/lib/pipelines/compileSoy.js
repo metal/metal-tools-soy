@@ -85,7 +85,7 @@ describe('Compile Soy Pipeline', function() {
 	});
 
 	it('should replace goog.require calls to other templates with Soy.getTemplate calls', function(done) {
-    var stream = vfs.src('test/fixtures/soy/*.soy')
+    var stream = vfs.src(['test/fixtures/soy/external.soy', 'test/fixtures/soy/simple.soy'])
       .pipe(compileSoy());
 		var files = [];
     stream.on('data', function(file) {
@@ -102,5 +102,31 @@ describe('Compile Soy Pipeline', function() {
 			assert.notStrictEqual(-1, contents.indexOf('Soy.getTemplate(\'Simple.incrementaldom\', \'hello\')'));
   		done();
     });
+	});
+
+	it('should emit error and end stream when soy parsing error is thrown', function(done) {
+    var stream = vfs.src('test/fixtures/soy/parseError.soy')
+      .pipe(compileSoy());
+		var error;
+    stream.on('error', function(e) {
+  		error = e;
+    });
+		stream.on('end', function() {
+			assert.ok(error);
+			done();
+		});
+	});
+
+	it('should emit error and end stream when the soy jar compiler throws an error', function(done) {
+    var stream = vfs.src('test/fixtures/soy/compileError.soy')
+      .pipe(compileSoy());
+		var error;
+    stream.on('error', function(e) {
+  		error = e;
+    });
+		stream.on('end', function() {
+			assert.ok(error);
+			done();
+		});
 	});
 });
