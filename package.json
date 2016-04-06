@@ -24,7 +24,7 @@
     "soy"
   ],
   "dependencies": {
-    "closure-templates-incrementaldom": "0.0.1",
+    "closure-templates-incrementaldom": "^0.0.2",
     "glob-expand": "^0.1.0",
     "gulp-if": "^2.0.0",
     "gulp-ignore": "^2.0.1",
