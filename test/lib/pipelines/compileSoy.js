@@ -35,6 +35,16 @@ describe('Compile Soy Pipeline', function() {
     });
 	});
 
+	it('should set the "types" variable for each template, with a list of its param types', function(done) {
+    var stream = vfs.src('test/fixtures/soy/paramTypes.soy')
+      .pipe(compileSoy());
+    stream.on('data', function(file) {
+      var contents = file.contents.toString();
+      assert.notStrictEqual(-1, contents.indexOf('exports.render.types = {"content":"html"};'));
+  		done();
+    });
+	});
+
 	it('should add lines to generated soy js file that import some metal ES6 modules', function(done) {
     var stream = vfs.src('test/fixtures/soy/simple.soy')
       .pipe(compileSoy());
