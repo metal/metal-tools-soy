@@ -67,6 +67,18 @@ describe('Metal Tools - Soy', function() {
     		done();
       });
   	});
+
+    it('should emit error and end stream when the soy jar compiler throws an error', function(done) {
+      var stream = metalToolsSoy({
+        src: 'test/fixtures/soy/compileError.soy',
+        dest: 'test/fixtures/soy'
+      });
+      sinon.stub(console, 'error');
+      stream.on('end', function() {
+        assert.strictEqual(1, console.error.callCount);
+        done();
+      });
+    });
   });
 });
 
