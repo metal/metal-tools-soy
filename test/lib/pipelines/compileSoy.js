@@ -79,6 +79,18 @@ describe('Compile Soy Pipeline', function() {
 		});
 	});
 
+	it('should build generated class name from the entire namespace', function(done) {
+    var stream = vfs.src('test/fixtures/soy/CompoundName.soy')
+      .pipe(compileSoy());
+    stream.on('data', function(file) {
+      var contents = file.contents.toString();
+			assert.notStrictEqual(-1, contents.indexOf('class CompoundName extends Component'));
+			assert.notStrictEqual(-1, contents.indexOf('Soy.register(CompoundName, templates);'));
+      assert.notStrictEqual(-1, contents.indexOf('export { CompoundName, templates };'));
+			done();
+		});
+	});
+
 	it('should not generate imports and component class if skipMetalGeneration is true', function(done) {
 		var stream = vfs.src('test/fixtures/soy/simple.soy')
 			.pipe(compileSoy({
