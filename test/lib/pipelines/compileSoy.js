@@ -91,6 +91,19 @@ describe('Compile Soy Pipeline', function() {
 		});
 	});
 
+	it('should not generate component class if no render template is declared', function(done) {
+		var stream = vfs.src('test/fixtures/soy/noRender.soy')
+			.pipe(compileSoy());
+		stream.on('data', function(file) {
+			var contents = file.contents.toString();
+			assert.notStrictEqual(-1, contents.indexOf('import'));
+			assert.strictEqual(-1, contents.indexOf('extends Component'));
+			assert.notStrictEqual(-1, contents.indexOf('export default'));
+			assert.notStrictEqual(-1, contents.indexOf('export { templates }'));
+			done();
+		});
+	});
+
 	it('should not generate imports and component class if skipMetalGeneration is true', function(done) {
 		var stream = vfs.src('test/fixtures/soy/simple.soy')
 			.pipe(compileSoy({
