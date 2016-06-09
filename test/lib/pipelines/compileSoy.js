@@ -1,8 +1,10 @@
 'use strict';
 
 var assert = require('assert');
+var childProcess = require('child_process');
 var compileSoy = require('../../../lib/pipelines/compileSoy');
 var ignore = require('gulp-ignore');
+var sinon = require('sinon');
 var vfs = require('vinyl-fs');
 
 describe('Compile Soy Pipeline', function() {
@@ -162,6 +164,39 @@ describe('Compile Soy Pipeline', function() {
 		stream.on('end', function() {
 			assert.ok(error);
 			done();
+		});
+	});
+
+	describe('Java Version', function() {
+		var childProcessStub = {
+			stderr: {
+				on: sinon.stub().yields('Exception in thread "main" java.lang.UnsupportedClassVersionError: ')
+			},
+			on: sinon.stub().yields(1)
+		};
+
+		beforeEach(function() {
+			sinon.stub(childProcess, 'spawn').returns(childProcessStub);
+		});
+
+		afterEach(function() {
+			childProcess.spawn.restore();
+		});
+
+		it('should show better error message when the soy jar compiler throws an error due to java version', function(done) {
+			var stream = vfs.src('test/fixtures/soy/simple.soy')
+				.pipe(compileSoy());
+			var error;
+			stream.on('error', function(e) {
+				error = e;
+			});
+			stream.on('end', function() {
+				assert.ok(error);
+
+				var msg = 'Make sure that you have Java version 8 or higher installed';
+				assert.notStrictEqual(-1, error.message.indexOf(msg));
+				done();
+			});
 		});
 	});
 });
