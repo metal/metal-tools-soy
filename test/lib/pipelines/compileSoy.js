@@ -52,8 +52,8 @@ describe('Compile Soy Pipeline', function() {
       .pipe(compileSoy());
     stream.on('data', function(file) {
       var contents = file.contents.toString();
-			assert.notStrictEqual(-1, contents.indexOf('import Component from \'metal-component/src/Component\';'));
-			assert.notStrictEqual(-1, contents.indexOf('import Soy from \'metal-soy/src/Soy\';'));
+			assert.notStrictEqual(-1, contents.indexOf('import Component from \'metal-component\';'));
+			assert.notStrictEqual(-1, contents.indexOf('import Soy from \'metal-soy\';'));
 			done();
 		});
 	});
