@@ -13,7 +13,8 @@
   },
   "files": [
     "index.js",
-    "lib/**/*.js"
+    "lib/**/*.js",
+		"jar"
   ],
   "scripts": {
     "lint": "jshint index.js",
@@ -24,7 +25,6 @@
     "soy"
   ],
   "dependencies": {
-    "closure-templates-incrementaldom": "^0.0.3",
     "glob-expand": "^0.1.0",
     "gulp-if": "^2.0.0",
     "gulp-ignore": "^2.0.1",
