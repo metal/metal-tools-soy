@@ -3,11 +3,21 @@
 var assert = require('assert');
 var childProcess = require('child_process');
 var compileSoy = require('../../../lib/pipelines/compileSoy');
+var del = require('del');
 var ignore = require('gulp-ignore');
+var path = require('path');
 var sinon = require('sinon');
 var vfs = require('vinyl-fs');
 
+var outputDir = path.join(__dirname, '../../tmp');
+
 describe('Compile Soy Pipeline', function() {
+	after(function(done) {
+		del(outputDir).then(function() {
+			done();
+		});
+	});
+
 	it('should compile soy files to js', function(done) {
     var stream = vfs.src('test/fixtures/soy/simple.soy')
       .pipe(compileSoy());
@@ -15,6 +25,18 @@ describe('Compile Soy Pipeline', function() {
       assert.strictEqual('simple.soy.js', file.relative);
   		done();
     });
+	});
+
+	it('should compile soy files to js using custom outputDir', function(done) {
+		var stream = vfs.src('test/fixtures/soy/simple.soy')
+			.pipe(compileSoy({
+				outputDir: outputDir
+			}));
+
+		stream.on('data', function(file) {
+			assert.strictEqual('simple.soy.js', file.relative);
+			done();
+		});
 	});
 
 	it('should not throw error if no files are provided for compilation', function(done) {
