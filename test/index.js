@@ -79,6 +79,19 @@ describe('Metal Tools - Soy', function() {
         done();
       });
     });
+
+    it('should use custom handleError function', function(done) {
+      var stream = metalToolsSoy({
+        dest: 'test/fixtures/soy',
+        handleError: function(err) {
+          assert.ok(err);
+          assert.ok(err.message);
+
+          done();
+        },
+        src: 'test/fixtures/soy/compileError.soy'
+      });
+    });
   });
 });
 
