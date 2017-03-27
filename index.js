@@ -8,9 +8,12 @@ var merge = require('merge');
 var vfs = require('vinyl-fs');
 
 module.exports = function (options) {
-	options = merge({}, defaultOptions, options);
+	options = merge({
+		handleError: handleError
+	}, defaultOptions, options);
+
 	var stream = vfs.src(options.src)
-		.pipe(compileSoy(options).on('error', handleError))
+		.pipe(compileSoy(options).on('error', options.handleError))
 		.pipe(vfs.dest(options.dest));
 	if (!options.skipConsume) {
 		consume(stream);
