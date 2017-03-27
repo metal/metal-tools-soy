@@ -27,6 +27,15 @@ describe('Compile Soy Pipeline', function() {
     });
 	});
 
+	it('should compile soy files with CRLF line ending to js without errors', function(done) {
+    var stream = vfs.src('test/fixtures/soy/crlf.soy')
+			.pipe(compileSoy());
+		stream.on('data', function(file) {
+			assert.strictEqual('crlf.soy.js', file.relative);
+			done();
+		});
+	});
+
 	it('should compile soy files to js using custom outputDir', function(done) {
 		var stream = vfs.src('test/fixtures/soy/simple.soy')
 			.pipe(compileSoy({
