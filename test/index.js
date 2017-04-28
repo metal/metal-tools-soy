@@ -30,6 +30,12 @@ describe('Metal Tools - Soy', function() {
     assert.strictEqual('src', vfs.dest.args[0][0]);
 	});
 
+	it('should compile soy files to multiple "dest" folder', function() {
+    metalToolsSoy({dest: ['src1', 'src2']});
+    assert.strictEqual('src1', vfs.dest.args[0][0]);
+    assert.strictEqual('src2', vfs.dest.args[1][0]);
+	});
+
   it('should consume stream by default', function() {
     var stream = metalToolsSoy({
       src: 'test/fixtures/soy/simple.soy',

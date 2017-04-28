@@ -12,9 +12,15 @@ module.exports = function (options) {
 		handleError: handleError
 	}, defaultOptions, options);
 
+	if (!Array.isArray(options.dest)) {
+		options.dest = [options.dest];
+	}
+
 	var stream = vfs.src(options.src)
-		.pipe(compileSoy(options).on('error', options.handleError))
-		.pipe(vfs.dest(options.dest));
+		.pipe(compileSoy(options).on('error', options.handleError));
+
+	options.dest.forEach((dest) => stream = stream.pipe(vfs.dest(dest)));
+
 	if (!options.skipConsume) {
 		consume(stream);
 	}
