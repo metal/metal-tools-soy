@@ -1,0 +1,51 @@
+{
+  "name": "soyparser",
+  "version": "1.0.0",
+  "description": "A parser for Closure Templates (or Soy Templates).",
+  "files": [
+    "lib"
+  ],
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "jest",
+    "compile": "tsc",
+    "prepublish": "npm run compile"
+  },
+  "types": "lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/metal/soyparser.git"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "ts"
+    ],
+    "testMatch": [
+      "**/__tests__/*.ts"
+    ],
+    "transform": {
+      "^.+\\.ts$": "<rootDir>/preprocessor.js"
+    }
+  },
+  "keywords": [
+    "metal",
+    "soy",
+    "parser"
+  ],
+  "author": "Michael T. Hadley",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/metal/soyparser/issues"
+  },
+  "homepage": "https://github.com/metal/soyparser#readme",
+  "dependencies": {
+    "parsimmon": "^1.2.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^19.2.3",
+    "@types/parsimmon": "^1.0.4",
+    "jest": "^20.0.0",
+    "typescript": "^2.3.2"
+  }
+}
