@@ -10,8 +10,21 @@ export interface VisitObject<T> {
 export type Visit<T> = VisitFunction<T> | VisitObject<T>;
 
 export interface Visitor {
+  BooleanLiteral?: Visit<S.BooleanLiteral>;
   Call?: Visit<S.Call>;
-  MapLiteral?: Visit<S.MapLiteral>,
+  DelTemplate?: Visit<S.DelTemplate>;
+  FunctionCall?: Visit<S.FunctionCall>;
+  Interpolation?: Visit<S.Interpolation>;
+  LetStatement?: Visit<S.LetStatement>;
+  MapItem?: Visit<S.MapItem>;
+  MapLiteral?: Visit<S.MapLiteral>;
+  NumberLital?: Visit<S.NumberLiteral>;
+  OtherCmd?: Visit<S.OtherCmd>;
+  OtherExpression?: Visit<S.OtherExpression>;
+  Param?: Visit<S.Param>;
+  Program?: Visit<S.Program>;
+  Reference?: Visit<S.Reference>;
+  StringLiteral?: Visit<S.StringLiteral>;
   Template?: Visit<S.Template>;
   Ternary?: Visit<S.Ternary>;
   [propName: string]: Visit<S.Node> | undefined;
