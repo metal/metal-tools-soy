@@ -100,6 +100,16 @@ describe('Compile Soy Pipeline', function() {
 		});
 	});
 
+	it('should not export delegated templates', function(done) {
+		var stream = vfs.src('test/fixtures/soy/delTemplate.soy')
+			.pipe(compileSoy());
+		stream.on('data', function(file) {
+			var contents = file.contents.toString();
+			assert.strictEqual(-1, contents.indexOf('exports.DelTemplate.Foo'));
+			done();
+		});
+	});
+
 	it('should automatically generate and export component class using SoyRenderer', function(done) {
     var stream = vfs.src('test/fixtures/soy/simple.soy')
       .pipe(compileSoy());
