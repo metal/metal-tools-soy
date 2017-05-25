@@ -182,6 +182,34 @@ describe('Compile Soy Pipeline', function() {
     });
 	});
 
+	it('should not replace google external messages by default', function(done) {
+		var stream = vfs.src('test/fixtures/soy/messages.soy')
+			.pipe(compileSoy());
+		stream.on('data', function(file) {
+			var contents = file.contents.toString();
+
+			assert.strictEqual(4, contents.match(/var MSG_EXTERNAL_(?:[^\s]*)\s=\sgoog.getMsg/g).length);
+			done();
+		});
+	});
+
+	it('should replace external messages from goog.getMsg calls if an externalMsgFormat has been specified', function(done) {
+		var externalMsgFormat = 'I18n.translate(\'$2\')';
+
+		var stream = vfs.src('test/fixtures/soy/messages.soy')
+			.pipe(compileSoy({
+				externalMsgFormat: externalMsgFormat
+			}));
+		stream.on('data', function(file) {
+			var contents = file.contents.toString();
+
+			assert.strictEqual(2, contents.match(/var MSG_EXTERNAL_(?:[^\s]*)\s=\sI18n.translate\('foo'\)/g).length);
+			assert.strictEqual(1, contents.match(/var MSG_EXTERNAL_(?:[^\s]*)\s=\sI18n.translate\('bar'\)/g).length);
+			assert.strictEqual(1, contents.match(/var MSG_EXTERNAL_(?:[^\s]*)\s=\sI18n.translate\('complex-key'\)/g).length);
+			done();
+		});
+	});
+
 	it('should emit error and end stream when soy parsing error is thrown', function(done) {
     var stream = vfs.src('test/fixtures/soy/parseError.soy')
       .pipe(compileSoy());
