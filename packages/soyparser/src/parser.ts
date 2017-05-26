@@ -385,7 +385,7 @@ export class SoyParseError extends Error {}
 export default function parse(input: string): S.Program {
   const result = parser.parse(input);
   if (!result.status) {
-    throw new SoyParseError(`Expected: ${result.expected.join('\n')}`);
+    throw new SoyParseError(`Parsing failed at ${result.index.line}:${result.index.column}. Expecting:\n${result.expected.join('\n')}`);
   }
   return result.value;
 };
