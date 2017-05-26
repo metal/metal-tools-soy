@@ -67,4 +67,10 @@ describe('Soy Parser', () => {
 
     expect(soyParser(input)).toMatchSnapshot();
   });
+
+  test('should parse template name with an underscore', () => {
+    const input = getFixture('TemplateName.soy');
+
+    expect(soyParser(input)).toMatchSnapshot();
+  });
 });

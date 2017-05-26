@@ -24,10 +24,10 @@ const squote = P.string('\'');
 const underscore = P.string('_');
 
 const attributeName = joined(P.letter, P.string('-'));
-const functionName = joined(P.letter, underscore);
+const functionName = joined(P.letter, underscore, P.digit);
 const html = P.noneOf('{}').many().desc("Html Char");
 const identifierName = joined(P.letter, P.digit, underscore);
-const namespace = joined(P.letter, P.digit, P.string('.'));
+const namespace = joined(P.letter, P.digit, P.string('.'), underscore);
 
 const templateName = namespace.map(parseTemplateName);
 

@@ -3074,3 +3074,63 @@ Some more docs
   "type": "Program",
 }
 `;
+
+exports[`Soy Parser should parse template name with an underscore 1`] = `
+Object {
+  "body": Array [
+    Object {
+      "attributes": Array [],
+      "body": Array [],
+      "doc": Object {
+        "about": "",
+        "mark": Object {
+          "end": Object {
+            "column": 1,
+            "line": 6,
+            "offset": 37,
+          },
+          "start": Object {
+            "column": 1,
+            "line": 3,
+            "offset": 26,
+          },
+        },
+        "params": Array [],
+        "type": "SoyDoc",
+      },
+      "id": Object {
+        "name": "with_underscore",
+        "namespace": null,
+      },
+      "mark": Object {
+        "end": Object {
+          "column": 12,
+          "line": 7,
+          "offset": 76,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 3,
+          "offset": 26,
+        },
+      },
+      "params": Array [],
+      "type": "Template",
+    },
+  ],
+  "mark": Object {
+    "end": Object {
+      "column": 1,
+      "line": 8,
+      "offset": 77,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "namespace": "TemplateName",
+  "type": "Program",
+}
+`;
