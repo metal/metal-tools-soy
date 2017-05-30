@@ -29,3 +29,33 @@
 {template .otherHelper}
   <div>{$name}</div>
 {/template}
+
+/**
+ * With other random doc token
+ * @reference /some/other/thing
+ *
+ * @param name
+ * @param count
+ * Some more docs
+ **/
+{template .referenceHelper}
+  <div>{$name}</div>
+  <div>{$count}</div>
+{/template}
+
+/**
+ * With a description of the param
+ * @param name The name of the thing
+ * Some more docs
+ **/
+{template .descriptionHelper}
+  <div>{$name}</div>
+{/template}
+
+/**
+ * Optional
+ * @param? name The name of the thing
+ **/
+{template .optionalHelper}
+  <div>{$name}</div>
+{/template}

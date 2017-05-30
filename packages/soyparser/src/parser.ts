@@ -136,7 +136,7 @@ const paramDeclaration = nodeMap(
 const soyDocComment = P.optWhitespace
   .then(asterisk)
   .skip(space.many())
-  .lookahead(P.noneOf('@/'))
+  .lookahead(P.noneOf('/'))
   .then(withAny(newLine.or(asterisk), false));
 
 const soyDocParam = nodeMap(
@@ -145,7 +145,7 @@ const soyDocParam = nodeMap(
     .skip(P.string('@param'))
     .then(optional(qmark))
     .map(value => !value),
-  spaced(identifierName)
+  P.whitespace.then(identifierName).skip(orAny(newLine))
 );
 
 const soyDoc = nodeMap(
