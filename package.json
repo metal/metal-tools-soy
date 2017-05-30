@@ -18,7 +18,7 @@
   ],
   "scripts": {
     "lint": "jshint index.js",
-    "test": "mocha test/*.js test/lib/**/*.js --slow 1000 --timeout 3000"
+    "test": "jest"
   },
   "keywords": [
     "metal",
@@ -40,9 +40,8 @@
   },
   "devDependencies": {
     "del": "^2.1.0",
+    "jest": "^20.0.4",
     "jshint": "^2.7.0",
-    "merge": "^1.2.0",
-    "mocha": "^2.2.5",
-    "sinon": "^1.14.1"
+    "merge": "^1.2.0"
   }
 }
