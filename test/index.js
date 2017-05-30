@@ -59,7 +59,7 @@ describe('Metal Tools - Soy', function() {
       restoreStream();
     });
 
-  	after(function(done) {
+  	afterAll(function(done) {
       deleteCompiledSoyFiles(done);
   	});
 

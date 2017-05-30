@@ -12,7 +12,7 @@ var vfs = require('vinyl-fs');
 var outputDir = path.join(__dirname, '../../tmp');
 
 describe('Compile Soy Pipeline', function() {
-	after(function(done) {
+	afterAll(function(done) {
 		del(outputDir).then(function() {
 			done();
 		});
