@@ -2883,9 +2883,9 @@ Object {
           Object {
             "mark": Object {
               "end": Object {
-                "column": 2,
+                "column": 1,
                 "line": 6,
-                "offset": 45,
+                "offset": 44,
               },
               "start": Object {
                 "column": 8,
@@ -3020,9 +3020,9 @@ Some more docs
           Object {
             "mark": Object {
               "end": Object {
-                "column": 2,
+                "column": 1,
                 "line": 27,
-                "offset": 266,
+                "offset": 265,
               },
               "start": Object {
                 "column": 15,
@@ -3057,12 +3057,278 @@ Some more docs
       "params": Array [],
       "type": "Template",
     },
+    Object {
+      "attributes": Array [],
+      "body": Array [
+        Object {
+          "content": "$name",
+          "mark": Object {
+            "end": Object {
+              "column": 15,
+              "line": 42,
+              "offset": 512,
+            },
+            "start": Object {
+              "column": 8,
+              "line": 42,
+              "offset": 505,
+            },
+          },
+          "type": "Interpolation",
+        },
+        Object {
+          "content": "$count",
+          "mark": Object {
+            "end": Object {
+              "column": 16,
+              "line": 43,
+              "offset": 534,
+            },
+            "start": Object {
+              "column": 8,
+              "line": 43,
+              "offset": 526,
+            },
+          },
+          "type": "Interpolation",
+        },
+      ],
+      "doc": Object {
+        "about": "With other random doc token
+@reference /some/other/thing
+
+Some more docs
+",
+        "mark": Object {
+          "end": Object {
+            "column": 1,
+            "line": 41,
+            "offset": 470,
+          },
+          "start": Object {
+            "column": 1,
+            "line": 33,
+            "offset": 346,
+          },
+        },
+        "params": Array [
+          Object {
+            "mark": Object {
+              "end": Object {
+                "column": 1,
+                "line": 38,
+                "offset": 431,
+              },
+              "start": Object {
+                "column": 3,
+                "line": 36,
+                "offset": 415,
+              },
+            },
+            "name": "name",
+            "paramType": "any",
+            "required": true,
+            "type": "ParamDeclaration",
+          },
+          Object {
+            "mark": Object {
+              "end": Object {
+                "column": 1,
+                "line": 39,
+                "offset": 447,
+              },
+              "start": Object {
+                "column": 1,
+                "line": 38,
+                "offset": 431,
+              },
+            },
+            "name": "count",
+            "paramType": "any",
+            "required": true,
+            "type": "ParamDeclaration",
+          },
+        ],
+        "type": "SoyDoc",
+      },
+      "id": Object {
+        "name": "referenceHelper",
+        "namespace": null,
+      },
+      "mark": Object {
+        "end": Object {
+          "column": 12,
+          "line": 44,
+          "offset": 552,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 33,
+          "offset": 346,
+        },
+      },
+      "params": Array [],
+      "type": "Template",
+    },
+    Object {
+      "attributes": Array [],
+      "body": Array [
+        Object {
+          "content": "$name",
+          "mark": Object {
+            "end": Object {
+              "column": 15,
+              "line": 52,
+              "offset": 697,
+            },
+            "start": Object {
+              "column": 8,
+              "line": 52,
+              "offset": 690,
+            },
+          },
+          "type": "Interpolation",
+        },
+      ],
+      "doc": Object {
+        "about": "With a description of the param
+Some more docs
+",
+        "mark": Object {
+          "end": Object {
+            "column": 1,
+            "line": 51,
+            "offset": 653,
+          },
+          "start": Object {
+            "column": 1,
+            "line": 46,
+            "offset": 554,
+          },
+        },
+        "params": Array [
+          Object {
+            "mark": Object {
+              "end": Object {
+                "column": 1,
+                "line": 49,
+                "offset": 630,
+              },
+              "start": Object {
+                "column": 35,
+                "line": 47,
+                "offset": 592,
+              },
+            },
+            "name": "name",
+            "paramType": "any",
+            "required": true,
+            "type": "ParamDeclaration",
+          },
+        ],
+        "type": "SoyDoc",
+      },
+      "id": Object {
+        "name": "descriptionHelper",
+        "namespace": null,
+      },
+      "mark": Object {
+        "end": Object {
+          "column": 12,
+          "line": 53,
+          "offset": 715,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 46,
+          "offset": 554,
+        },
+      },
+      "params": Array [],
+      "type": "Template",
+    },
+    Object {
+      "attributes": Array [],
+      "body": Array [
+        Object {
+          "content": "$name",
+          "mark": Object {
+            "end": Object {
+              "column": 15,
+              "line": 60,
+              "offset": 817,
+            },
+            "start": Object {
+              "column": 8,
+              "line": 60,
+              "offset": 810,
+            },
+          },
+          "type": "Interpolation",
+        },
+      ],
+      "doc": Object {
+        "about": "Optional
+",
+        "mark": Object {
+          "end": Object {
+            "column": 1,
+            "line": 59,
+            "offset": 776,
+          },
+          "start": Object {
+            "column": 1,
+            "line": 55,
+            "offset": 717,
+          },
+        },
+        "params": Array [
+          Object {
+            "mark": Object {
+              "end": Object {
+                "column": 1,
+                "line": 58,
+                "offset": 771,
+              },
+              "start": Object {
+                "column": 12,
+                "line": 56,
+                "offset": 732,
+              },
+            },
+            "name": "name",
+            "paramType": "any",
+            "required": false,
+            "type": "ParamDeclaration",
+          },
+        ],
+        "type": "SoyDoc",
+      },
+      "id": Object {
+        "name": "optionalHelper",
+        "namespace": null,
+      },
+      "mark": Object {
+        "end": Object {
+          "column": 12,
+          "line": 61,
+          "offset": 835,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 55,
+          "offset": 717,
+        },
+      },
+      "params": Array [],
+      "type": "Template",
+    },
   ],
   "mark": Object {
     "end": Object {
       "column": 1,
-      "line": 32,
-      "offset": 345,
+      "line": 62,
+      "offset": 836,
     },
     "start": Object {
       "column": 1,
