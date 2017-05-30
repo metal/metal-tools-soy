@@ -7,19 +7,24 @@ var gutil = require('gulp-util');
 var merge = require('merge');
 var vfs = require('vinyl-fs');
 
-module.exports = function (options) {
-	options = merge({
-		handleError: handleError
-	}, defaultOptions, options);
+module.exports = function(options) {
+	options = merge(
+		{
+			handleError: handleError,
+		},
+		defaultOptions,
+		options,
+	);
 
 	if (!Array.isArray(options.dest)) {
 		options.dest = [options.dest];
 	}
 
-	var stream = vfs.src(options.src)
+	var stream = vfs
+		.src(options.src)
 		.pipe(compileSoy(options).on('error', options.handleError));
 
-	options.dest.forEach((dest) => stream = stream.pipe(vfs.dest(dest)));
+	options.dest.forEach(dest => (stream = stream.pipe(vfs.dest(dest))));
 
 	if (!options.skipConsume) {
 		consume(stream);
