@@ -1,440 +1,647 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Compile Soy Pipeline should add lines to generated soy js file that import some metal ES6 modules 1`] = `
-"/* jshint ignore:start */
+/* jshint ignore:start */
 import Component from 'metal-component';
 import Soy from 'metal-soy';
 
 var templates;
 goog.loadModule(function(exports) {
-var soy = goog.require('soy');
-var soydata = goog.require('soydata');
-// This file was automatically generated from simple.soy.
-// Please don't edit this file by hand.
+  var soy = goog.require('soy');
+  var soydata = goog.require('soydata');
+  // This file was automatically generated from simple.soy.
+  // Please don't edit this file by hand.
 
-/**
- * @fileoverview Templates in namespace Simple.
- * @public
- */
+  /**
+   * @fileoverview Templates in namespace Simple.
+   * @public
+   */
 
-goog.module('Simple.incrementaldom');
+  goog.module('Simple.incrementaldom');
 
-var incrementalDom = goog.require('incrementaldom');
-var soyIdom = goog.require('soy.idom');
-
-
-/**
- * @param {Object<string, *>=} opt_data
- * @param {Object<string, *>=} opt_ijData
- * @param {Object<string, *>=} opt_ijData_deprecated
- * @return {void}
- * @suppress {checkTypes}
- */
-function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
-  opt_ijData = opt_ijData_deprecated || opt_ijData;
-  opt_data = opt_data || {};
-  $hello(opt_data, null, opt_ijData);
-}
-exports.render = $render;
-if (goog.DEBUG) {
-  $render.soyTemplateName = 'Simple.render';
-}
+  var incrementalDom = goog.require('incrementaldom');
+  var soyIdom = goog.require('soy.idom');
 
 
-/**
- * @param {Object<string, *>=} opt_data
- * @param {Object<string, *>=} opt_ijData
- * @param {Object<string, *>=} opt_ijData_deprecated
- * @return {void}
- * @suppress {checkTypes}
- */
-function $hello(opt_data, opt_ijData, opt_ijData_deprecated) {
-  opt_ijData = opt_ijData_deprecated || opt_ijData;
-  incrementalDom.text('Hello ');
-  soyIdom.print(opt_data.firstName);
-  if (opt_data.lastName) {
-    incrementalDom.text(' ');
-    soyIdom.print(opt_data.lastName);
+  /**
+   * @param {Object<string, *>=} opt_data
+   * @param {Object<string, *>=} opt_ijData
+   * @param {Object<string, *>=} opt_ijData_deprecated
+   * @return {void}
+   * @suppress {checkTypes}
+   */
+  function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
+    opt_ijData = opt_ijData_deprecated || opt_ijData;
+    opt_data = opt_data || {};
+    $hello(opt_data, null, opt_ijData);
   }
-  incrementalDom.text('!');
-}
-exports.hello = $hello;
-if (goog.DEBUG) {
-  $hello.soyTemplateName = 'Simple.hello';
-}
+  exports.render = $render;
+  if (goog.DEBUG) {
+    $render.soyTemplateName = 'Simple.render';
+  }
 
-exports.render.params = [];
-exports.render.types = {};
-exports.hello.params = [\\"firstName\\",\\"lastName\\"];
-exports.hello.types = {\\"firstName\\":\\"any\\",\\"lastName\\":\\"any\\"};
-templates = exports;
-return exports;
+
+  /**
+   * @param {Object<string, *>=} opt_data
+   * @param {Object<string, *>=} opt_ijData
+   * @param {Object<string, *>=} opt_ijData_deprecated
+   * @return {void}
+   * @suppress {checkTypes}
+   */
+  function $hello(opt_data, opt_ijData, opt_ijData_deprecated) {
+    opt_ijData = opt_ijData_deprecated || opt_ijData;
+    incrementalDom.text('Hello ');
+    soyIdom.print(opt_data.firstName);
+    if (opt_data.lastName) {
+      incrementalDom.text(' ');
+      soyIdom.print(opt_data.lastName);
+    }
+    incrementalDom.text('!');
+  }
+  exports.hello = $hello;
+  if (goog.DEBUG) {
+    $hello.soyTemplateName = 'Simple.hello';
+  }
+
+  exports.render.params = [];
+  exports.render.types = {};
+  exports.hello.params = ["firstName", "lastName"];
+  exports.hello.types = {
+    "firstName": "any",
+    "lastName": "any"
+  };
+  templates = exports;
+  return exports;
 
 });
 
 class Simple extends Component {}
 Soy.register(Simple, templates);
-export { Simple, templates };
+export {
+  Simple,
+  templates
+};
 export default templates;
 /* jshint ignore:end */
-"
 `;
 
 exports[`Compile Soy Pipeline should automatically generate and export component class using SoyRenderer 1`] = `
-"/* jshint ignore:start */
+/* jshint ignore:start */
 import Component from 'metal-component';
 import Soy from 'metal-soy';
 
 var templates;
 goog.loadModule(function(exports) {
-var soy = goog.require('soy');
-var soydata = goog.require('soydata');
-// This file was automatically generated from simple.soy.
-// Please don't edit this file by hand.
+  var soy = goog.require('soy');
+  var soydata = goog.require('soydata');
+  // This file was automatically generated from simple.soy.
+  // Please don't edit this file by hand.
 
-/**
- * @fileoverview Templates in namespace Simple.
- * @public
- */
+  /**
+   * @fileoverview Templates in namespace Simple.
+   * @public
+   */
 
-goog.module('Simple.incrementaldom');
+  goog.module('Simple.incrementaldom');
 
-var incrementalDom = goog.require('incrementaldom');
-var soyIdom = goog.require('soy.idom');
-
-
-/**
- * @param {Object<string, *>=} opt_data
- * @param {Object<string, *>=} opt_ijData
- * @param {Object<string, *>=} opt_ijData_deprecated
- * @return {void}
- * @suppress {checkTypes}
- */
-function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
-  opt_ijData = opt_ijData_deprecated || opt_ijData;
-  opt_data = opt_data || {};
-  $hello(opt_data, null, opt_ijData);
-}
-exports.render = $render;
-if (goog.DEBUG) {
-  $render.soyTemplateName = 'Simple.render';
-}
+  var incrementalDom = goog.require('incrementaldom');
+  var soyIdom = goog.require('soy.idom');
 
 
-/**
- * @param {Object<string, *>=} opt_data
- * @param {Object<string, *>=} opt_ijData
- * @param {Object<string, *>=} opt_ijData_deprecated
- * @return {void}
- * @suppress {checkTypes}
- */
-function $hello(opt_data, opt_ijData, opt_ijData_deprecated) {
-  opt_ijData = opt_ijData_deprecated || opt_ijData;
-  incrementalDom.text('Hello ');
-  soyIdom.print(opt_data.firstName);
-  if (opt_data.lastName) {
-    incrementalDom.text(' ');
-    soyIdom.print(opt_data.lastName);
+  /**
+   * @param {Object<string, *>=} opt_data
+   * @param {Object<string, *>=} opt_ijData
+   * @param {Object<string, *>=} opt_ijData_deprecated
+   * @return {void}
+   * @suppress {checkTypes}
+   */
+  function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
+    opt_ijData = opt_ijData_deprecated || opt_ijData;
+    opt_data = opt_data || {};
+    $hello(opt_data, null, opt_ijData);
   }
-  incrementalDom.text('!');
-}
-exports.hello = $hello;
-if (goog.DEBUG) {
-  $hello.soyTemplateName = 'Simple.hello';
-}
+  exports.render = $render;
+  if (goog.DEBUG) {
+    $render.soyTemplateName = 'Simple.render';
+  }
 
-exports.render.params = [];
-exports.render.types = {};
-exports.hello.params = [\\"firstName\\",\\"lastName\\"];
-exports.hello.types = {\\"firstName\\":\\"any\\",\\"lastName\\":\\"any\\"};
-templates = exports;
-return exports;
+
+  /**
+   * @param {Object<string, *>=} opt_data
+   * @param {Object<string, *>=} opt_ijData
+   * @param {Object<string, *>=} opt_ijData_deprecated
+   * @return {void}
+   * @suppress {checkTypes}
+   */
+  function $hello(opt_data, opt_ijData, opt_ijData_deprecated) {
+    opt_ijData = opt_ijData_deprecated || opt_ijData;
+    incrementalDom.text('Hello ');
+    soyIdom.print(opt_data.firstName);
+    if (opt_data.lastName) {
+      incrementalDom.text(' ');
+      soyIdom.print(opt_data.lastName);
+    }
+    incrementalDom.text('!');
+  }
+  exports.hello = $hello;
+  if (goog.DEBUG) {
+    $hello.soyTemplateName = 'Simple.hello';
+  }
+
+  exports.render.params = [];
+  exports.render.types = {};
+  exports.hello.params = ["firstName", "lastName"];
+  exports.hello.types = {
+    "firstName": "any",
+    "lastName": "any"
+  };
+  templates = exports;
+  return exports;
 
 });
 
 class Simple extends Component {}
 Soy.register(Simple, templates);
-export { Simple, templates };
+export {
+  Simple,
+  templates
+};
 export default templates;
 /* jshint ignore:end */
-"
 `;
 
 exports[`Compile Soy Pipeline should build generated class name from the entire namespace 1`] = `
-"/* jshint ignore:start */
+/* jshint ignore:start */
 import Component from 'metal-component';
 import Soy from 'metal-soy';
 
 var templates;
 goog.loadModule(function(exports) {
-var soy = goog.require('soy');
-var soydata = goog.require('soydata');
-// This file was automatically generated from CompoundName.soy.
-// Please don't edit this file by hand.
+  var soy = goog.require('soy');
+  var soydata = goog.require('soydata');
+  // This file was automatically generated from CompoundName.soy.
+  // Please don't edit this file by hand.
 
-/**
- * @fileoverview Templates in namespace Compound.Name.
- * @public
- */
+  /**
+   * @fileoverview Templates in namespace Compound.Name.
+   * @public
+   */
 
-goog.module('Compound.Name.incrementaldom');
+  goog.module('Compound.Name.incrementaldom');
 
-var incrementalDom = goog.require('incrementaldom');
-var soyIdom = goog.require('soy.idom');
+  var incrementalDom = goog.require('incrementaldom');
+  var soyIdom = goog.require('soy.idom');
 
 
-/**
- * @param {Object<string, *>=} opt_data
- * @param {Object<string, *>=} opt_ijData
- * @param {Object<string, *>=} opt_ijData_deprecated
- * @return {void}
- * @suppress {checkTypes}
- */
-function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
-  opt_ijData = opt_ijData_deprecated || opt_ijData;
-  incrementalDom.text('Hello World');
-}
-exports.render = $render;
-if (goog.DEBUG) {
-  $render.soyTemplateName = 'Compound.Name.render';
-}
+  /**
+   * @param {Object<string, *>=} opt_data
+   * @param {Object<string, *>=} opt_ijData
+   * @param {Object<string, *>=} opt_ijData_deprecated
+   * @return {void}
+   * @suppress {checkTypes}
+   */
+  function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
+    opt_ijData = opt_ijData_deprecated || opt_ijData;
+    incrementalDom.text('Hello World');
+  }
+  exports.render = $render;
+  if (goog.DEBUG) {
+    $render.soyTemplateName = 'Compound.Name.render';
+  }
 
-exports.render.params = [];
-exports.render.types = {};
-templates = exports;
-return exports;
+  exports.render.params = [];
+  exports.render.types = {};
+  templates = exports;
+  return exports;
 
 });
 
 class CompoundName extends Component {}
 Soy.register(CompoundName, templates);
-export { CompoundName, templates };
+export {
+  CompoundName,
+  templates
+};
 export default templates;
 /* jshint ignore:end */
-"
 `;
 
 exports[`Compile Soy Pipeline should compile soy files to js 1`] = `
-"/* jshint ignore:start */
+/* jshint ignore:start */
 import Component from 'metal-component';
 import Soy from 'metal-soy';
 
 var templates;
 goog.loadModule(function(exports) {
-var soy = goog.require('soy');
-var soydata = goog.require('soydata');
-// This file was automatically generated from simple.soy.
-// Please don't edit this file by hand.
+  var soy = goog.require('soy');
+  var soydata = goog.require('soydata');
+  // This file was automatically generated from simple.soy.
+  // Please don't edit this file by hand.
 
-/**
- * @fileoverview Templates in namespace Simple.
- * @public
- */
+  /**
+   * @fileoverview Templates in namespace Simple.
+   * @public
+   */
 
-goog.module('Simple.incrementaldom');
+  goog.module('Simple.incrementaldom');
 
-var incrementalDom = goog.require('incrementaldom');
-var soyIdom = goog.require('soy.idom');
-
-
-/**
- * @param {Object<string, *>=} opt_data
- * @param {Object<string, *>=} opt_ijData
- * @param {Object<string, *>=} opt_ijData_deprecated
- * @return {void}
- * @suppress {checkTypes}
- */
-function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
-  opt_ijData = opt_ijData_deprecated || opt_ijData;
-  opt_data = opt_data || {};
-  $hello(opt_data, null, opt_ijData);
-}
-exports.render = $render;
-if (goog.DEBUG) {
-  $render.soyTemplateName = 'Simple.render';
-}
+  var incrementalDom = goog.require('incrementaldom');
+  var soyIdom = goog.require('soy.idom');
 
 
-/**
- * @param {Object<string, *>=} opt_data
- * @param {Object<string, *>=} opt_ijData
- * @param {Object<string, *>=} opt_ijData_deprecated
- * @return {void}
- * @suppress {checkTypes}
- */
-function $hello(opt_data, opt_ijData, opt_ijData_deprecated) {
-  opt_ijData = opt_ijData_deprecated || opt_ijData;
-  incrementalDom.text('Hello ');
-  soyIdom.print(opt_data.firstName);
-  if (opt_data.lastName) {
-    incrementalDom.text(' ');
-    soyIdom.print(opt_data.lastName);
+  /**
+   * @param {Object<string, *>=} opt_data
+   * @param {Object<string, *>=} opt_ijData
+   * @param {Object<string, *>=} opt_ijData_deprecated
+   * @return {void}
+   * @suppress {checkTypes}
+   */
+  function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
+    opt_ijData = opt_ijData_deprecated || opt_ijData;
+    opt_data = opt_data || {};
+    $hello(opt_data, null, opt_ijData);
   }
-  incrementalDom.text('!');
-}
-exports.hello = $hello;
-if (goog.DEBUG) {
-  $hello.soyTemplateName = 'Simple.hello';
-}
+  exports.render = $render;
+  if (goog.DEBUG) {
+    $render.soyTemplateName = 'Simple.render';
+  }
 
-exports.render.params = [];
-exports.render.types = {};
-exports.hello.params = [\\"firstName\\",\\"lastName\\"];
-exports.hello.types = {\\"firstName\\":\\"any\\",\\"lastName\\":\\"any\\"};
-templates = exports;
-return exports;
+
+  /**
+   * @param {Object<string, *>=} opt_data
+   * @param {Object<string, *>=} opt_ijData
+   * @param {Object<string, *>=} opt_ijData_deprecated
+   * @return {void}
+   * @suppress {checkTypes}
+   */
+  function $hello(opt_data, opt_ijData, opt_ijData_deprecated) {
+    opt_ijData = opt_ijData_deprecated || opt_ijData;
+    incrementalDom.text('Hello ');
+    soyIdom.print(opt_data.firstName);
+    if (opt_data.lastName) {
+      incrementalDom.text(' ');
+      soyIdom.print(opt_data.lastName);
+    }
+    incrementalDom.text('!');
+  }
+  exports.hello = $hello;
+  if (goog.DEBUG) {
+    $hello.soyTemplateName = 'Simple.hello';
+  }
+
+  exports.render.params = [];
+  exports.render.types = {};
+  exports.hello.params = ["firstName", "lastName"];
+  exports.hello.types = {
+    "firstName": "any",
+    "lastName": "any"
+  };
+  templates = exports;
+  return exports;
 
 });
 
 class Simple extends Component {}
 Soy.register(Simple, templates);
-export { Simple, templates };
+export {
+  Simple,
+  templates
+};
 export default templates;
 /* jshint ignore:end */
-"
 `;
 
 exports[`Compile Soy Pipeline should compile soy files to js using custom outputDir 1`] = `
-"/* jshint ignore:start */
+/* jshint ignore:start */
 import Component from 'metal-component';
 import Soy from 'metal-soy';
 
 var templates;
 goog.loadModule(function(exports) {
-var soy = goog.require('soy');
-var soydata = goog.require('soydata');
-// This file was automatically generated from simple.soy.
-// Please don't edit this file by hand.
+  var soy = goog.require('soy');
+  var soydata = goog.require('soydata');
+  // This file was automatically generated from simple.soy.
+  // Please don't edit this file by hand.
 
-/**
- * @fileoverview Templates in namespace Simple.
- * @public
- */
+  /**
+   * @fileoverview Templates in namespace Simple.
+   * @public
+   */
 
-goog.module('Simple.incrementaldom');
+  goog.module('Simple.incrementaldom');
 
-var incrementalDom = goog.require('incrementaldom');
-var soyIdom = goog.require('soy.idom');
-
-
-/**
- * @param {Object<string, *>=} opt_data
- * @param {Object<string, *>=} opt_ijData
- * @param {Object<string, *>=} opt_ijData_deprecated
- * @return {void}
- * @suppress {checkTypes}
- */
-function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
-  opt_ijData = opt_ijData_deprecated || opt_ijData;
-  opt_data = opt_data || {};
-  $hello(opt_data, null, opt_ijData);
-}
-exports.render = $render;
-if (goog.DEBUG) {
-  $render.soyTemplateName = 'Simple.render';
-}
+  var incrementalDom = goog.require('incrementaldom');
+  var soyIdom = goog.require('soy.idom');
 
 
-/**
- * @param {Object<string, *>=} opt_data
- * @param {Object<string, *>=} opt_ijData
- * @param {Object<string, *>=} opt_ijData_deprecated
- * @return {void}
- * @suppress {checkTypes}
- */
-function $hello(opt_data, opt_ijData, opt_ijData_deprecated) {
-  opt_ijData = opt_ijData_deprecated || opt_ijData;
-  incrementalDom.text('Hello ');
-  soyIdom.print(opt_data.firstName);
-  if (opt_data.lastName) {
-    incrementalDom.text(' ');
-    soyIdom.print(opt_data.lastName);
+  /**
+   * @param {Object<string, *>=} opt_data
+   * @param {Object<string, *>=} opt_ijData
+   * @param {Object<string, *>=} opt_ijData_deprecated
+   * @return {void}
+   * @suppress {checkTypes}
+   */
+  function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
+    opt_ijData = opt_ijData_deprecated || opt_ijData;
+    opt_data = opt_data || {};
+    $hello(opt_data, null, opt_ijData);
   }
-  incrementalDom.text('!');
-}
-exports.hello = $hello;
-if (goog.DEBUG) {
-  $hello.soyTemplateName = 'Simple.hello';
-}
+  exports.render = $render;
+  if (goog.DEBUG) {
+    $render.soyTemplateName = 'Simple.render';
+  }
 
-exports.render.params = [];
-exports.render.types = {};
-exports.hello.params = [\\"firstName\\",\\"lastName\\"];
-exports.hello.types = {\\"firstName\\":\\"any\\",\\"lastName\\":\\"any\\"};
-templates = exports;
-return exports;
+
+  /**
+   * @param {Object<string, *>=} opt_data
+   * @param {Object<string, *>=} opt_ijData
+   * @param {Object<string, *>=} opt_ijData_deprecated
+   * @return {void}
+   * @suppress {checkTypes}
+   */
+  function $hello(opt_data, opt_ijData, opt_ijData_deprecated) {
+    opt_ijData = opt_ijData_deprecated || opt_ijData;
+    incrementalDom.text('Hello ');
+    soyIdom.print(opt_data.firstName);
+    if (opt_data.lastName) {
+      incrementalDom.text(' ');
+      soyIdom.print(opt_data.lastName);
+    }
+    incrementalDom.text('!');
+  }
+  exports.hello = $hello;
+  if (goog.DEBUG) {
+    $hello.soyTemplateName = 'Simple.hello';
+  }
+
+  exports.render.params = [];
+  exports.render.types = {};
+  exports.hello.params = ["firstName", "lastName"];
+  exports.hello.types = {
+    "firstName": "any",
+    "lastName": "any"
+  };
+  templates = exports;
+  return exports;
 
 });
 
 class Simple extends Component {}
 Soy.register(Simple, templates);
-export { Simple, templates };
+export {
+  Simple,
+  templates
+};
 export default templates;
 /* jshint ignore:end */
-"
 `;
 
 exports[`Compile Soy Pipeline should compile soy files with CRLF line ending to js without errors 1`] = `
-"/* jshint ignore:start */
+/* jshint ignore:start */
 import Component from 'metal-component';
 import Soy from 'metal-soy';
 
 var templates;
 goog.loadModule(function(exports) {
-var soy = goog.require('soy');
-var soydata = goog.require('soydata');
-// This file was automatically generated from crlf.soy.
-// Please don't edit this file by hand.
+  var soy = goog.require('soy');
+  var soydata = goog.require('soydata');
+  // This file was automatically generated from crlf.soy.
+  // Please don't edit this file by hand.
 
-/**
- * @fileoverview Templates in namespace CRLF.
- * @public
- */
+  /**
+   * @fileoverview Templates in namespace CRLF.
+   * @public
+   */
 
-goog.module('CRLF.incrementaldom');
+  goog.module('CRLF.incrementaldom');
 
-var soyIdom = goog.require('soy.idom');
+  var soyIdom = goog.require('soy.idom');
 
 
-/**
- * @param {Object<string, *>=} opt_data
- * @param {Object<string, *>=} opt_ijData
- * @param {Object<string, *>=} opt_ijData_deprecated
- * @return {void}
- * @suppress {checkTypes}
- */
-function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
-  opt_ijData = opt_ijData_deprecated || opt_ijData;
-}
-exports.render = $render;
-if (goog.DEBUG) {
-  $render.soyTemplateName = 'CRLF.render';
-}
+  /**
+   * @param {Object<string, *>=} opt_data
+   * @param {Object<string, *>=} opt_ijData
+   * @param {Object<string, *>=} opt_ijData_deprecated
+   * @return {void}
+   * @suppress {checkTypes}
+   */
+  function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
+    opt_ijData = opt_ijData_deprecated || opt_ijData;
+  }
+  exports.render = $render;
+  if (goog.DEBUG) {
+    $render.soyTemplateName = 'CRLF.render';
+  }
 
-exports.render.params = [];
-exports.render.types = {};
-templates = exports;
-return exports;
+  exports.render.params = [];
+  exports.render.types = {};
+  templates = exports;
+  return exports;
 
 });
 
 class CRLF extends Component {}
 Soy.register(CRLF, templates);
-export { CRLF, templates };
+export {
+  CRLF,
+  templates
+};
 export default templates;
 /* jshint ignore:end */
-"
 `;
 
 exports[`Compile Soy Pipeline should export the templates 1`] = `
-"/* jshint ignore:start */
+/* jshint ignore:start */
 import Component from 'metal-component';
 import Soy from 'metal-soy';
 
 var templates;
 goog.loadModule(function(exports) {
-var soy = goog.require('soy');
-var soydata = goog.require('soydata');
+  var soy = goog.require('soy');
+  var soydata = goog.require('soydata');
+  // This file was automatically generated from simple.soy.
+  // Please don't edit this file by hand.
+
+  /**
+   * @fileoverview Templates in namespace Simple.
+   * @public
+   */
+
+  goog.module('Simple.incrementaldom');
+
+  var incrementalDom = goog.require('incrementaldom');
+  var soyIdom = goog.require('soy.idom');
+
+
+  /**
+   * @param {Object<string, *>=} opt_data
+   * @param {Object<string, *>=} opt_ijData
+   * @param {Object<string, *>=} opt_ijData_deprecated
+   * @return {void}
+   * @suppress {checkTypes}
+   */
+  function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
+    opt_ijData = opt_ijData_deprecated || opt_ijData;
+    opt_data = opt_data || {};
+    $hello(opt_data, null, opt_ijData);
+  }
+  exports.render = $render;
+  if (goog.DEBUG) {
+    $render.soyTemplateName = 'Simple.render';
+  }
+
+
+  /**
+   * @param {Object<string, *>=} opt_data
+   * @param {Object<string, *>=} opt_ijData
+   * @param {Object<string, *>=} opt_ijData_deprecated
+   * @return {void}
+   * @suppress {checkTypes}
+   */
+  function $hello(opt_data, opt_ijData, opt_ijData_deprecated) {
+    opt_ijData = opt_ijData_deprecated || opt_ijData;
+    incrementalDom.text('Hello ');
+    soyIdom.print(opt_data.firstName);
+    if (opt_data.lastName) {
+      incrementalDom.text(' ');
+      soyIdom.print(opt_data.lastName);
+    }
+    incrementalDom.text('!');
+  }
+  exports.hello = $hello;
+  if (goog.DEBUG) {
+    $hello.soyTemplateName = 'Simple.hello';
+  }
+
+  exports.render.params = [];
+  exports.render.types = {};
+  exports.hello.params = ["firstName", "lastName"];
+  exports.hello.types = {
+    "firstName": "any",
+    "lastName": "any"
+  };
+  templates = exports;
+  return exports;
+
+});
+
+class Simple extends Component {}
+Soy.register(Simple, templates);
+export {
+  Simple,
+  templates
+};
+export default templates;
+/* jshint ignore:end */
+`;
+
+exports[`Compile Soy Pipeline should not export delegated templates 1`] = `
+/* jshint ignore:start */
+import Component from 'metal-component';
+import Soy from 'metal-soy';
+
+var templates;
+goog.loadModule(function(exports) {
+  var soy = goog.require('soy');
+  var soydata = goog.require('soydata');
+  // This file was automatically generated from delTemplate.soy.
+  // Please don't edit this file by hand.
+
+  /**
+   * @fileoverview Templates in namespace DelTemplate.
+   * @hassoydeltemplate {DelTemplate.Foo.idom}
+   * @public
+   */
+
+  goog.module('DelTemplate.incrementaldom');
+
+  goog.require('soy');
+  var soyIdom = goog.require('soy.idom');
+
+
+  /**
+   * @param {Object<string, *>=} opt_data
+   * @param {Object<string, *>=} opt_ijData
+   * @param {Object<string, *>=} opt_ijData_deprecated
+   * @return {void}
+   * @suppress {checkTypes}
+   */
+  function __deltemplate_s2_4d93e25d(opt_data, opt_ijData, opt_ijData_deprecated) {
+    opt_ijData = opt_ijData_deprecated || opt_ijData;
+    soyIdom.print(opt_data.content);
+  }
+  exports.__deltemplate_s2_4d93e25d = __deltemplate_s2_4d93e25d;
+  if (goog.DEBUG) {
+    __deltemplate_s2_4d93e25d.soyTemplateName = 'DelTemplate.__deltemplate_s2_4d93e25d';
+  }
+  soy.$$registerDelegateFn(soy.$$getDelTemplateId('DelTemplate.Foo.idom'), '', 0, __deltemplate_s2_4d93e25d);
+
+  templates = exports;
+  return exports;
+
+});
+
+export {
+  templates
+};
+export default templates;
+/* jshint ignore:end */
+`;
+
+exports[`Compile Soy Pipeline should not generate component class if no render template is declared 1`] = `
+/* jshint ignore:start */
+import Component from 'metal-component';
+import Soy from 'metal-soy';
+
+var templates;
+goog.loadModule(function(exports) {
+  var soy = goog.require('soy');
+  var soydata = goog.require('soydata');
+  // This file was automatically generated from noRender.soy.
+  // Please don't edit this file by hand.
+
+  /**
+   * @fileoverview Templates in namespace renderSoy.
+   * @public
+   */
+
+  goog.module('renderSoy.incrementaldom');
+
+  var incrementalDom = goog.require('incrementaldom');
+  var soyIdom = goog.require('soy.idom');
+
+
+  /**
+   * @param {Object<string, *>=} opt_data
+   * @param {Object<string, *>=} opt_ijData
+   * @param {Object<string, *>=} opt_ijData_deprecated
+   * @return {void}
+   * @suppress {checkTypes}
+   */
+  function $content(opt_data, opt_ijData, opt_ijData_deprecated) {
+    opt_ijData = opt_ijData_deprecated || opt_ijData;
+    incrementalDom.text('Hello World');
+  }
+  exports.content = $content;
+  if (goog.DEBUG) {
+    $content.soyTemplateName = 'renderSoy.content';
+  }
+
+  exports.content.params = [];
+  exports.content.types = {};
+  templates = exports;
+  return exports;
+
+});
+
+export {
+  templates
+};
+export default templates;
+/* jshint ignore:end */
+`;
+
+exports[`Compile Soy Pipeline should not generate imports and component class if skipMetalGeneration is true 1`] = `
 // This file was automatically generated from simple.soy.
 // Please don't edit this file by hand.
 
@@ -488,515 +695,353 @@ exports.hello = $hello;
 if (goog.DEBUG) {
   $hello.soyTemplateName = 'Simple.hello';
 }
-
-exports.render.params = [];
-exports.render.types = {};
-exports.hello.params = [\\"firstName\\",\\"lastName\\"];
-exports.hello.types = {\\"firstName\\":\\"any\\",\\"lastName\\":\\"any\\"};
-templates = exports;
-return exports;
-
-});
-
-class Simple extends Component {}
-Soy.register(Simple, templates);
-export { Simple, templates };
-export default templates;
-/* jshint ignore:end */
-"
-`;
-
-exports[`Compile Soy Pipeline should not export delegated templates 1`] = `
-"/* jshint ignore:start */
-import Component from 'metal-component';
-import Soy from 'metal-soy';
-
-var templates;
-goog.loadModule(function(exports) {
-var soy = goog.require('soy');
-var soydata = goog.require('soydata');
-// This file was automatically generated from delTemplate.soy.
-// Please don't edit this file by hand.
-
-/**
- * @fileoverview Templates in namespace DelTemplate.
- * @hassoydeltemplate {DelTemplate.Foo.idom}
- * @public
- */
-
-goog.module('DelTemplate.incrementaldom');
-
-goog.require('soy');
-var soyIdom = goog.require('soy.idom');
-
-
-/**
- * @param {Object<string, *>=} opt_data
- * @param {Object<string, *>=} opt_ijData
- * @param {Object<string, *>=} opt_ijData_deprecated
- * @return {void}
- * @suppress {checkTypes}
- */
-function __deltemplate_s2_4d93e25d(opt_data, opt_ijData, opt_ijData_deprecated) {
-  opt_ijData = opt_ijData_deprecated || opt_ijData;
-  soyIdom.print(opt_data.content);
-}
-exports.__deltemplate_s2_4d93e25d = __deltemplate_s2_4d93e25d;
-if (goog.DEBUG) {
-  __deltemplate_s2_4d93e25d.soyTemplateName = 'DelTemplate.__deltemplate_s2_4d93e25d';
-}
-soy.$$registerDelegateFn(soy.$$getDelTemplateId('DelTemplate.Foo.idom'), '', 0, __deltemplate_s2_4d93e25d);
-
-templates = exports;
-return exports;
-
-});
-
-export { templates };
-export default templates;
-/* jshint ignore:end */
-"
-`;
-
-exports[`Compile Soy Pipeline should not generate component class if no render template is declared 1`] = `
-"/* jshint ignore:start */
-import Component from 'metal-component';
-import Soy from 'metal-soy';
-
-var templates;
-goog.loadModule(function(exports) {
-var soy = goog.require('soy');
-var soydata = goog.require('soydata');
-// This file was automatically generated from noRender.soy.
-// Please don't edit this file by hand.
-
-/**
- * @fileoverview Templates in namespace renderSoy.
- * @public
- */
-
-goog.module('renderSoy.incrementaldom');
-
-var incrementalDom = goog.require('incrementaldom');
-var soyIdom = goog.require('soy.idom');
-
-
-/**
- * @param {Object<string, *>=} opt_data
- * @param {Object<string, *>=} opt_ijData
- * @param {Object<string, *>=} opt_ijData_deprecated
- * @return {void}
- * @suppress {checkTypes}
- */
-function $content(opt_data, opt_ijData, opt_ijData_deprecated) {
-  opt_ijData = opt_ijData_deprecated || opt_ijData;
-  incrementalDom.text('Hello World');
-}
-exports.content = $content;
-if (goog.DEBUG) {
-  $content.soyTemplateName = 'renderSoy.content';
-}
-
-exports.content.params = [];
-exports.content.types = {};
-templates = exports;
-return exports;
-
-});
-
-export { templates };
-export default templates;
-/* jshint ignore:end */
-"
-`;
-
-exports[`Compile Soy Pipeline should not generate imports and component class if skipMetalGeneration is true 1`] = `
-"// This file was automatically generated from simple.soy.
-// Please don't edit this file by hand.
-
-/**
- * @fileoverview Templates in namespace Simple.
- * @public
- */
-
-goog.module('Simple.incrementaldom');
-
-var incrementalDom = goog.require('incrementaldom');
-var soyIdom = goog.require('soy.idom');
-
-
-/**
- * @param {Object<string, *>=} opt_data
- * @param {Object<string, *>=} opt_ijData
- * @param {Object<string, *>=} opt_ijData_deprecated
- * @return {void}
- * @suppress {checkTypes}
- */
-function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
-  opt_ijData = opt_ijData_deprecated || opt_ijData;
-  opt_data = opt_data || {};
-  $hello(opt_data, null, opt_ijData);
-}
-exports.render = $render;
-if (goog.DEBUG) {
-  $render.soyTemplateName = 'Simple.render';
-}
-
-
-/**
- * @param {Object<string, *>=} opt_data
- * @param {Object<string, *>=} opt_ijData
- * @param {Object<string, *>=} opt_ijData_deprecated
- * @return {void}
- * @suppress {checkTypes}
- */
-function $hello(opt_data, opt_ijData, opt_ijData_deprecated) {
-  opt_ijData = opt_ijData_deprecated || opt_ijData;
-  incrementalDom.text('Hello ');
-  soyIdom.print(opt_data.firstName);
-  if (opt_data.lastName) {
-    incrementalDom.text(' ');
-    soyIdom.print(opt_data.lastName);
-  }
-  incrementalDom.text('!');
-}
-exports.hello = $hello;
-if (goog.DEBUG) {
-  $hello.soyTemplateName = 'Simple.hello';
-}
-"
 `;
 
 exports[`Compile Soy Pipeline should not replace google external messages by default 1`] = `
-"/* jshint ignore:start */
+/* jshint ignore:start */
 import Component from 'metal-component';
 import Soy from 'metal-soy';
 
 var templates;
 goog.loadModule(function(exports) {
-var soy = goog.require('soy');
-var soydata = goog.require('soydata');
-// This file was automatically generated from messages.soy.
-// Please don't edit this file by hand.
+  var soy = goog.require('soy');
+  var soydata = goog.require('soydata');
+  // This file was automatically generated from messages.soy.
+  // Please don't edit this file by hand.
 
-/**
- * @fileoverview Templates in namespace Messages.
- * @public
- */
+  /**
+   * @fileoverview Templates in namespace Messages.
+   * @public
+   */
 
-goog.module('Messages.incrementaldom');
+  goog.module('Messages.incrementaldom');
 
-goog.require('goog.string');
-var incrementalDom = goog.require('incrementaldom');
-var soyIdom = goog.require('soy.idom');
+  goog.require('goog.string');
+  var incrementalDom = goog.require('incrementaldom');
+  var soyIdom = goog.require('soy.idom');
 
 
-/**
- * @param {Object<string, *>=} opt_data
- * @param {Object<string, *>=} opt_ijData
- * @param {Object<string, *>=} opt_ijData_deprecated
- * @return {void}
- * @suppress {checkTypes}
- */
-function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
-  opt_ijData = opt_ijData_deprecated || opt_ijData;
-  /** @desc  */
-  var MSG_EXTERNAL_9205907420411818817 = goog.getMsg('foo');
-  incrementalDom.text(goog.string.unescapeEntities(MSG_EXTERNAL_9205907420411818817));
-  /** @desc  */
-  var MSG_EXTERNAL_8063194080238412701 = goog.getMsg('bar');
-  incrementalDom.text(goog.string.unescapeEntities(MSG_EXTERNAL_8063194080238412701));
-  /** @desc  */
-  var MSG_EXTERNAL_9205907420411818817$$1 = goog.getMsg('foo');
-  incrementalDom.text(goog.string.unescapeEntities(MSG_EXTERNAL_9205907420411818817$$1));
-  /** @desc  */
-  var MSG_EXTERNAL_5766453827832329686 = goog.getMsg('complex-key');
-  incrementalDom.text(goog.string.unescapeEntities(MSG_EXTERNAL_5766453827832329686));
-}
-exports.render = $render;
-if (goog.DEBUG) {
-  $render.soyTemplateName = 'Messages.render';
-}
+  /**
+   * @param {Object<string, *>=} opt_data
+   * @param {Object<string, *>=} opt_ijData
+   * @param {Object<string, *>=} opt_ijData_deprecated
+   * @return {void}
+   * @suppress {checkTypes}
+   */
+  function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
+    opt_ijData = opt_ijData_deprecated || opt_ijData;
+    /** @desc  */
+    var MSG_EXTERNAL_9205907420411818817 = goog.getMsg('foo');
+    incrementalDom.text(goog.string.unescapeEntities(MSG_EXTERNAL_9205907420411818817));
+    /** @desc  */
+    var MSG_EXTERNAL_8063194080238412701 = goog.getMsg('bar');
+    incrementalDom.text(goog.string.unescapeEntities(MSG_EXTERNAL_8063194080238412701));
+    /** @desc  */
+    var MSG_EXTERNAL_9205907420411818817$$1 = goog.getMsg('foo');
+    incrementalDom.text(goog.string.unescapeEntities(MSG_EXTERNAL_9205907420411818817$$1));
+    /** @desc  */
+    var MSG_EXTERNAL_5766453827832329686 = goog.getMsg('complex-key');
+    incrementalDom.text(goog.string.unescapeEntities(MSG_EXTERNAL_5766453827832329686));
+  }
+  exports.render = $render;
+  if (goog.DEBUG) {
+    $render.soyTemplateName = 'Messages.render';
+  }
 
-exports.render.params = [];
-exports.render.types = {};
-templates = exports;
-return exports;
+  exports.render.params = [];
+  exports.render.types = {};
+  templates = exports;
+  return exports;
 
 });
 
 class Messages extends Component {}
 Soy.register(Messages, templates);
-export { Messages, templates };
+export {
+  Messages,
+  templates
+};
 export default templates;
 /* jshint ignore:end */
-"
 `;
 
 exports[`Compile Soy Pipeline should replace external messages from goog.getMsg calls if an externalMsgFormat has been specified 1`] = `
-"/* jshint ignore:start */
+/* jshint ignore:start */
 import Component from 'metal-component';
 import Soy from 'metal-soy';
 
 var templates;
 goog.loadModule(function(exports) {
-var soy = goog.require('soy');
-var soydata = goog.require('soydata');
-// This file was automatically generated from messages.soy.
-// Please don't edit this file by hand.
+  var soy = goog.require('soy');
+  var soydata = goog.require('soydata');
+  // This file was automatically generated from messages.soy.
+  // Please don't edit this file by hand.
 
-/**
- * @fileoverview Templates in namespace Messages.
- * @public
- */
+  /**
+   * @fileoverview Templates in namespace Messages.
+   * @public
+   */
 
-goog.module('Messages.incrementaldom');
+  goog.module('Messages.incrementaldom');
 
-goog.require('goog.string');
-var incrementalDom = goog.require('incrementaldom');
-var soyIdom = goog.require('soy.idom');
+  goog.require('goog.string');
+  var incrementalDom = goog.require('incrementaldom');
+  var soyIdom = goog.require('soy.idom');
 
 
-/**
- * @param {Object<string, *>=} opt_data
- * @param {Object<string, *>=} opt_ijData
- * @param {Object<string, *>=} opt_ijData_deprecated
- * @return {void}
- * @suppress {checkTypes}
- */
-function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
-  opt_ijData = opt_ijData_deprecated || opt_ijData;
-  /** @desc  */
-  var MSG_EXTERNAL_9205907420411818817 = I18n.translate('foo');
-  incrementalDom.text(goog.string.unescapeEntities(MSG_EXTERNAL_9205907420411818817));
-  /** @desc  */
-  var MSG_EXTERNAL_8063194080238412701 = I18n.translate('bar');
-  incrementalDom.text(goog.string.unescapeEntities(MSG_EXTERNAL_8063194080238412701));
-  /** @desc  */
-  var MSG_EXTERNAL_9205907420411818817$$1 = I18n.translate('foo');
-  incrementalDom.text(goog.string.unescapeEntities(MSG_EXTERNAL_9205907420411818817$$1));
-  /** @desc  */
-  var MSG_EXTERNAL_5766453827832329686 = I18n.translate('complex-key');
-  incrementalDom.text(goog.string.unescapeEntities(MSG_EXTERNAL_5766453827832329686));
-}
-exports.render = $render;
-if (goog.DEBUG) {
-  $render.soyTemplateName = 'Messages.render';
-}
+  /**
+   * @param {Object<string, *>=} opt_data
+   * @param {Object<string, *>=} opt_ijData
+   * @param {Object<string, *>=} opt_ijData_deprecated
+   * @return {void}
+   * @suppress {checkTypes}
+   */
+  function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
+    opt_ijData = opt_ijData_deprecated || opt_ijData;
+    /** @desc  */
+    var MSG_EXTERNAL_9205907420411818817 = I18n.translate('foo');
+    incrementalDom.text(goog.string.unescapeEntities(MSG_EXTERNAL_9205907420411818817));
+    /** @desc  */
+    var MSG_EXTERNAL_8063194080238412701 = I18n.translate('bar');
+    incrementalDom.text(goog.string.unescapeEntities(MSG_EXTERNAL_8063194080238412701));
+    /** @desc  */
+    var MSG_EXTERNAL_9205907420411818817$$1 = I18n.translate('foo');
+    incrementalDom.text(goog.string.unescapeEntities(MSG_EXTERNAL_9205907420411818817$$1));
+    /** @desc  */
+    var MSG_EXTERNAL_5766453827832329686 = I18n.translate('complex-key');
+    incrementalDom.text(goog.string.unescapeEntities(MSG_EXTERNAL_5766453827832329686));
+  }
+  exports.render = $render;
+  if (goog.DEBUG) {
+    $render.soyTemplateName = 'Messages.render';
+  }
 
-exports.render.params = [];
-exports.render.types = {};
-templates = exports;
-return exports;
+  exports.render.params = [];
+  exports.render.types = {};
+  templates = exports;
+  return exports;
 
 });
 
 class Messages extends Component {}
 Soy.register(Messages, templates);
-export { Messages, templates };
+export {
+  Messages,
+  templates
+};
 export default templates;
 /* jshint ignore:end */
-"
 `;
 
 exports[`Compile Soy Pipeline should replace goog.require calls to other templates with Soy.getTemplate calls 1`] = `
-"/* jshint ignore:start */
+/* jshint ignore:start */
 import Component from 'metal-component';
 import Soy from 'metal-soy';
 
 var templates;
 goog.loadModule(function(exports) {
-var soy = goog.require('soy');
-var soydata = goog.require('soydata');
-// This file was automatically generated from external.soy.
-// Please don't edit this file by hand.
+  var soy = goog.require('soy');
+  var soydata = goog.require('soydata');
+  // This file was automatically generated from external.soy.
+  // Please don't edit this file by hand.
 
-/**
- * @fileoverview Templates in namespace External.
- * @public
- */
+  /**
+   * @fileoverview Templates in namespace External.
+   * @public
+   */
 
-goog.module('External.incrementaldom');
+  goog.module('External.incrementaldom');
 
-var soyIdom = goog.require('soy.idom');
+  var soyIdom = goog.require('soy.idom');
 
-var $templateAlias2 = Soy.getTemplate('Simple.incrementaldom', 'hello');
-var $templateAlias1 = Soy.getTemplate('Simple.incrementaldom', 'render');
+  var $templateAlias2 = Soy.getTemplate('Simple.incrementaldom', 'hello');
+  var $templateAlias1 = Soy.getTemplate('Simple.incrementaldom', 'render');
 
 
-/**
- * @param {Object<string, *>=} opt_data
- * @param {Object<string, *>=} opt_ijData
- * @param {Object<string, *>=} opt_ijData_deprecated
- * @return {void}
- * @suppress {checkTypes}
- */
-function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
-  opt_ijData = opt_ijData_deprecated || opt_ijData;
-  opt_data = opt_data || {};
-  $templateAlias1(opt_data, null, opt_ijData);
-  $templateAlias2(opt_data, null, opt_ijData);
-}
-exports.render = $render;
-if (goog.DEBUG) {
-  $render.soyTemplateName = 'External.render';
-}
+  /**
+   * @param {Object<string, *>=} opt_data
+   * @param {Object<string, *>=} opt_ijData
+   * @param {Object<string, *>=} opt_ijData_deprecated
+   * @return {void}
+   * @suppress {checkTypes}
+   */
+  function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
+    opt_ijData = opt_ijData_deprecated || opt_ijData;
+    opt_data = opt_data || {};
+    $templateAlias1(opt_data, null, opt_ijData);
+    $templateAlias2(opt_data, null, opt_ijData);
+  }
+  exports.render = $render;
+  if (goog.DEBUG) {
+    $render.soyTemplateName = 'External.render';
+  }
 
-exports.render.params = [];
-exports.render.types = {};
-templates = exports;
-return exports;
+  exports.render.params = [];
+  exports.render.types = {};
+  templates = exports;
+  return exports;
 
 });
 
 class External extends Component {}
 Soy.register(External, templates);
-export { External, templates };
+export {
+  External,
+  templates
+};
 export default templates;
 /* jshint ignore:end */
-"
 `;
 
 exports[`Compile Soy Pipeline should set the "params" variable for each template, with a list of its param names 1`] = `
-"/* jshint ignore:start */
+/* jshint ignore:start */
 import Component from 'metal-component';
 import Soy from 'metal-soy';
 
 var templates;
 goog.loadModule(function(exports) {
-var soy = goog.require('soy');
-var soydata = goog.require('soydata');
-// This file was automatically generated from simple.soy.
-// Please don't edit this file by hand.
+  var soy = goog.require('soy');
+  var soydata = goog.require('soydata');
+  // This file was automatically generated from simple.soy.
+  // Please don't edit this file by hand.
 
-/**
- * @fileoverview Templates in namespace Simple.
- * @public
- */
+  /**
+   * @fileoverview Templates in namespace Simple.
+   * @public
+   */
 
-goog.module('Simple.incrementaldom');
+  goog.module('Simple.incrementaldom');
 
-var incrementalDom = goog.require('incrementaldom');
-var soyIdom = goog.require('soy.idom');
-
-
-/**
- * @param {Object<string, *>=} opt_data
- * @param {Object<string, *>=} opt_ijData
- * @param {Object<string, *>=} opt_ijData_deprecated
- * @return {void}
- * @suppress {checkTypes}
- */
-function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
-  opt_ijData = opt_ijData_deprecated || opt_ijData;
-  opt_data = opt_data || {};
-  $hello(opt_data, null, opt_ijData);
-}
-exports.render = $render;
-if (goog.DEBUG) {
-  $render.soyTemplateName = 'Simple.render';
-}
+  var incrementalDom = goog.require('incrementaldom');
+  var soyIdom = goog.require('soy.idom');
 
 
-/**
- * @param {Object<string, *>=} opt_data
- * @param {Object<string, *>=} opt_ijData
- * @param {Object<string, *>=} opt_ijData_deprecated
- * @return {void}
- * @suppress {checkTypes}
- */
-function $hello(opt_data, opt_ijData, opt_ijData_deprecated) {
-  opt_ijData = opt_ijData_deprecated || opt_ijData;
-  incrementalDom.text('Hello ');
-  soyIdom.print(opt_data.firstName);
-  if (opt_data.lastName) {
-    incrementalDom.text(' ');
-    soyIdom.print(opt_data.lastName);
+  /**
+   * @param {Object<string, *>=} opt_data
+   * @param {Object<string, *>=} opt_ijData
+   * @param {Object<string, *>=} opt_ijData_deprecated
+   * @return {void}
+   * @suppress {checkTypes}
+   */
+  function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
+    opt_ijData = opt_ijData_deprecated || opt_ijData;
+    opt_data = opt_data || {};
+    $hello(opt_data, null, opt_ijData);
   }
-  incrementalDom.text('!');
-}
-exports.hello = $hello;
-if (goog.DEBUG) {
-  $hello.soyTemplateName = 'Simple.hello';
-}
+  exports.render = $render;
+  if (goog.DEBUG) {
+    $render.soyTemplateName = 'Simple.render';
+  }
 
-exports.render.params = [];
-exports.render.types = {};
-exports.hello.params = [\\"firstName\\",\\"lastName\\"];
-exports.hello.types = {\\"firstName\\":\\"any\\",\\"lastName\\":\\"any\\"};
-templates = exports;
-return exports;
+
+  /**
+   * @param {Object<string, *>=} opt_data
+   * @param {Object<string, *>=} opt_ijData
+   * @param {Object<string, *>=} opt_ijData_deprecated
+   * @return {void}
+   * @suppress {checkTypes}
+   */
+  function $hello(opt_data, opt_ijData, opt_ijData_deprecated) {
+    opt_ijData = opt_ijData_deprecated || opt_ijData;
+    incrementalDom.text('Hello ');
+    soyIdom.print(opt_data.firstName);
+    if (opt_data.lastName) {
+      incrementalDom.text(' ');
+      soyIdom.print(opt_data.lastName);
+    }
+    incrementalDom.text('!');
+  }
+  exports.hello = $hello;
+  if (goog.DEBUG) {
+    $hello.soyTemplateName = 'Simple.hello';
+  }
+
+  exports.render.params = [];
+  exports.render.types = {};
+  exports.hello.params = ["firstName", "lastName"];
+  exports.hello.types = {
+    "firstName": "any",
+    "lastName": "any"
+  };
+  templates = exports;
+  return exports;
 
 });
 
 class Simple extends Component {}
 Soy.register(Simple, templates);
-export { Simple, templates };
+export {
+  Simple,
+  templates
+};
 export default templates;
 /* jshint ignore:end */
-"
 `;
 
 exports[`Compile Soy Pipeline should set the "types" variable for each template, with a list of its param types 1`] = `
-"/* jshint ignore:start */
+/* jshint ignore:start */
 import Component from 'metal-component';
 import Soy from 'metal-soy';
 
 var templates;
 goog.loadModule(function(exports) {
-var soy = goog.require('soy');
-var soydata = goog.require('soydata');
-// This file was automatically generated from paramTypes.soy.
-// Please don't edit this file by hand.
+  var soy = goog.require('soy');
+  var soydata = goog.require('soydata');
+  // This file was automatically generated from paramTypes.soy.
+  // Please don't edit this file by hand.
 
-/**
- * @fileoverview Templates in namespace Types.
- * @public
- */
+  /**
+   * @fileoverview Templates in namespace Types.
+   * @public
+   */
 
-goog.module('Types.incrementaldom');
+  goog.module('Types.incrementaldom');
 
-goog.require('soy.asserts');
-var soyIdom = goog.require('soy.idom');
+  goog.require('soy.asserts');
+  var soyIdom = goog.require('soy.idom');
 
 
-/**
- * @param {{
- *  content: function()
- * }} opt_data
- * @param {Object<string, *>=} opt_ijData
- * @param {Object<string, *>=} opt_ijData_deprecated
- * @return {void}
- * @suppress {checkTypes}
- */
-function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
-  opt_ijData = opt_ijData_deprecated || opt_ijData;
-  /** @type {function()} */
-  var content = soy.asserts.assertType(goog.isFunction(opt_data.content), 'content', opt_data.content, 'function()');
-  content();
-}
-exports.render = $render;
-/**
- * @typedef {{
- *  content: function()
- * }}
- */
-$render.Params;
-if (goog.DEBUG) {
-  $render.soyTemplateName = 'Types.render';
-}
+  /**
+   * @param {{
+   *  content: function()
+   * }} opt_data
+   * @param {Object<string, *>=} opt_ijData
+   * @param {Object<string, *>=} opt_ijData_deprecated
+   * @return {void}
+   * @suppress {checkTypes}
+   */
+  function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
+    opt_ijData = opt_ijData_deprecated || opt_ijData;
+    /** @type {function()} */
+    var content = soy.asserts.assertType(goog.isFunction(opt_data.content), 'content', opt_data.content, 'function()');
+    content();
+  }
+  exports.render = $render;
+  /**
+   * @typedef {{
+   *  content: function()
+   * }}
+   */
+  $render.Params;
+  if (goog.DEBUG) {
+    $render.soyTemplateName = 'Types.render';
+  }
 
-exports.render.params = [\\"content\\"];
-exports.render.types = {\\"content\\":\\"html\\"};
-templates = exports;
-return exports;
+  exports.render.params = ["content"];
+  exports.render.types = {
+    "content": "html"
+  };
+  templates = exports;
+  return exports;
 
 });
 
 class Types extends Component {}
 Soy.register(Types, templates);
-export { Types, templates };
+export {
+  Types,
+  templates
+};
 export default templates;
 /* jshint ignore:end */
-"
 `;
