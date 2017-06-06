@@ -26,5 +26,5 @@ export function reverseJoin<T>(left: T, right: Array<T> | T): Array<T> {
   if (Array.isArray(right)) {
     return [left, ...right];
   }
-  return [left, right]
+  return [left, right];
 }

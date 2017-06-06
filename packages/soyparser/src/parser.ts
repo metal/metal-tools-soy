@@ -11,6 +11,7 @@ const comma = P.string(',');
 const docEnd = P.string('*/');
 const docStart = P.string('/**');
 const dollar = P.string('$');
+const dot = P.string('.')
 const dquote = P.string('"');
 const lbracket = P.string('[');
 const lparen = P.string('(');
@@ -24,12 +25,22 @@ const squote = P.string('\'');
 const underscore = P.string('_');
 
 const attributeName = joined(P.letter, P.string('-'));
-const functionName = joined(P.letter, underscore, P.digit);
 const html = P.noneOf('{}').many().desc("Html Char");
-const identifierName = joined(P.letter, P.digit, underscore);
-const namespace = joined(P.letter, P.digit, P.string('.'), underscore);
 
-const templateName = namespace.map(parseTemplateName);
+const identifierName = P.seqMap(
+  P.alt(P.letter, underscore),
+  P.alt(P.letter, underscore, P.digit).many(),
+  (start, rest) => start + rest.join('')
+);
+
+const namespace: P.Parser<Array<string>> = P.lazy(() => P.alt(
+  P.seqMap(identifierName, dot.then(namespace), reverseJoin),
+  identifierName
+));
+
+const templateName = optional(dot)
+  .then(namespace)
+  .map(parseTemplateName);
 
 const namespaceCmd = P.string('{namespace')
   .skip(P.whitespace)
@@ -67,7 +78,7 @@ const param = P.lazy(() => nodeMap(
 
 const functionCall = P.lazy(() => nodeMap(
   S.FunctionCall,
-  functionName,
+  identifierName,
   lparen.then(functionArgs)
 ));
 
