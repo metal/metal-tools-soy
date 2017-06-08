@@ -7,8 +7,7 @@ export interface TemplateName {
  * Parses a template name, so something like `.render`
  * or `SomeNamespace.Thing`.
  */
-export function parseTemplateName(rawName: string): TemplateName {
-  const segments = rawName.split('.');
+export function toTemplateName(segments: Array<string>): TemplateName {
   const namespace = segments
     .slice(0, segments.length - 1)
     .join('.');

@@ -1,4 +1,4 @@
-import {parseTemplateName, reverseJoin} from './util';
+import {reverseJoin, toTemplateName} from './util';
 import * as P from 'parsimmon';
 import * as S from './types';
 
@@ -35,16 +35,16 @@ const identifierName = P.seqMap(
 
 const namespace: P.Parser<Array<string>> = P.lazy(() => P.alt(
   P.seqMap(identifierName, dot.then(namespace), reverseJoin),
-  identifierName
+  identifierName.map(name => [name])
 ));
 
 const templateName = optional(dot)
   .then(namespace)
-  .map(parseTemplateName);
+  .map(toTemplateName);
 
 const namespaceCmd = P.string('{namespace')
   .skip(P.whitespace)
-  .then(namespace)
+  .then(namespace.map(names => names.join('.')))
   .skip(rbrace);
 
 const stringLiteral = nodeMap(

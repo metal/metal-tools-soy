@@ -1,8 +1,8 @@
 import * as Util from '../util';
 
-describe('parseTemplateName', () => {
-  test('should parse template name', () => {
-    const result = Util.parseTemplateName('.render');
+describe('toTemplateName', () => {
+  test('should create a namespace object', () => {
+    const result = Util.toTemplateName(['render']);
 
     expect(result).toMatchObject({
       name: 'render',
@@ -10,8 +10,8 @@ describe('parseTemplateName', () => {
     });
   })
 
-  test('should parse a namespace', () => {
-    const result = Util.parseTemplateName('MyNamespace.render');
+  test('Should create a namespace object with namespace', () => {
+    const result = Util.toTemplateName(['MyNamespace', 'render']);
 
     expect(result).toMatchObject({
       name: 'render',
@@ -19,8 +19,8 @@ describe('parseTemplateName', () => {
     });
   })
 
-  test('should parse nested namespaces', () => {
-    const result = Util.parseTemplateName('My.Nested.Namespace.render');
+  test('Should create a namespace object with a nested namespace', () => {
+    const result = Util.toTemplateName(['My', 'Nested', 'Namespace', 'render']);
 
     expect(result).toMatchObject({
       name: 'render',
