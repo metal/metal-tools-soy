@@ -21,6 +21,9 @@
     "precommit": "lint-staged",
     "test": "jest"
   },
+  "bin": {
+    "metalsoy": "./bin/metalsoy.js"
+  },
   "lint-staged": {
     "*.js": [
       "prettier --use-tabs true --tab-width 4 --single-quote --trailing-comma all --write",
@@ -43,7 +46,8 @@
     "stream-combiner": "^0.2.2",
     "stream-consume": "^0.1.0",
     "through2": "^2.0.0",
-    "vinyl-fs": "^2.2.1"
+    "vinyl-fs": "^2.2.1",
+    "yargs": "^8.0.2"
   },
   "devDependencies": {
     "del": "^2.1.0",
