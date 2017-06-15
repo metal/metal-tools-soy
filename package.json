@@ -12,9 +12,10 @@
     "node": ">=0.12.0"
   },
   "files": [
+    "bin/**/*.js",
     "index.js",
-    "lib/**/*.js",
-    "jar"
+    "jar",
+    "lib/**/*.js"
   ],
   "scripts": {
     "lint": "eslint *.js lib/**/*.js",
