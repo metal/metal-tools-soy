@@ -10,10 +10,10 @@ const vfs = require('vinyl-fs');
 module.exports = function(options) {
 	options = merge(
 		{
-			handleError: handleError,
+			handleError: handleError
 		},
 		defaultOptions,
-		options,
+		options
 	);
 
 	if (!Array.isArray(options.dest)) {
