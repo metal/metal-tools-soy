@@ -1,5 +1,7 @@
 # metal-tools-soy
 
+[![Build Status](https://travis-ci.org/metal/metal-tools-soy.svg?branch=master)](https://travis-ci.org/metal/metal-tools-soy)
+
 Tool that can be used to compile metal soy files.
 
 ## CLI
