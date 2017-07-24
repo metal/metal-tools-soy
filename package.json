@@ -43,7 +43,7 @@
     "gulp-util": "^3.0.7",
     "gulp-wrapper": "^1.0.0",
     "merge": "^1.2.0",
-    "soyparser": "^1.0.1",
+    "soyparser": "^1.0.3",
     "stream-combiner": "^0.2.2",
     "stream-consume": "^0.1.0",
     "through2": "^2.0.0",
