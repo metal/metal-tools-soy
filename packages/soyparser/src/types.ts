@@ -5,6 +5,7 @@ export type Cmd
   = Call
   | Interpolation
   | LetStatement
+  | Literal
   | OtherCmd;
 
 export type Body = Array<Node>;
@@ -278,6 +279,19 @@ export function Interpolation(mark: Mark, content: string): Interpolation {
     mark,
     type: 'Interpolation'
   };
+}
+
+export interface Literal extends Node {
+  content: string,
+  type: 'Literal'
+}
+
+export function Literal(mark: Mark, content: string): Literal {
+  return {
+    content,
+    mark,
+    type: 'Literal'
+  }
 }
 
 export interface Param extends Node {

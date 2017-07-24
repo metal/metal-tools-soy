@@ -1561,6 +1561,110 @@ Object {
 }
 `;
 
+exports[`Soy Parser should parse literal tags 1`] = `
+Object {
+  "body": Array [
+    Object {
+      "attributes": Array [],
+      "body": Array [
+        Object {
+          "content": "some text",
+          "mark": Object {
+            "end": Object {
+              "column": 31,
+              "line": 7,
+              "offset": 83,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 7,
+              "offset": 55,
+            },
+          },
+          "type": "Literal",
+        },
+        Object {
+          "content": "
+    [
+      {
+        \\"name\\": \\"bob\\",
+        \\"age\\": \\"32\\"
+      },
+      {
+        \\"name\\": \\"foo\\",
+        \\"age\\": \\"bar\\"
+      }
+    ]
+  ",
+          "mark": Object {
+            "end": Object {
+              "column": 13,
+              "line": 20,
+              "offset": 241,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 9,
+              "offset": 87,
+            },
+          },
+          "type": "Literal",
+        },
+      ],
+      "doc": Object {
+        "about": "Test",
+        "mark": Object {
+          "end": Object {
+            "column": 1,
+            "line": 6,
+            "offset": 34,
+          },
+          "start": Object {
+            "column": 1,
+            "line": 3,
+            "offset": 18,
+          },
+        },
+        "params": Array [],
+        "type": "SoyDoc",
+      },
+      "id": Object {
+        "name": "render",
+        "namespace": null,
+      },
+      "mark": Object {
+        "end": Object {
+          "column": 12,
+          "line": 21,
+          "offset": 253,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 3,
+          "offset": 18,
+        },
+      },
+      "params": Array [],
+      "type": "Template",
+    },
+  ],
+  "mark": Object {
+    "end": Object {
+      "column": 1,
+      "line": 22,
+      "offset": 254,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "namespace": "Test",
+  "type": "Program",
+}
+`;
+
 exports[`Soy Parser should parse maps in params 1`] = `
 Object {
   "body": Array [

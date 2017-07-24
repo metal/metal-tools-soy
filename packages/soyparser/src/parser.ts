@@ -33,6 +33,11 @@ const identifierName = P.seqMap(
   (start, rest) => start + rest.join('')
 );
 
+const literal = nodeMap(
+  S.Literal,
+  openCmd('literal').then(withAny(closeCmd('literal')))
+);
+
 const namespace: P.Parser<Array<string>> = P.lazy(() => P.alt(
   P.seqMap(identifierName, dot.then(namespace), reverseJoin),
   identifierName.map(name => [name])
@@ -326,13 +331,13 @@ function bodyFor(name: string, ...inter: Array<String>): P.Parser<S.Body> {
         .then(bodyParser),
       P.seqMap(
         P.alt(
+          literal,
           call,
           letStatement,
           otherCmd('if', 'elseif', 'else'),
           otherCmd('foreach', 'ifempty'),
           otherCmd('msg', 'fallbackmsg'),
           otherCmd('switch'),
-          otherCmd('literal'),
           interpolation('{', '}')),
         bodyParser,
         reverseJoin)))

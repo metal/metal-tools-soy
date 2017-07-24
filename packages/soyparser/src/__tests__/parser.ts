@@ -73,4 +73,10 @@ describe('Soy Parser', () => {
 
     expect(soyParser(input)).toMatchSnapshot();
   });
+
+  test('should parse literal tags', () => {
+    const input = getFixture('Literal.soy');
+
+    expect(soyParser(input)).toMatchSnapshot();
+  });
 });
