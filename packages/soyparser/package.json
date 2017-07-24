@@ -1,6 +1,6 @@
 {
   "name": "soyparser",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A parser for Closure Templates (or Soy Templates).",
   "files": [
     "lib"
