@@ -1,0 +1,25 @@
+{
+  "name": "metal-soy-loader",
+  "version": "1.0.0",
+  "description": "Webpack loader that compiles soy templates using metal-tools-soy",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "eslint src"
+  },
+  "author": "Pablo Molina <contact@pablomolina.me>",
+  "license": "MIT",
+  "dependencies": {
+    "glob": "^7.1.2",
+    "metal-tools-soy": "^4.2.6",
+    "rimraf": "^2.6.1",
+    "tmp": "0.0.33"
+  },
+  "devDependencies": {
+    "eslint": "^4.6.1",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1"
+  }
+}
