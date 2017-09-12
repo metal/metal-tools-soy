@@ -30,11 +30,11 @@ goog.loadModule(function(exports) {
    * @return {void}
    * @suppress {checkTypes}
    */
-  function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
+  var $render = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
     opt_data = opt_data || {};
     $hello(opt_data, null, opt_ijData);
-  }
+  };
   exports.render = $render;
   if (goog.DEBUG) {
     $render.soyTemplateName = 'Simple.render';
@@ -48,7 +48,7 @@ goog.loadModule(function(exports) {
    * @return {void}
    * @suppress {checkTypes}
    */
-  function $hello(opt_data, opt_ijData, opt_ijData_deprecated) {
+  var $hello = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
     incrementalDom.text('Hello ');
     soyIdom.print(opt_data.firstName);
@@ -57,7 +57,7 @@ goog.loadModule(function(exports) {
       soyIdom.print(opt_data.lastName);
     }
     incrementalDom.text('!');
-  }
+  };
   exports.hello = $hello;
   if (goog.DEBUG) {
     $hello.soyTemplateName = 'Simple.hello';
@@ -115,11 +115,11 @@ goog.loadModule(function(exports) {
    * @return {void}
    * @suppress {checkTypes}
    */
-  function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
+  var $render = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
     opt_data = opt_data || {};
     $hello(opt_data, null, opt_ijData);
-  }
+  };
   exports.render = $render;
   if (goog.DEBUG) {
     $render.soyTemplateName = 'Simple.render';
@@ -133,7 +133,7 @@ goog.loadModule(function(exports) {
    * @return {void}
    * @suppress {checkTypes}
    */
-  function $hello(opt_data, opt_ijData, opt_ijData_deprecated) {
+  var $hello = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
     incrementalDom.text('Hello ');
     soyIdom.print(opt_data.firstName);
@@ -142,7 +142,7 @@ goog.loadModule(function(exports) {
       soyIdom.print(opt_data.lastName);
     }
     incrementalDom.text('!');
-  }
+  };
   exports.hello = $hello;
   if (goog.DEBUG) {
     $hello.soyTemplateName = 'Simple.hello';
@@ -200,10 +200,10 @@ goog.loadModule(function(exports) {
    * @return {void}
    * @suppress {checkTypes}
    */
-  function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
+  var $render = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
     incrementalDom.text('Hello World');
-  }
+  };
   exports.render = $render;
   if (goog.DEBUG) {
     $render.soyTemplateName = 'Compound.Name.render';
@@ -256,11 +256,11 @@ goog.loadModule(function(exports) {
    * @return {void}
    * @suppress {checkTypes}
    */
-  function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
+  var $render = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
     opt_data = opt_data || {};
     $hello(opt_data, null, opt_ijData);
-  }
+  };
   exports.render = $render;
   if (goog.DEBUG) {
     $render.soyTemplateName = 'Simple.render';
@@ -274,7 +274,7 @@ goog.loadModule(function(exports) {
    * @return {void}
    * @suppress {checkTypes}
    */
-  function $hello(opt_data, opt_ijData, opt_ijData_deprecated) {
+  var $hello = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
     incrementalDom.text('Hello ');
     soyIdom.print(opt_data.firstName);
@@ -283,7 +283,7 @@ goog.loadModule(function(exports) {
       soyIdom.print(opt_data.lastName);
     }
     incrementalDom.text('!');
-  }
+  };
   exports.hello = $hello;
   if (goog.DEBUG) {
     $hello.soyTemplateName = 'Simple.hello';
@@ -341,11 +341,11 @@ goog.loadModule(function(exports) {
    * @return {void}
    * @suppress {checkTypes}
    */
-  function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
+  var $render = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
     opt_data = opt_data || {};
     $hello(opt_data, null, opt_ijData);
-  }
+  };
   exports.render = $render;
   if (goog.DEBUG) {
     $render.soyTemplateName = 'Simple.render';
@@ -359,7 +359,7 @@ goog.loadModule(function(exports) {
    * @return {void}
    * @suppress {checkTypes}
    */
-  function $hello(opt_data, opt_ijData, opt_ijData_deprecated) {
+  var $hello = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
     incrementalDom.text('Hello ');
     soyIdom.print(opt_data.firstName);
@@ -368,7 +368,7 @@ goog.loadModule(function(exports) {
       soyIdom.print(opt_data.lastName);
     }
     incrementalDom.text('!');
-  }
+  };
   exports.hello = $hello;
   if (goog.DEBUG) {
     $hello.soyTemplateName = 'Simple.hello';
@@ -425,9 +425,9 @@ goog.loadModule(function(exports) {
    * @return {void}
    * @suppress {checkTypes}
    */
-  function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
+  var $render = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
-  }
+  };
   exports.render = $render;
   if (goog.DEBUG) {
     $render.soyTemplateName = 'CRLF.render';
@@ -480,11 +480,11 @@ goog.loadModule(function(exports) {
    * @return {void}
    * @suppress {checkTypes}
    */
-  function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
+  var $render = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
     opt_data = opt_data || {};
     $hello(opt_data, null, opt_ijData);
-  }
+  };
   exports.render = $render;
   if (goog.DEBUG) {
     $render.soyTemplateName = 'Simple.render';
@@ -498,7 +498,7 @@ goog.loadModule(function(exports) {
    * @return {void}
    * @suppress {checkTypes}
    */
-  function $hello(opt_data, opt_ijData, opt_ijData_deprecated) {
+  var $hello = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
     incrementalDom.text('Hello ');
     soyIdom.print(opt_data.firstName);
@@ -507,7 +507,7 @@ goog.loadModule(function(exports) {
       soyIdom.print(opt_data.lastName);
     }
     incrementalDom.text('!');
-  }
+  };
   exports.hello = $hello;
   if (goog.DEBUG) {
     $hello.soyTemplateName = 'Simple.hello';
@@ -566,15 +566,15 @@ goog.loadModule(function(exports) {
    * @return {void}
    * @suppress {checkTypes}
    */
-  function __deltemplate_s2_4d93e25d(opt_data, opt_ijData, opt_ijData_deprecated) {
+  var __deltemplate__DelTemplate_Foo_ = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
     soyIdom.print(opt_data.content);
-  }
-  exports.__deltemplate_s2_4d93e25d = __deltemplate_s2_4d93e25d;
+  };
+  exports.__deltemplate__DelTemplate_Foo_ = __deltemplate__DelTemplate_Foo_;
   if (goog.DEBUG) {
-    __deltemplate_s2_4d93e25d.soyTemplateName = 'DelTemplate.__deltemplate_s2_4d93e25d';
+    __deltemplate__DelTemplate_Foo_.soyTemplateName = 'DelTemplate.__deltemplate__DelTemplate_Foo_';
   }
-  soy.$$registerDelegateFn(soy.$$getDelTemplateId('DelTemplate.Foo.idom'), '', 0, __deltemplate_s2_4d93e25d);
+  soy.$$registerDelegateFn(soy.$$getDelTemplateId('DelTemplate.Foo.idom'), '', 0, __deltemplate__DelTemplate_Foo_);
 
   templates = exports;
   return exports;
@@ -618,10 +618,10 @@ goog.loadModule(function(exports) {
    * @return {void}
    * @suppress {checkTypes}
    */
-  function $content(opt_data, opt_ijData, opt_ijData_deprecated) {
+  var $content = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
     incrementalDom.text('Hello World');
-  }
+  };
   exports.content = $content;
   if (goog.DEBUG) {
     $content.soyTemplateName = 'renderSoy.content';
@@ -663,11 +663,11 @@ var soyIdom = goog.require('soy.idom');
  * @return {void}
  * @suppress {checkTypes}
  */
-function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
+var $render = function(opt_data, opt_ijData, opt_ijData_deprecated) {
   opt_ijData = opt_ijData_deprecated || opt_ijData;
   opt_data = opt_data || {};
   $hello(opt_data, null, opt_ijData);
-}
+};
 exports.render = $render;
 if (goog.DEBUG) {
   $render.soyTemplateName = 'Simple.render';
@@ -681,7 +681,7 @@ if (goog.DEBUG) {
  * @return {void}
  * @suppress {checkTypes}
  */
-function $hello(opt_data, opt_ijData, opt_ijData_deprecated) {
+var $hello = function(opt_data, opt_ijData, opt_ijData_deprecated) {
   opt_ijData = opt_ijData_deprecated || opt_ijData;
   incrementalDom.text('Hello ');
   soyIdom.print(opt_data.firstName);
@@ -690,7 +690,7 @@ function $hello(opt_data, opt_ijData, opt_ijData_deprecated) {
     soyIdom.print(opt_data.lastName);
   }
   incrementalDom.text('!');
-}
+};
 exports.hello = $hello;
 if (goog.DEBUG) {
   $hello.soyTemplateName = 'Simple.hello';
@@ -728,7 +728,7 @@ goog.loadModule(function(exports) {
    * @return {void}
    * @suppress {checkTypes}
    */
-  function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
+  var $render = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
     /** @desc  */
     var MSG_EXTERNAL_9205907420411818817 = goog.getMsg('foo');
@@ -742,7 +742,7 @@ goog.loadModule(function(exports) {
     /** @desc  */
     var MSG_EXTERNAL_5766453827832329686 = goog.getMsg('complex-key');
     incrementalDom.text(goog.string.unescapeEntities(MSG_EXTERNAL_5766453827832329686));
-  }
+  };
   exports.render = $render;
   if (goog.DEBUG) {
     $render.soyTemplateName = 'Messages.render';
@@ -796,7 +796,7 @@ goog.loadModule(function(exports) {
    * @return {void}
    * @suppress {checkTypes}
    */
-  function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
+  var $render = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
     /** @desc  */
     var MSG_EXTERNAL_9205907420411818817 = I18n.translate('foo');
@@ -810,7 +810,7 @@ goog.loadModule(function(exports) {
     /** @desc  */
     var MSG_EXTERNAL_5766453827832329686 = I18n.translate('complex-key');
     incrementalDom.text(goog.string.unescapeEntities(MSG_EXTERNAL_5766453827832329686));
-  }
+  };
   exports.render = $render;
   if (goog.DEBUG) {
     $render.soyTemplateName = 'Messages.render';
@@ -865,12 +865,12 @@ goog.loadModule(function(exports) {
    * @return {void}
    * @suppress {checkTypes}
    */
-  function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
+  var $render = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
     opt_data = opt_data || {};
     $templateAlias1(opt_data, null, opt_ijData);
     $templateAlias2(opt_data, null, opt_ijData);
-  }
+  };
   exports.render = $render;
   if (goog.DEBUG) {
     $render.soyTemplateName = 'External.render';
@@ -923,11 +923,11 @@ goog.loadModule(function(exports) {
    * @return {void}
    * @suppress {checkTypes}
    */
-  function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
+  var $render = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
     opt_data = opt_data || {};
     $hello(opt_data, null, opt_ijData);
-  }
+  };
   exports.render = $render;
   if (goog.DEBUG) {
     $render.soyTemplateName = 'Simple.render';
@@ -941,7 +941,7 @@ goog.loadModule(function(exports) {
    * @return {void}
    * @suppress {checkTypes}
    */
-  function $hello(opt_data, opt_ijData, opt_ijData_deprecated) {
+  var $hello = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
     incrementalDom.text('Hello ');
     soyIdom.print(opt_data.firstName);
@@ -950,7 +950,7 @@ goog.loadModule(function(exports) {
       soyIdom.print(opt_data.lastName);
     }
     incrementalDom.text('!');
-  }
+  };
   exports.hello = $hello;
   if (goog.DEBUG) {
     $hello.soyTemplateName = 'Simple.hello';
@@ -1002,24 +1002,22 @@ goog.loadModule(function(exports) {
 
 
   /**
-   * @param {{
-   *  content: function()
-   * }} opt_data
+   * @param {$render.Params} opt_data
    * @param {Object<string, *>=} opt_ijData
    * @param {Object<string, *>=} opt_ijData_deprecated
    * @return {void}
    * @suppress {checkTypes}
    */
-  function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
+  var $render = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
     /** @type {function()} */
     var content = soy.asserts.assertType(goog.isFunction(opt_data.content), 'content', opt_data.content, 'function()');
     content();
-  }
+  };
   exports.render = $render;
   /**
    * @typedef {{
-   *  content: function()
+   *  content: function(),
    * }}
    */
   $render.Params;
