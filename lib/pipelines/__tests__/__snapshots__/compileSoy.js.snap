@@ -450,6 +450,66 @@ export default templates;
 /* jshint ignore:end */
 `;
 
+exports[`Compile Soy Pipeline should dedup soy deps when a relative path and absolute path point to the same soy file 1`] = `
+/* jshint ignore:start */
+import Component from 'metal-component';
+import Soy from 'metal-soy';
+
+var templates;
+goog.loadModule(function(exports) {
+  var soy = goog.require('soy');
+  var soydata = goog.require('soydata');
+  // This file was automatically generated from external.soy.
+  // Please don't edit this file by hand.
+
+  /**
+   * @fileoverview Templates in namespace External.
+   * @public
+   */
+
+  goog.module('External.incrementaldom');
+
+  var soyIdom = goog.require('soy.idom');
+
+  var $templateAlias2 = Soy.getTemplate('Simple.incrementaldom', 'hello');
+  var $templateAlias1 = Soy.getTemplate('Simple.incrementaldom', 'render');
+
+
+  /**
+   * @param {Object<string, *>=} opt_data
+   * @param {Object<string, *>=} opt_ijData
+   * @param {Object<string, *>=} opt_ijData_deprecated
+   * @return {void}
+   * @suppress {checkTypes}
+   */
+  var $render = function(opt_data, opt_ijData, opt_ijData_deprecated) {
+    opt_ijData = opt_ijData_deprecated || opt_ijData;
+    opt_data = opt_data || {};
+    $templateAlias1(opt_data, null, opt_ijData);
+    $templateAlias2(opt_data, null, opt_ijData);
+  };
+  exports.render = $render;
+  if (goog.DEBUG) {
+    $render.soyTemplateName = 'External.render';
+  }
+
+  exports.render.params = [];
+  exports.render.types = {};
+  templates = exports;
+  return exports;
+
+});
+
+class External extends Component {}
+Soy.register(External, templates);
+export {
+  External,
+  templates
+};
+export default templates;
+/* jshint ignore:end */
+`;
+
 exports[`Compile Soy Pipeline should export the templates 1`] = `
 /* jshint ignore:start */
 import Component from 'metal-component';
