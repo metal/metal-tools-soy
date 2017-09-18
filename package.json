@@ -37,7 +37,7 @@
     "soy"
   ],
   "dependencies": {
-    "glob-expand": "^0.1.0",
+    "globby": "^6.1.0",
     "gulp-if": "^2.0.0",
     "gulp-ignore": "^2.0.1",
     "gulp-replace": "^0.5.4",
