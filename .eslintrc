@@ -6,6 +6,7 @@
 		"jest": true
 	},
 	"rules": {
+		"comma-dangle": "off",
 		"max-len": "off",
 		"no-invalid-this": "off",
 		"object-curly-spacing": "off",
