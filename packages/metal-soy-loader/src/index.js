@@ -10,8 +10,6 @@ const filePathAstMap = {};
 
 const globs = {};
 
-const namespaceAstMap = {};
-
 /**
  * metal-soy-loader
  */
@@ -27,13 +25,9 @@ export default function metalSoyLoader() {
 
 	const srcPaths = resolveGlob(loaderOptions.src);
 
-	srcPaths.forEach(filePath => {
-		getParsedSoy(filePath);
-	});
-
 	const externalCalls = getExternalSoyCalls(
 		getParsedSoy(resourcePath),
-		namespaceAstMap,
+		srcPaths,
 	);
 
 	const internalSoyDeps = resolveInternalSoyDeps(srcPaths, externalCalls);
@@ -54,10 +48,10 @@ export default function metalSoyLoader() {
 /**
  * Gets namespaces of external soy calls
  * @param {!Object} soyAst parsed soy ast
- * @param {!Object} namespaceAstMap object literal that maps namespace to parsed soy ast
+ * @param {!Array} filePaths list of src file paths
  * @return {Array}
  */
-function getExternalSoyCalls(soyAst, namespaceAstMap) {
+function getExternalSoyCalls(soyAst, filePaths) {
 	let calls = [];
 
 	traverse.visit(soyAst, {
@@ -70,8 +64,8 @@ function getExternalSoyCalls(soyAst, namespaceAstMap) {
 
 	calls.forEach(namespace => {
 		calls = getExternalSoyCalls(
-			namespaceAstMap[namespace],
-			namespaceAstMap,
+			getParsedSoyByNamespace(namespace, filePaths),
+			filePaths,
 		).concat(calls);
 	});
 
@@ -88,9 +82,27 @@ function getParsedSoy(filePath) {
 		const soyAst = soyparser(fs.readFileSync(filePath, 'utf8'));
 
 		filePathAstMap[filePath] = soyAst;
-		namespaceAstMap[soyAst.namespace] = soyAst;
 	}
 	return filePathAstMap[filePath];
+}
+
+/**
+ * Gets parsed soy ast
+ * @param {!string} filePath
+ * @return {Object}
+ */
+function getParsedSoyByNamespace(namespace, filePaths) {
+	let parsedSoy;
+
+	filePaths.forEach(filePath => {
+		const soyAst = getParsedSoy(filePath);
+
+		if (soyAst.namespace === namespace) {
+			parsedSoy = soyAst;
+		}
+	});
+
+	return parsedSoy;
 }
 
 /**
