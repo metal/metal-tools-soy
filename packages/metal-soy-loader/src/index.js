@@ -49,7 +49,6 @@ export default function metalSoyLoader() {
 	stream.on('data', file => {
 		loaderCallback(null, file.contents.toString());
 	});
-	stream.on('error', loaderCallback);
 }
 
 /**
