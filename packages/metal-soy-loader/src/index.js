@@ -1,14 +1,14 @@
-const fs = require('fs');
-const glob = require('glob');
-const metalsoy = require('metal-tools-soy');
-const path = require('path');
-const rimraf = require('rimraf');
-const tmp = require('tmp');
+import fs from 'fs';
+import glob from 'glob';
+import metalsoy from 'metal-tools-soy';
+import path from 'path';
+import rimraf from 'rimraf';
+import tmp from 'tmp';
 
 /**
  * metal-soy-loader
  */
-module.exports = function() {
+export default function() {
 	const loaderCallback = this.async();
 	const tmpDir = tmp.dirSync();
 
@@ -18,7 +18,9 @@ module.exports = function() {
 		resourcePath = resourcePath.substring(0, resourcePath.indexOf('.js'));
 	}
 
-	const templates = glob.sync('**/*.soy').map(filePath => path.resolve(filePath));
+	const templates = glob
+		.sync('**/*.soy')
+		.map(filePath => path.resolve(filePath));
 
 	const src = templates.filter(
 		filePath => !/node_modules/.test(filePath) && filePath !== resourcePath,
@@ -35,6 +37,7 @@ module.exports = function() {
 	* Handles the compilation end.
 	* Emits an error if there where a problem during the compilation
 	* process or if there is no result file.
+	* @param error
 	*/
 	const handleEnd = error => {
 		let result = '';
@@ -67,4 +70,4 @@ module.exports = function() {
 		soyDeps,
 		src,
 	}).on('end', handleEnd);
-};
+}
