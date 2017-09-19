@@ -126,7 +126,9 @@ function resolveInternalSoyDeps(filePaths, externalCalls) {
  * @param {!Object} loaderOptions custom loader options passed from webpack config
  * @return {Object} loader options
  */
-function setDefaults(loaderOptions = {}) {
+function setDefaults(loaderOptions) {
+	loaderOptions = loaderOptions || {};
+
 	loaderOptions.soyDeps =
 		loaderOptions.soyDeps || 'node_modules/metal*/src/**/*.soy';
 	loaderOptions.src = loaderOptions.src || 'src/**/*.soy';
