@@ -12,10 +12,16 @@ module.exports = function() {
 	const loaderCallback = this.async();
 	const tmpDir = tmp.dirSync();
 
+	let resourcePath = this.resourcePath;
+
+	if (path.extname(resourcePath) === '.js') {
+		resourcePath = resourcePath.substring(0, resourcePath.indexOf('.js'));
+	}
+
 	const templates = glob.sync('**/*.soy').map(filePath => path.resolve(filePath));
 
 	const src = templates.filter(
-		filePath => !/node_modules/.test(filePath) && filePath !== this.resourcePath,
+		filePath => !/node_modules/.test(filePath) && filePath !== resourcePath,
 	);
 
 	const soyDeps = templates.filter(filePath => /node_modules/.test(filePath));
@@ -23,7 +29,7 @@ module.exports = function() {
 	// Its important that the current file it kept at
 	// the end of the src files. This way using same name in
 	// files does not produce an overwritten result.
-	src.push(this.resourcePath);
+	src.push(resourcePath);
 
 	/**
 	* Handles the compilation end.
