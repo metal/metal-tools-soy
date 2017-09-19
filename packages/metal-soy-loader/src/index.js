@@ -14,7 +14,7 @@ const namespaceAstMap = {};
 /**
  * metal-soy-loader
  */
-export default function() {
+export default function metalSoyLoader() {
 	const loaderCallback = this.async();
 
 	let resourcePath = this.resourcePath;
@@ -67,6 +67,12 @@ export default function() {
 	stream.on('error', handleError);
 }
 
+/**
+ * Gets namespaces of external soy calls
+ * @param {!Object} soyAst parsed soy ast
+ * @param {!Object} namespaceAstMap object literal that maps namespace to parsed soy ast
+ * @return {Array}
+ */
 function getExternalSoyCalls(soyAst, namespaceAstMap) {
 	let calls = [];
 
@@ -88,6 +94,11 @@ function getExternalSoyCalls(soyAst, namespaceAstMap) {
 	return calls;
 }
 
+/**
+ * Gets parsed soy ast
+ * @param {!string} filePath
+ * @return {Object}
+ */
 function getParsedSoy(filePath) {
 	if (!filePathAstMap[filePath]) {
 		const soyAst = soyparser(fs.readFileSync(filePath, 'utf8'));
@@ -98,6 +109,11 @@ function getParsedSoy(filePath) {
 	return filePathAstMap[filePath];
 }
 
+/**
+ * Resolves glob file pattern
+ * @param {!string} pattern file glob pattern
+ * @return {Array} list of file paths
+ */
 function resolveGlob(pattern) {
 	if (!globs[pattern]) {
 		globs[pattern] = glob
@@ -108,8 +124,13 @@ function resolveGlob(pattern) {
 	return globs[pattern];
 }
 
-function resolveInternalSoyDeps(templates, externalCalls) {
-	return templates.filter(filePath => {
+/**
+ * Resolves list of soy dependencies based on external soy calls
+ * @param {!Array} filePaths array of file paths
+ * @param {!Array} externalCalls array of soy namespaces
+ */
+function resolveInternalSoyDeps(filePaths, externalCalls) {
+	return filePaths.filter(filePath => {
 		const soyAst = getParsedSoy(filePath);
 
 		return externalCalls.indexOf(soyAst.namespace) > -1;
