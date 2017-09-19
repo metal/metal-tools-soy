@@ -6,9 +6,9 @@ import path from 'path';
 import soyparser, { traverse } from 'soyparser';
 import vfs from 'vinyl-fs';
 
-const filePathAstMap = {};
+const globsCache = {};
 
-const globs = {};
+const soyAstCache = {};
 
 /**
  * metal-soy-loader
@@ -78,12 +78,12 @@ function getExternalSoyCalls(soyAst, filePaths) {
  * @return {Object}
  */
 function getParsedSoy(filePath) {
-	if (!filePathAstMap[filePath]) {
+	if (!soyAstCache[filePath]) {
 		const soyAst = soyparser(fs.readFileSync(filePath, 'utf8'));
 
-		filePathAstMap[filePath] = soyAst;
+		soyAstCache[filePath] = soyAst;
 	}
-	return filePathAstMap[filePath];
+	return soyAstCache[filePath];
 }
 
 /**
@@ -111,13 +111,13 @@ function getParsedSoyByNamespace(namespace, filePaths) {
  * @return {Array} list of file paths
  */
 function resolveGlob(pattern) {
-	if (!globs[pattern]) {
-		globs[pattern] = glob
+	if (!globsCache[pattern]) {
+		globsCache[pattern] = glob
 			.sync(pattern)
 			.map(filePath => path.resolve(filePath));
 	}
 
-	return globs[pattern];
+	return globsCache[pattern];
 }
 
 /**
