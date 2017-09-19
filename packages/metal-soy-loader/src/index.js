@@ -32,21 +32,6 @@ export default function metalSoyLoader() {
 		getParsedSoy(filePath);
 	});
 
-	/**
-	* @param error
-	* @param result
-	*/
-	const handleEnd = (error, result) => {
-		loaderCallback(error, result);
-	};
-
-	/**
-	 * @param error
-	 */
-	const handleError = error => {
-		handleEnd(error);
-	};
-
 	const externalCalls = getExternalSoyCalls(
 		getParsedSoy(resourcePath),
 		namespaceAstMap,
@@ -59,13 +44,13 @@ export default function metalSoyLoader() {
 	let stream = vfs.src(resourcePath).pipe(
 		compileSoy({
 			soyDeps,
-		}).on('error', handleError),
+		}).on('error', loaderCallback),
 	);
 
 	stream.on('data', file => {
-		handleEnd(null, file.contents.toString());
+		loaderCallback(null, file.contents.toString());
 	});
-	stream.on('error', handleError);
+	stream.on('error', loaderCallback);
 }
 
 /**
