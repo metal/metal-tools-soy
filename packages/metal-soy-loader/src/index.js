@@ -6,7 +6,8 @@ import rimraf from 'rimraf';
 import tmp from 'tmp';
 import soyparser, { traverse } from 'soyparser';
 
-const parsedSoy = {};
+const filePathAstMap = {};
+const namespaceAstMap = {};
 
 /**
  * metal-soy-loader
@@ -26,6 +27,10 @@ export default function() {
 		.map(filePath => path.resolve(filePath));
 
 	let soyDeps = templates.filter(filePath => /node_modules/.test(filePath));
+
+	templates.forEach(filePath => {
+		getParsedSoy(filePath);
+	});
 
 	/**
 	* Handles the compilation end.
@@ -58,7 +63,10 @@ export default function() {
 		handleEnd(error);
 	};
 
-	const externalCalls = getExternalSoyCalls(getParsedSoy(resourcePath));
+	const externalCalls = getExternalSoyCalls(
+		getParsedSoy(resourcePath),
+		namespaceAstMap,
+	);
 
 	const internalSoyDeps = resolveInternalSoyDeps(templates, externalCalls);
 
@@ -72,33 +80,41 @@ export default function() {
 	}).on('end', handleEnd);
 }
 
-function getExternalSoyCalls(soyAst) {
-	const calls = [];
+function getExternalSoyCalls(soyAst, namespaceAstMap) {
+	let calls = [];
 
 	traverse.visit(soyAst, {
 		Call: node => {
 			if (node.id.namespace) {
 				calls.push(node.id.namespace);
 			}
-		}
+		},
+	});
+
+	calls.forEach(namespace => {
+		calls = getExternalSoyCalls(
+			namespaceAstMap[namespace],
+			namespaceAstMap,
+		).concat(calls);
 	});
 
 	return calls;
 }
 
 function getParsedSoy(filePath) {
-	if (!parsedSoy[filePath]) {
-		parsedSoy[filePath] = soyparser(fs.readFileSync(filePath, 'utf8'));
+	if (!filePathAstMap[filePath]) {
+		const soyAst = soyparser(fs.readFileSync(filePath, 'utf8'));
+
+		filePathAstMap[filePath] = soyAst;
+		namespaceAstMap[soyAst.namespace] = soyAst;
 	}
-	return parsedSoy[filePath];
+	return filePathAstMap[filePath];
 }
 
 function resolveInternalSoyDeps(templates, externalCalls) {
-	return templates.filter(
-		filePath => {
-			const soyAst = soyparser(fs.readFileSync(filePath, 'utf8'));
+	return templates.filter(filePath => {
+		const soyAst = getParsedSoy(filePath);
 
-			return externalCalls.indexOf(soyAst.namespace) > -1;
-		}
-	)
+		return externalCalls.indexOf(soyAst.namespace) > -1;
+	});
 }
