@@ -4,6 +4,9 @@ import metalsoy from 'metal-tools-soy';
 import path from 'path';
 import rimraf from 'rimraf';
 import tmp from 'tmp';
+import soyparser, { traverse } from 'soyparser';
+
+const parsedSoy = {};
 
 /**
  * metal-soy-loader
@@ -22,16 +25,7 @@ export default function() {
 		.sync('**/*.soy')
 		.map(filePath => path.resolve(filePath));
 
-	const src = templates.filter(
-		filePath => !/node_modules/.test(filePath) && filePath !== resourcePath,
-	);
-
-	const soyDeps = templates.filter(filePath => /node_modules/.test(filePath));
-
-	// Its important that the current file it kept at
-	// the end of the src files. This way using same name in
-	// files does not produce an overwritten result.
-	src.push(resourcePath);
+	let soyDeps = templates.filter(filePath => /node_modules/.test(filePath));
 
 	/**
 	* Handles the compilation end.
@@ -64,10 +58,47 @@ export default function() {
 		handleEnd(error);
 	};
 
+	const externalCalls = getExternalSoyCalls(getParsedSoy(resourcePath));
+
+	const internalSoyDeps = resolveInternalSoyDeps(templates, externalCalls);
+
+	soyDeps = soyDeps.concat(internalSoyDeps);
+
 	metalsoy({
 		dest: tmpDir.name,
 		handleError,
 		soyDeps,
-		src,
+		src: [resourcePath],
 	}).on('end', handleEnd);
+}
+
+function getExternalSoyCalls(soyAst) {
+	const calls = [];
+
+	traverse.visit(soyAst, {
+		Call: node => {
+			if (node.id.namespace) {
+				calls.push(node.id.namespace);
+			}
+		}
+	});
+
+	return calls;
+}
+
+function getParsedSoy(filePath) {
+	if (!parsedSoy[filePath]) {
+		parsedSoy[filePath] = soyparser(fs.readFileSync(filePath, 'utf8'));
+	}
+	return parsedSoy[filePath];
+}
+
+function resolveInternalSoyDeps(templates, externalCalls) {
+	return templates.filter(
+		filePath => {
+			const soyAst = soyparser(fs.readFileSync(filePath, 'utf8'));
+
+			return externalCalls.indexOf(soyAst.namespace) > -1;
+		}
+	)
 }

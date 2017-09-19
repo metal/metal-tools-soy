@@ -16,6 +16,7 @@
     "glob": "^7.1.2",
     "metal-tools-soy": "^4.2.6",
     "rimraf": "^2.6.1",
+    "soyparser": "^1.0.3",
     "tmp": "0.0.33"
   },
   "devDependencies": {
