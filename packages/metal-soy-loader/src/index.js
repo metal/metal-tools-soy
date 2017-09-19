@@ -87,8 +87,9 @@ function getParsedSoy(filePath) {
 }
 
 /**
- * Gets parsed soy ast
- * @param {!string} filePath
+ * Gets parsed soy ast via namespace
+ * @param {!string} namespace
+ * @param {!string} filePaths
  * @return {Object}
  */
 function getParsedSoyByNamespace(namespace, filePaths) {
@@ -124,6 +125,7 @@ function resolveGlob(pattern) {
  * Resolves list of soy dependencies based on external soy calls
  * @param {!Array} filePaths array of file paths
  * @param {!Array} externalCalls array of soy namespaces
+ * @return {Array} array of internal soy dependencies
  */
 function resolveInternalSoyDeps(filePaths, externalCalls) {
 	return filePaths.filter(filePath => {
@@ -135,7 +137,7 @@ function resolveInternalSoyDeps(filePaths, externalCalls) {
 
 /**
  * Sets default loader options
- * @param {!Object} loaderOptions custom loader options passed from webpack config
+ * @param {!Object} loaderOptions custom loader options from webpack config
  * @return {Object} loader options
  */
 function setDefaults(loaderOptions) {
