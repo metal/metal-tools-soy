@@ -128,7 +128,8 @@ function resolveInternalSoyDeps(filePaths, externalCalls) {
  * @return {Object} loader options
  */
 function setDefaults(loaderOptions = {}) {
-	loaderOptions.soyDeps = loaderOptions.soyDeps || 'node_modules/metal*/src/**/*.soy';
+	loaderOptions.soyDeps =
+		loaderOptions.soyDeps || 'node_modules/metal*/src/**/*.soy';
 	loaderOptions.src = loaderOptions.src || 'src/**/*.soy';
 
 	if (typeof loaderOptions.soyDeps === 'string') {
