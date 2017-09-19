@@ -1,10 +1,9 @@
+import compileSoy from 'metal-tools-soy/lib/pipelines/compileSoy';
 import fs from 'fs';
 import glob from 'glob';
-import metalsoy from 'metal-tools-soy';
 import path from 'path';
-import rimraf from 'rimraf';
-import tmp from 'tmp';
 import soyparser, { traverse } from 'soyparser';
+import vfs from 'vinyl-fs';
 
 const filePathAstMap = {};
 
@@ -17,7 +16,6 @@ const namespaceAstMap = {};
  */
 export default function() {
 	const loaderCallback = this.async();
-	const tmpDir = tmp.dirSync();
 
 	let resourcePath = this.resourcePath;
 
@@ -34,26 +32,10 @@ export default function() {
 	});
 
 	/**
-	* Handles the compilation end.
-	* Emits an error if there where a problem during the compilation
-	* process or if there is no result file.
 	* @param error
+	* @param result
 	*/
-	const handleEnd = error => {
-		let result = '';
-
-		if (!error) {
-			try {
-				result = fs.readFileSync(
-					`${tmpDir.name}/${path.basename(resourcePath)}.js`,
-					'utf-8',
-				);
-			} catch (e) {
-				error = e;
-			}
-		}
-
-		rimraf.sync(tmpDir.name);
+	const handleEnd = (error, result) => {
 		loaderCallback(error, result);
 	};
 
@@ -73,12 +55,16 @@ export default function() {
 
 	soyDeps = soyDeps.concat(internalSoyDeps);
 
-	metalsoy({
-		dest: tmpDir.name,
-		handleError,
-		soyDeps,
-		src: [resourcePath],
-	}).on('end', handleEnd);
+	let stream = vfs.src(resourcePath).pipe(
+		compileSoy({
+			soyDeps,
+		}).on('error', handleError),
+	);
+
+	stream.on('data', file => {
+		handleEnd(null, file.contents.toString());
+	});
+	stream.on('error', handleError);
 }
 
 function getExternalSoyCalls(soyAst, namespaceAstMap) {
