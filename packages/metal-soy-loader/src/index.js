@@ -26,8 +26,9 @@ export default function metalSoyLoader() {
 	const templates = resolveGlob('**/*.soy');
 
 	let soyDeps = templates.filter(filePath => /node_modules/.test(filePath));
+	let srcPaths = templates.filter(filePath => !/node_modules/.test(filePath));
 
-	templates.forEach(filePath => {
+	srcPaths.forEach(filePath => {
 		getParsedSoy(filePath);
 	});
 
@@ -51,7 +52,7 @@ export default function metalSoyLoader() {
 		namespaceAstMap,
 	);
 
-	const internalSoyDeps = resolveInternalSoyDeps(templates, externalCalls);
+	const internalSoyDeps = resolveInternalSoyDeps(srcPaths, externalCalls);
 
 	soyDeps = soyDeps.concat(internalSoyDeps);
 
