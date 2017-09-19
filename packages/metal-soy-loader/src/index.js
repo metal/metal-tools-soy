@@ -7,6 +7,9 @@ import tmp from 'tmp';
 import soyparser, { traverse } from 'soyparser';
 
 const filePathAstMap = {};
+
+const globs = {};
+
 const namespaceAstMap = {};
 
 /**
@@ -22,9 +25,7 @@ export default function() {
 		resourcePath = resourcePath.substring(0, resourcePath.indexOf('.js'));
 	}
 
-	const templates = glob
-		.sync('**/*.soy')
-		.map(filePath => path.resolve(filePath));
+	const templates = resolveGlob('**/*.soy');
 
 	let soyDeps = templates.filter(filePath => /node_modules/.test(filePath));
 
@@ -109,6 +110,16 @@ function getParsedSoy(filePath) {
 		namespaceAstMap[soyAst.namespace] = soyAst;
 	}
 	return filePathAstMap[filePath];
+}
+
+function resolveGlob(pattern) {
+	if (!globs[pattern]) {
+		globs[pattern] = glob
+			.sync(pattern)
+			.map(filePath => path.resolve(filePath));
+	}
+
+	return globs[pattern];
 }
 
 function resolveInternalSoyDeps(templates, externalCalls) {
