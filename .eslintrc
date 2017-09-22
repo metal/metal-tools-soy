@@ -3,5 +3,11 @@
 		"node": true,
 		"jest": true
 	},
-	"extends": "liferay"
+	"extends": "liferay",
+	"rules": {
+		"max-len": "off",
+		"no-invalid-this": "off",
+		"no-useless-escape": "off",
+		"require-jsdoc": "off"
+	}
 }
