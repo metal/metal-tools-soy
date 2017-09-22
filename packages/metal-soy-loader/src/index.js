@@ -7,6 +7,7 @@ const soyCompiler = new SoyCompiler();
 
 /**
  * metal-soy-loader
+ * @param {!string} contents file contents
  */
 export default function metalSoyLoader(contents) {
 	const loaderCallback = this.async();
