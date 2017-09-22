@@ -1,15 +1,13 @@
 {
-	"extends": "liferay",
 	"env": {
 		"node": true,
-		"es6": true,
 		"jest": true
 	},
+	"extends": "liferay",
 	"rules": {
-		"comma-dangle": "off",
 		"max-len": "off",
 		"no-invalid-this": "off",
-		"object-curly-spacing": "off",
+		"no-useless-escape": "off",
 		"require-jsdoc": "off"
 	}
 }
