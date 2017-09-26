@@ -32,12 +32,12 @@ export default function metalSoyLoader(contents) {
 	}
 
 	if (soyCompiler.isCompiled()) {
-		soyCompiler.readFile(resourcePath, loaderCallback);
+		loaderCallback(null, soyCompiler.getCompiledSoy(resourcePath));
 	} else if (soyCompiler.isCompiling()) {
 		const listener = soyCompiler.on('end', () => {
 			listener.removeListener();
 
-			soyCompiler.readFile(resourcePath, loaderCallback);
+			loaderCallback(null, soyCompiler.getCompiledSoy(resourcePath));
 		});
 	}
 }

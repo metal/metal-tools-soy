@@ -19,7 +19,7 @@
     "md5": "^2.2.1",
     "metal-events": "^2.13.2",
     "metal-tools-soy": "^4.2.7",
-    "tmp": "0.0.33"
+    "vinyl-fs": "^2.4.4"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

@@ -1,8 +1,7 @@
-import fs from 'fs';
 import md5 from 'md5';
-import metalsoy from 'metal-tools-soy';
+import compileSoy from 'metal-tools-soy/lib/pipelines/compileSoy';
 import path from 'path';
-import tmp from 'tmp';
+import vfs from 'vinyl-fs'
 import { EventEmitter } from 'metal-events';
 
 /**
@@ -19,7 +18,7 @@ class SoyCompiler extends EventEmitter {
 
 		this._cacheMap = {};
 
-		this._tmpDir = tmp.dirSync().name;
+		this._compiledSoy = {};
 
 		this.setCompiling_(false);
 
@@ -50,12 +49,23 @@ class SoyCompiler extends EventEmitter {
 	compile(src, soyDeps) {
 		this.setCompiling_(true);
 
-		metalsoy({
-			dest: this._tmpDir,
-			handleError: this.handleError_.bind(this),
-			soyDeps,
-			src,
-		}).on('end', this.handleEnd_.bind(this));
+		const stream = vfs.src(src).pipe(
+			compileSoy({
+				soyDeps,
+			}).on('error', this.handleError_.bind(this)),
+		);
+
+		stream.on('data', file => {
+			let filePath = file.path;
+
+			if (path.extname(filePath) === '.js') {
+				filePath = filePath.substring(0, filePath.indexOf('.js'));
+			}
+
+			this._compiledSoy[filePath] = file.contents.toString();
+		});
+
+		stream.on('end', this.handleEnd_.bind(this));
 	}
 
 	/**
@@ -65,6 +75,15 @@ class SoyCompiler extends EventEmitter {
 	 */
 	getFileHash_(resourcePath) {
 		return this._cacheMap[resourcePath];
+	}
+
+	/**
+	 * Returns compiled soy
+	 * @param {!string} resourcePath path to soy file
+	 * @return {string} compiled soy file
+	 */
+	getCompiledSoy(resourcePath) {
+		return this._compiledSoy[resourcePath];
 	}
 
 	/**
@@ -119,26 +138,11 @@ class SoyCompiler extends EventEmitter {
 	}
 
 	/**
-	 * Reads compiled soy file from file system
-	 * @param {!string} resourcePath path to soy file
-	 * @param {function} callback
+	 * Sets property that indicates if soyCompiler has already compiled
+	 * @param {!boolean} value
 	 */
-	readFile(resourcePath, callback) {
-		resourcePath = path.relative(process.cwd(), resourcePath + '.js');
-
-		let pathArray = resourcePath.split(path.sep);
-
-		resourcePath = pathArray.slice(1, pathArray.length).join(path.sep);
-
-		const filePath = path.join(this._tmpDir, resourcePath);
-
-		fs.readFile(
-			filePath,
-			{
-				encoding: 'utf8',
-			},
-			callback,
-		);
+	setCompiled_(value) {
+		this._compiled = value;
 	}
 
 	/**
