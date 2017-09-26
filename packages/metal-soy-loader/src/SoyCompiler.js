@@ -146,14 +146,6 @@ class SoyCompiler extends EventEmitter {
 	}
 
 	/**
-	 * Sets property that indicates if soyCompiler has already compiled
-	 * @param {!boolean} value
-	 */
-	setCompiled_(value) {
-		this._compiled = value;
-	}
-
-	/**
 	 * Sets property that indicates if soyCompiler is currently compiling
 	 * @param {!boolean} value
 	 */
