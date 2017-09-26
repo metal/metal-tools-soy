@@ -1,3 +1,4 @@
+import fs from 'fs';
 import loaderUtils from 'loader-utils';
 import path from 'path';
 
@@ -17,6 +18,10 @@ export default function metalSoyLoader(contents) {
 
 	if (path.extname(resourcePath) === '.js') {
 		resourcePath = resourcePath.substring(0, resourcePath.indexOf('.js'));
+
+		contents = fs.readFileSync(resourcePath, {
+			encoding: 'utf8',
+		});
 	}
 
 	soyCompiler.checkCache(resourcePath, contents);
