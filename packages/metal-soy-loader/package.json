@@ -4,6 +4,10 @@
   "description": "Webpack loader that compiles soy templates using metal-tools-soy",
   "main": "lib/index.js",
   "jsnext:main": "src/index.js",
+  "files": [
+    "lib",
+    "src"
+  ],
   "scripts": {
     "compile": "babel -d lib/ src/ --ignore src/__tests__",
     "format": "prettier --write **/*.js",
