@@ -8,7 +8,6 @@
     "compile": "babel --presets es2015 -d lib/ src/",
     "format": "prettier --write **/*.js",
     "lint": "eslint src",
-    "postinstall": "npm run compile",
     "prepublish": "npm run compile",
     "test": "jest"
   },
