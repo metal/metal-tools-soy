@@ -1,6 +1,6 @@
 {
   "name": "metal-soy-loader",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "description": "Webpack loader that compiles soy templates using metal-tools-soy",
   "main": "lib/index.js",
   "jsnext:main": "src/index.js",
