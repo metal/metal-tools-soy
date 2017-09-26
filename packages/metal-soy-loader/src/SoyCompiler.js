@@ -1,7 +1,7 @@
 import md5 from 'md5';
 import compileSoy from 'metal-tools-soy/lib/pipelines/compileSoy';
 import path from 'path';
-import vfs from 'vinyl-fs'
+import vfs from 'vinyl-fs';
 import { EventEmitter } from 'metal-events';
 
 /**
