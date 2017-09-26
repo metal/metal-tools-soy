@@ -5,9 +5,9 @@
   "main": "lib/index.js",
   "jsnext:main": "src/index.js",
   "scripts": {
-    "compile": "babel --presets es2015 -d lib/ src/",
+    "compile": "babel --presets es2015 -d lib/ src/ --ignore src/__tests__",
     "format": "prettier --write **/*.js",
-    "lint": "eslint src",
+    "lint": "eslint src --ignore-pattern src/__tests__",
     "prepublish": "npm run compile",
     "test": "jest"
   },
