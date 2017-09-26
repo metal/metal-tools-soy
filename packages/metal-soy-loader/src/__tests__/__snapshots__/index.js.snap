@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`metal-soy-loader should run webpack without errors 1`] = `
+<div class="parent">Parent component
+  <div class="child">Child component
+    <div class="grandchild">GrandChild component</div>
+  </div>
+</div>
+`;
