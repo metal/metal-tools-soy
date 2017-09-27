@@ -482,12 +482,12 @@ goog.loadModule(function(exports) {
    * @return {void}
    * @suppress {checkTypes}
    */
-  var $render = function(opt_data, opt_ijData, opt_ijData_deprecated) {
+  function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
     opt_data = opt_data || {};
     $templateAlias1(opt_data, null, opt_ijData);
     $templateAlias2(opt_data, null, opt_ijData);
-  };
+  }
   exports.render = $render;
   if (goog.DEBUG) {
     $render.soyTemplateName = 'External.render';
