@@ -37,7 +37,9 @@ export default function metalSoyLoader(contents) {
 		const listener = soyCompiler.on('end', () => {
 			listener.removeListener();
 
-			loaderCallback(null, soyCompiler.getCompiledSoy(resourcePath));
+			if (!soyCompiler.getError()) {
+				loaderCallback(null, soyCompiler.getCompiledSoy(resourcePath));
+			}
 		});
 	}
 }
