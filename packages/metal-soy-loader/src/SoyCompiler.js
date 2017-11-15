@@ -23,6 +23,8 @@ class SoyCompiler extends EventEmitter {
 		this.setCompiling_(false);
 
 		this.setCompiled_(false);
+
+		this.setError_(null);
 	}
 
 	/**
@@ -48,6 +50,7 @@ class SoyCompiler extends EventEmitter {
 	 */
 	compile(src, soyDeps) {
 		this.setCompiling_(true);
+		this.setError_(null);
 
 		const stream = vfs.src(src).pipe(
 			compileSoy({
@@ -87,6 +90,14 @@ class SoyCompiler extends EventEmitter {
 	}
 
 	/**
+	 * Return existing compilation error
+	 * @returns {Error|null} Existing error or a null value
+	 */
+	getError() {
+		return this._error;
+	}
+
+	/**
 	 * @fires SoyCompiler#end
 	 */
 	handleEnd_() {
@@ -105,6 +116,8 @@ class SoyCompiler extends EventEmitter {
 	 * @param {Error} error
 	 */
 	handleError_(error) {
+		this.setError_(error);
+
 		/**
 		 * error event
 		 * @event SoyCompiler#error
@@ -151,6 +164,14 @@ class SoyCompiler extends EventEmitter {
 	 */
 	setCompiling_(value) {
 		this._compiling = value;
+	}
+
+	/**
+	 * Changes the existing compilation error
+	 * @param {!Error|null} error
+	 */
+	setError_(error) {
+		this._error = error;
 	}
 
 	/**
