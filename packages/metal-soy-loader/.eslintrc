@@ -2,5 +2,8 @@
 	"env": {
 		"node": true
 	},
-	"extends": "liferay"
+	"extends": "liferay",
+	"rules": {
+		"no-invalid-this": "off"
+	}
 }
