@@ -9,10 +9,12 @@
     "src"
   ],
   "scripts": {
+    "checkFormat": "npm run prettier -- --list-different",
     "compile": "babel -d lib/ src/ --ignore src/__tests__",
-    "format": "prettier --write **/*.js",
-    "lint": "eslint src --ignore-pattern src/__tests__",
+    "format": "npm run prettier -- --write",
+    "lint": "eslint 'src/**/*.js'",
     "prepublish": "npm run compile",
+    "prettier": "prettier-eslint 'src/**/*.js'",
     "test": "jest"
   },
   "author": "Pablo Molina <contact@pablomolina.me>",
@@ -31,7 +33,7 @@
     "babel-preset-es2015": "^6.24.1",
     "del": "^3.0.0",
     "eslint": "^4.6.1",
-    "eslint-config-liferay": "^1.0.2",
+    "eslint-config-liferay": "^2.0.9",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-node": "^5.1.1",
@@ -41,7 +43,7 @@
     "metal-component": "^2.13.2",
     "metal-jest-serializer": "^1.0.1",
     "metal-soy": "^2.13.2",
-    "prettier": "^1.7.0",
+    "prettier-eslint-cli": "^4.4.0",
     "webpack": "^3.6.0"
   },
   "jest": {

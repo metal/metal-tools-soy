@@ -2,9 +2,5 @@
 	"env": {
 		"node": true
 	},
-	"extends": "liferay",
-	"rules": {
-		"no-invalid-this": "off",
-		"object-curly-spacing": "off"
-	}
+	"extends": "liferay"
 }

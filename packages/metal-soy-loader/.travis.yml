@@ -10,3 +10,8 @@ jdk:
 language: java
 
 script: npm test
+
+script:
+  - npm run checkFormat
+  - npm run lint
+  - npm test
