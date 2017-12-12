@@ -913,8 +913,8 @@ goog.loadModule(function(exports) {
   goog.module('ExternalCompound.incrementaldom');
 
   var soyIdom = goog.require('soy.idom');
-  var $import1 = goog.require('Compound.Name.incrementaldom');
-  var $templateAlias1 = Soy.getTemplate('undefined.incrementaldom', 'render');
+
+  var $templateAlias1 = Soy.getTemplate('Compound.Name.incrementaldom', 'render');
 
 
   /**
