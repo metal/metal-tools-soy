@@ -28,12 +28,12 @@ goog.loadModule(function(exports) {
    * @param {Object<string, *>=} opt_ijData
    * @param {Object<string, *>=} opt_ijData_deprecated
    * @return {void}
-   * @suppress {checkTypes}
+   * @suppress {checkTypes|uselessCode}
    */
   var $render = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
     opt_data = opt_data || {};
-    $hello(opt_data, null, opt_ijData);
+    $hello(opt_data, opt_ijData);
   };
   exports.render = $render;
   if (goog.DEBUG) {
@@ -46,7 +46,7 @@ goog.loadModule(function(exports) {
    * @param {Object<string, *>=} opt_ijData
    * @param {Object<string, *>=} opt_ijData_deprecated
    * @return {void}
-   * @suppress {checkTypes}
+   * @suppress {checkTypes|uselessCode}
    */
   var $hello = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
@@ -113,12 +113,12 @@ goog.loadModule(function(exports) {
    * @param {Object<string, *>=} opt_ijData
    * @param {Object<string, *>=} opt_ijData_deprecated
    * @return {void}
-   * @suppress {checkTypes}
+   * @suppress {checkTypes|uselessCode}
    */
   var $render = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
     opt_data = opt_data || {};
-    $hello(opt_data, null, opt_ijData);
+    $hello(opt_data, opt_ijData);
   };
   exports.render = $render;
   if (goog.DEBUG) {
@@ -131,7 +131,7 @@ goog.loadModule(function(exports) {
    * @param {Object<string, *>=} opt_ijData
    * @param {Object<string, *>=} opt_ijData_deprecated
    * @return {void}
-   * @suppress {checkTypes}
+   * @suppress {checkTypes|uselessCode}
    */
   var $hello = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
@@ -198,7 +198,7 @@ goog.loadModule(function(exports) {
    * @param {Object<string, *>=} opt_ijData
    * @param {Object<string, *>=} opt_ijData_deprecated
    * @return {void}
-   * @suppress {checkTypes}
+   * @suppress {checkTypes|uselessCode}
    */
   var $render = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
@@ -254,12 +254,12 @@ goog.loadModule(function(exports) {
    * @param {Object<string, *>=} opt_ijData
    * @param {Object<string, *>=} opt_ijData_deprecated
    * @return {void}
-   * @suppress {checkTypes}
+   * @suppress {checkTypes|uselessCode}
    */
   var $render = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
     opt_data = opt_data || {};
-    $hello(opt_data, null, opt_ijData);
+    $hello(opt_data, opt_ijData);
   };
   exports.render = $render;
   if (goog.DEBUG) {
@@ -272,7 +272,7 @@ goog.loadModule(function(exports) {
    * @param {Object<string, *>=} opt_ijData
    * @param {Object<string, *>=} opt_ijData_deprecated
    * @return {void}
-   * @suppress {checkTypes}
+   * @suppress {checkTypes|uselessCode}
    */
   var $hello = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
@@ -339,12 +339,12 @@ goog.loadModule(function(exports) {
    * @param {Object<string, *>=} opt_ijData
    * @param {Object<string, *>=} opt_ijData_deprecated
    * @return {void}
-   * @suppress {checkTypes}
+   * @suppress {checkTypes|uselessCode}
    */
   var $render = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
     opt_data = opt_data || {};
-    $hello(opt_data, null, opt_ijData);
+    $hello(opt_data, opt_ijData);
   };
   exports.render = $render;
   if (goog.DEBUG) {
@@ -357,7 +357,7 @@ goog.loadModule(function(exports) {
    * @param {Object<string, *>=} opt_ijData
    * @param {Object<string, *>=} opt_ijData_deprecated
    * @return {void}
-   * @suppress {checkTypes}
+   * @suppress {checkTypes|uselessCode}
    */
   var $hello = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
@@ -423,7 +423,7 @@ goog.loadModule(function(exports) {
    * @param {Object<string, *>=} opt_ijData
    * @param {Object<string, *>=} opt_ijData_deprecated
    * @return {void}
-   * @suppress {checkTypes}
+   * @suppress {checkTypes|uselessCode}
    */
   var $render = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
@@ -480,13 +480,13 @@ goog.loadModule(function(exports) {
    * @param {Object<string, *>=} opt_ijData
    * @param {Object<string, *>=} opt_ijData_deprecated
    * @return {void}
-   * @suppress {checkTypes}
+   * @suppress {checkTypes|uselessCode}
    */
   var $render = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
     opt_data = opt_data || {};
-    $templateAlias1(opt_data, null, opt_ijData);
-    $templateAlias2(opt_data, null, opt_ijData);
+    $templateAlias1(opt_data, opt_ijData);
+    $templateAlias2(opt_data, opt_ijData);
   };
   exports.render = $render;
   if (goog.DEBUG) {
@@ -538,12 +538,12 @@ goog.loadModule(function(exports) {
    * @param {Object<string, *>=} opt_ijData
    * @param {Object<string, *>=} opt_ijData_deprecated
    * @return {void}
-   * @suppress {checkTypes}
+   * @suppress {checkTypes|uselessCode}
    */
   var $render = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
     opt_data = opt_data || {};
-    $hello(opt_data, null, opt_ijData);
+    $hello(opt_data, opt_ijData);
   };
   exports.render = $render;
   if (goog.DEBUG) {
@@ -556,7 +556,7 @@ goog.loadModule(function(exports) {
    * @param {Object<string, *>=} opt_ijData
    * @param {Object<string, *>=} opt_ijData_deprecated
    * @return {void}
-   * @suppress {checkTypes}
+   * @suppress {checkTypes|uselessCode}
    */
   var $hello = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
@@ -624,7 +624,7 @@ goog.loadModule(function(exports) {
    * @param {Object<string, *>=} opt_ijData
    * @param {Object<string, *>=} opt_ijData_deprecated
    * @return {void}
-   * @suppress {checkTypes}
+   * @suppress {checkTypes|uselessCode}
    */
   var __deltemplate__DelTemplate_Foo_ = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
@@ -676,7 +676,7 @@ goog.loadModule(function(exports) {
    * @param {Object<string, *>=} opt_ijData
    * @param {Object<string, *>=} opt_ijData_deprecated
    * @return {void}
-   * @suppress {checkTypes}
+   * @suppress {checkTypes|uselessCode}
    */
   var $content = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
@@ -721,12 +721,12 @@ var soyIdom = goog.require('soy.idom');
  * @param {Object<string, *>=} opt_ijData
  * @param {Object<string, *>=} opt_ijData_deprecated
  * @return {void}
- * @suppress {checkTypes}
+ * @suppress {checkTypes|uselessCode}
  */
 var $render = function(opt_data, opt_ijData, opt_ijData_deprecated) {
   opt_ijData = opt_ijData_deprecated || opt_ijData;
   opt_data = opt_data || {};
-  $hello(opt_data, null, opt_ijData);
+  $hello(opt_data, opt_ijData);
 };
 exports.render = $render;
 if (goog.DEBUG) {
@@ -739,7 +739,7 @@ if (goog.DEBUG) {
  * @param {Object<string, *>=} opt_ijData
  * @param {Object<string, *>=} opt_ijData_deprecated
  * @return {void}
- * @suppress {checkTypes}
+ * @suppress {checkTypes|uselessCode}
  */
 var $hello = function(opt_data, opt_ijData, opt_ijData_deprecated) {
   opt_ijData = opt_ijData_deprecated || opt_ijData;
@@ -786,7 +786,7 @@ goog.loadModule(function(exports) {
    * @param {Object<string, *>=} opt_ijData
    * @param {Object<string, *>=} opt_ijData_deprecated
    * @return {void}
-   * @suppress {checkTypes}
+   * @suppress {checkTypes|uselessCode}
    */
   var $render = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
@@ -854,7 +854,7 @@ goog.loadModule(function(exports) {
    * @param {Object<string, *>=} opt_ijData
    * @param {Object<string, *>=} opt_ijData_deprecated
    * @return {void}
-   * @suppress {checkTypes}
+   * @suppress {checkTypes|uselessCode}
    */
   var $render = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
@@ -923,13 +923,13 @@ goog.loadModule(function(exports) {
    * @param {Object<string, *>=} opt_ijData
    * @param {Object<string, *>=} opt_ijData_deprecated
    * @return {void}
-   * @suppress {checkTypes}
+   * @suppress {checkTypes|uselessCode}
    */
   var $render = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
     opt_data = opt_data || {};
-    $templateAlias1(opt_data, null, opt_ijData);
-    $templateAlias2(opt_data, null, opt_ijData);
+    $templateAlias1(opt_data, opt_ijData);
+    $templateAlias2(opt_data, opt_ijData);
   };
   exports.render = $render;
   if (goog.DEBUG) {
@@ -981,12 +981,12 @@ goog.loadModule(function(exports) {
    * @param {Object<string, *>=} opt_ijData
    * @param {Object<string, *>=} opt_ijData_deprecated
    * @return {void}
-   * @suppress {checkTypes}
+   * @suppress {checkTypes|uselessCode}
    */
   var $render = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
     opt_data = opt_data || {};
-    $hello(opt_data, null, opt_ijData);
+    $hello(opt_data, opt_ijData);
   };
   exports.render = $render;
   if (goog.DEBUG) {
@@ -999,7 +999,7 @@ goog.loadModule(function(exports) {
    * @param {Object<string, *>=} opt_ijData
    * @param {Object<string, *>=} opt_ijData_deprecated
    * @return {void}
-   * @suppress {checkTypes}
+   * @suppress {checkTypes|uselessCode}
    */
   var $hello = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
@@ -1066,7 +1066,7 @@ goog.loadModule(function(exports) {
    * @param {Object<string, *>=} opt_ijData
    * @param {Object<string, *>=} opt_ijData_deprecated
    * @return {void}
-   * @suppress {checkTypes}
+   * @suppress {checkTypes|uselessCode}
    */
   var $render = function(opt_data, opt_ijData, opt_ijData_deprecated) {
     opt_ijData = opt_ijData_deprecated || opt_ijData;
