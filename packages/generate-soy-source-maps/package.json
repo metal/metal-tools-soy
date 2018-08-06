@@ -1,0 +1,37 @@
+{
+  "name": "generate-soy-source-maps",
+  "version": "0.0.1",
+  "main": "lib/index.js",
+  "source": "src/index.js",
+  "license": "MIT",
+  "bin": {
+    "soy-sourcemaps": "./bin/cli.js"
+  },
+  "author": "Matuzalém Teles <matuzalemteles@gmail.com>",
+  "files": [
+    "lib",
+    "bin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matuzalemsteles/generate-soy-source-maps.git"
+  },
+  "homepage": "https://github.com/matuzalemsteles/generate-soy-source-maps",
+  "scripts": {
+    "build": "babel src -d lib",
+    "test": "jest",
+    "test:watch": "yarn test -- --watch"
+  },
+  "dependencies": {
+    "@babel/parser": "^7.0.0-beta.56",
+    "cross-spawn": "^6.0.5",
+    "source-map": "^0.7.3",
+    "soyparser": "^1.0.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "jest": "^23.4.2"
+  }
+}
