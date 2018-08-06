@@ -7,7 +7,7 @@ Generates a source map for Closure template (Soy templates) based on the impleme
 - [CLI](#cli)
   - [Install](#install)
   - [Usage](#usage)
- - [All CLI Options](#all-cli-options)
+  - [All CLI Options](#all-cli-options)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
 - [License](#license)
@@ -32,7 +32,7 @@ $ yarn add --global generate-soy-source-maps
 $ soy-sourcemaps
 ```
 
-### All CLI Options
+#### All CLI Options
 
 ```
   Usage
@@ -64,4 +64,4 @@ Feel free to open up problems or send pull requests. We will always be looking a
 
 ## License
 
-[MIT License](LICENSE.md)
+[MIT License](LICENSE)
