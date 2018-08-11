@@ -7,7 +7,7 @@
 
 import { closest, implTemplateName } from '../../utils';
 import { createPartialMapping } from '../../mapped';
-import { Mark, FileName, Evaluation, TemplateName } from '../../global';
+import { Mark, FileName, Evaluation, TemplateName, Index } from '../../global';
 import { SCall, SParam, STemplate } from '../../constants';
 import { types as S } from 'soyparser';
 
@@ -46,8 +46,19 @@ export function CallEvaluation(
         return false;
     });
 
+    const endModify = (end: Index) => {
+        if (start.line !== end.line) {
+            return {
+                line: end.line - 1,
+                column: end.column
+            }
+        }
+
+        return end;
+    };
+
     return createPartialMapping({
-        end,
+        end: endModify(end),
         name: callName,
         source,
         start,
