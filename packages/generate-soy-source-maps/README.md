@@ -50,7 +50,7 @@ $ soy-sourcemaps
 
 Here's what's coming up for Soy Sourcemaps:
 
-- Typescript support
+- ~~Typescript support~~
 - CLI: Generate sourcemaps for multiple files
 - Plugin for babel
 - Integration with metal-tools-soy
