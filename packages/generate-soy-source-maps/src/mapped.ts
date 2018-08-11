@@ -87,8 +87,10 @@ export function fillMapping(
     loc: Index
 ): Mapping {
     return {
-        generated: loc,
         name,
+        generated: {
+            ...loc
+        },
         original,
         source
     };
@@ -98,17 +100,18 @@ export function createMapping(
     partialMapping: PartialMapping[],
     type: string,
     name: string,
-    loc: SourceLocation
+    loc: SourceLocation | null,
 ): Array<Mapping|boolean> {
     const mappedStart = find(partialMapping, type, name);
     const mappedEnd = find(partialMapping, type, name, 'end');
+    if (loc === null) return [false];
 
     return [
         fillMapping(
             mappedStart,
             loc.start
         ),
-        loc.start.line !== loc.end.line && fillMapping(
+        (loc.start.line !== loc.end.line || mappedEnd) && fillMapping(
             mappedEnd,
             loc.end
         )
