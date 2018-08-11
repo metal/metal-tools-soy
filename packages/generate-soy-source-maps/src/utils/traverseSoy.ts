@@ -10,7 +10,7 @@ import { Visitor, Visit } from '../global';
 
 function noop() {};
 
-function getEnter<T>(handler: Visit<T> | undefined): Visit<T> {
+export function getEnter<T>(handler: Visit<T> | undefined): Visit<T> {
     if (typeof handler === 'function') {
         return handler;
     }
