@@ -81,16 +81,19 @@ export function createPartialMapping({
 export function fillMapping(
     {
         name,
+        original,
+        parent,
         source,
-        original
+        status,
+        type
     }: PartialMapping,
     loc: Index
 ): Mapping {
     return {
-        name,
         generated: {
             ...loc
         },
+        name: `${type} ${parent} ${name} ${status}`,
         original,
         source
     };
