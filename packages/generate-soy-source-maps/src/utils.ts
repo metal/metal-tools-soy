@@ -22,7 +22,6 @@ export function isValidLetStatement(name: string): boolean {
 export function isValidName(name: string): boolean {
     return /\$/.test(name);
 }
-}
 
 export function closest(
     type: string, 
