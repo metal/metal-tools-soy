@@ -104,9 +104,11 @@ export function createMapping(
     type: string,
     name: string,
     loc: SourceLocation | null,
+    parentName?: string
 ): Array<Mapping|boolean> {
-    const mappedStart = find(partialMapping, type, name);
-    const mappedEnd = find(partialMapping, type, name, 'end');
+    const mappedStart = find(partialMapping, type, name, 'start', parentName);
+    const mappedEnd = find(partialMapping, type, name, 'end', parentName);
+
     if (loc === null) return [false];
 
     return [
@@ -125,12 +127,16 @@ export function find(
     partialMapping: PartialMapping[], 
     type: string, 
     name: string, 
-    status: Status = 'start'
+    status: Status,
+    parentName?: string
 ): PartialMapping {
     return <PartialMapping>partialMapping.find(
         elem => 
             type === elem.type 
             && name === elem.name 
             && status === elem.status
+            && (
+                parentName ? parentName === elem.parent : true
+            )
     );
 }
