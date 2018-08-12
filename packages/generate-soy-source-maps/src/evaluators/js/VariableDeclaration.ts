@@ -34,16 +34,20 @@ function EvaluateTemplate(
     if(!isValidName(name)) return false;
 
     if (isFunctionExpression(<FunctionExpression>declaration.init)) {
-        const { name: nameInit } = <Identifier>(<FunctionExpression>declaration.init).id;
+        const Identifier = <Identifier>(<FunctionExpression>declaration.init).id;
 
-        if (name === nameInit) {
-           return createMapping(
-               partialMapping,
-               STemplate,
-               name.substring(1),
-               loc
-           );
+        if (Identifier) {
+            const { name: nameInit } = Identifier;
+
+            if (name !== nameInit) return false;
         }
+
+        return createMapping(
+            partialMapping,
+            STemplate,
+            name.substring(1),
+            loc
+        );
     }
 
     return false;
