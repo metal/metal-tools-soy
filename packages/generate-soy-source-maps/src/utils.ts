@@ -6,6 +6,7 @@
  */
 
 import { types as S } from 'soyparser';
+import { PartialMapping } from './global';
 
 export function implTemplateName(name: string, namespace: (string | null)): string {
     return `${namespace}.${name}`;
@@ -21,6 +22,20 @@ export function isValidLetStatement(name: string): boolean {
 
 export function isValidName(name: string): boolean {
     return /\$/.test(name);
+}
+
+export function sortPartialMapping(mapping: PartialMapping[]) {
+    return mapping.sort((a, b) => {
+        if (a.original.line > b.original.line) {
+            return 1;
+        }
+
+        if (a.original.line < b.original.line) {
+            return -1;
+        }
+
+        return 0;
+    });
 }
 
 export function closest(

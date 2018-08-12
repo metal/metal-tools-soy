@@ -6,7 +6,7 @@
  */
 
 import { File } from '@babel/types';
-import { getKeys } from "./utils";
+import { getKeys, sortPartialMapping } from "./utils";
 import { Mapping, FileName, Visitor, PartialMapping } from "./global";
 import * as evaluatorsJs from './evaluators/js';
 import * as evaluatorsSoy from "./evaluators/soy";
@@ -20,7 +20,7 @@ export default function(
     sourceName: FileName
 ): Mapping[] {
     const partialMapping: PartialMapping[] = createPartialMapping(astSoy, sourceName);
-    const mapping: Mapping[] = crossMapping(astJs, partialMapping);
+    const mapping: Mapping[] = crossMapping(astJs, sortPartialMapping(partialMapping));
 
     return mapping;
 }
