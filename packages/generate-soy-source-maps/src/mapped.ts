@@ -111,16 +111,24 @@ export function createMapping(
 
     if (loc === null) return [false];
 
-    return [
+    const isEnd = loc.start.line !== loc.end.line || mappedEnd;
+
+    const mapping = [
         fillMapping(
             mappedStart,
             loc.start
         ),
-        (loc.start.line !== loc.end.line || mappedEnd) && fillMapping(
+        isEnd && fillMapping(
             mappedEnd,
             loc.end
         )
     ].filter(item => item);
+
+    partialMapping.splice(partialMapping.indexOf(mappedStart), 1);
+
+    if (isEnd) partialMapping.splice(partialMapping.indexOf(mappedEnd), 1);
+
+    return mapping;
 }
 
 export function find(
