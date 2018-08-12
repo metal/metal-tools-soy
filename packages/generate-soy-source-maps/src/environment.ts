@@ -11,8 +11,8 @@ import { Mapping, FileName, Visitor, PartialMapping } from "./global";
 import * as evaluatorsJs from './evaluators/js';
 import * as evaluatorsSoy from "./evaluators/soy";
 import * as S from "soyparser/lib/types";
-import traverseSoy from './utils/traverseSoy';
 import traverseJs from '@babel/traverse';
+import traverseSoy from './utils/traverseSoy';
 
 export default function(
     astSoy: S.Program,
