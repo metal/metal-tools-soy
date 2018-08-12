@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import { default as EvaluteObjectExpression } from './ObjectExpression';
 import {
     CallExpression, 
     Expression, 
@@ -15,7 +16,8 @@ import {
     JSXNamespacedName, 
     SourceLocation, 
     SpreadElement, 
-    StringLiteral
+    StringLiteral,
+    ObjectExpression
 } from "@babel/types";
 import { createMapping } from "../../mapped";
 import { 
@@ -47,6 +49,27 @@ function isValidCall(name: string): boolean {
     return name.startsWith('$templateAlias');
 }
 
+function CreateMapping(
+    arg: ObjectExpression,
+    loc: SourceLocation | null,
+    name: string,
+    partialMapping: PartialMapping[]
+): Evaluate {
+    return [
+        ...createMapping(
+            partialMapping,
+            SCall,
+            name,
+            loc
+        ),
+        ...EvaluteObjectExpression(
+            arg,
+            name,
+            partialMapping
+        )
+    ].filter(item => item);
+}
+
 function EvaluateCall(
     ast: File,
     args: Arguments,
@@ -75,21 +98,22 @@ function EvaluateCall(
 
             if (!CallName) return false;
 
-            return createMapping(
-                partialMapping,
-                SCall,
+            return CreateMapping(
+                <ObjectExpression>args[0],
+                loc,
                 CallName,
-                loc
-            )
+                partialMapping
+            );
         } else {
             // 2.1 An possible inside Call.
+            const nameMap = `null.${name.substring(1)}`;
 
-            return createMapping(
-                partialMapping,
-                SCall,
-                `null.${name.substring(1)}`,
-                loc
-            );
+            return CreateMapping(
+                <ObjectExpression>args[0],
+                loc,
+                nameMap,
+                partialMapping
+            );;
         }
     }
 
