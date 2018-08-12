@@ -50,7 +50,7 @@ export function closest(
             if (getEnter(enter)(node, parentNode[depth - 1])) {
                 return;
             }
-        };
+        }
 
         if (whitelistParent.includes(node.type)) {
             parentNode.push(node);

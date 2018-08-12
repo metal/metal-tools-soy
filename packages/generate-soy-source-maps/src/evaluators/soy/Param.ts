@@ -8,7 +8,7 @@
 import { closest, implTemplateName } from '../../utils';
 import { createPartialMapping } from '../../mapped';
 import { FileName, Evaluation } from '../../global';
-import { SParam, SCall, STemplate } from '../../constants';
+import { SParam, SCall } from '../../constants';
 import { types as S } from 'soyparser';
 
 export function ParamEvaluation(
@@ -22,12 +22,14 @@ export function ParamEvaluation(
     let parent: string = 'Undefined';
 
     const parentList = [
-        SCall,
-        STemplate
+        SCall
     ];
 
     closest(SParam, ast, parentList, (node: any, parentNode: any) => {
-        if (node.name === name) {
+        if (
+            node.name === name &&
+            node.mark === mark
+        ) {
             const { name, namespace } = parentNode.id;
             parent = implTemplateName(name, namespace);
 
