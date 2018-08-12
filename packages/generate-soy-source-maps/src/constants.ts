@@ -5,9 +5,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+export const RegexSourceMapping: RegExp = /\/\/# sourceMappingURL=([A-Za-z0-9_.]+$)/g;
 export const SCall: string = 'Call';
 export const SInterpolation: string = 'Interpolation';
 export const SLetStatement: string = 'LetStatement';
+export const SourceMapping: string = '//# sourceMappingURL=';
 export const SParam: string = 'Param';
 export const SParamDeclaration: string = 'ParamDeclaration';
 export const STemplate: string = 'Template';
