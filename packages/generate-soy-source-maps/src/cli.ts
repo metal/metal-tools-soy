@@ -19,6 +19,7 @@ export function main(argv: Array<string>): void {
       .version(pkg.version)
       .usage('[options] <path>')
       .option('-i, --input', 'The path of the Soy file')
+      .option('-o, --output', 'The path to the final file')
       .parse(argv);
 
     if (!program.args.length) {
@@ -26,6 +27,9 @@ export function main(argv: Array<string>): void {
     }
 
     const input = path.resolve(cli.args[0]);
+    const output = program.output ? path.resolve(cli.args[1]) : path.dirname(input);
+
+    if (!existFile(output)) return;
 
     if (isDir(input)) {
         glob(path.join(input, '/**/*.soy'), {}, (er, files: Array<string>) => {
@@ -36,25 +40,24 @@ export function main(argv: Array<string>): void {
             if (!files.length) return;
 
             for (let i = 0; i < files.length; i++) {
-                evaluateFile(files[i]);
+                evaluateFile(files[i], output);
             }
         });
     } else {
-        evaluateFile(input);
+        evaluateFile(input, output);
     }
 }
 
-function evaluateFile(input: string) {
+function evaluateFile(input: string, output: string) {
     if (!resolveFile(input)) return;
 
     const sourceContent: string = loadFile(input);
     const generatedContent: string = loadFile(`${input}.js`);
     const sourceName: string = path.basename(input);
-    const output: string = path.dirname(input);
     const generator = generateSourceMapFile(input, sourceContent, generatedContent, sourceName);
     const fileName = `${sourceName}.js.map`;
 
-    saveFile(evaluateGeneratedFile(generatedContent, fileName), path.resolve(output, `${input}.js`));
+    saveFile(evaluateGeneratedFile(generatedContent, fileName), path.resolve(path.dirname(input), `${input}.js`));
     saveFile(generator.toString(), path.resolve(output, fileName));
 
     logger.success(fileName, `source map generated successfully`);

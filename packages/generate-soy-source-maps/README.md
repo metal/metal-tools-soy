@@ -40,6 +40,7 @@ $ soy-sourcemaps
 
   Options
     --input      The path of the Soy file
+    --output     The path to the final file
 ```
 
 ## Roadmap
