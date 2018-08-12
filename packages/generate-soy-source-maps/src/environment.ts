@@ -8,7 +8,6 @@
 import { File } from '@babel/types';
 import { getKeys } from "./utils";
 import { Mapping, FileName, Visitor, PartialMapping } from "./global";
-import { performance } from 'perf_hooks';
 import * as evaluatorsJs from './evaluators/js';
 import * as evaluatorsSoy from "./evaluators/soy";
 import * as S from "soyparser/lib/types";

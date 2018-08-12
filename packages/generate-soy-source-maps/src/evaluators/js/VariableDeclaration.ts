@@ -18,7 +18,7 @@ import {
 } from "@babel/types";
 import { createMapping } from '../../mapped';
 import { isValidName, isValidLetStatement, getLetName } from '../../utils';
-import { NodePath } from "babel__traverse";
+import { NodePath } from "@babel/traverse";
 import { PartialMapping, Mapping } from "../../global";
 import { STemplate, SLetStatement, SParamDeclaration } from '../../constants';
 

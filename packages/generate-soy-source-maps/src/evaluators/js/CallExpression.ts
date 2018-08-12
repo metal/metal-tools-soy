@@ -23,7 +23,7 @@ import {
     isValidLetStatement, 
     isValidName 
 } from "../../utils";
-import { NodePath } from "babel__traverse";
+import { NodePath } from "@babel/traverse";
 import { PartialMapping, Mapping } from "../../global";
 import { SInterpolation, SCall } from "../../constants";
 import traverse from '../../utils/traverseFast';
