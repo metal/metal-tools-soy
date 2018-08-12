@@ -36,14 +36,10 @@ $ soy-sourcemaps
 
 ```
   Usage
-    $ soy-sourcemaps <command> [options]
-
-  Available Commands
-    new    Generate a new source map from file
+    $ soy-sourcemaps [options]
 
   Options
     --input      The path of the Soy file
-    --output     The path to the final file
 ```
 
 ## Roadmap
@@ -51,8 +47,7 @@ $ soy-sourcemaps
 Here's what's coming up for Soy Sourcemaps:
 
 - ~~Typescript support~~
-- CLI: Generate sourcemaps for multiple files
-- Plugin for babel
+- ~~CLI: Generate sourcemaps for multiple files~~
 - Integration with metal-tools-soy
 - Parse HTML in soy files (with Sourcemaps for the generated)
 
