@@ -44,7 +44,7 @@ function parser(
     generatedContent: string
 ) {
     const astSource: S.Program = soyparser(sourceContent);
-    const astGenerated: File = parse(generatedContent);
+    const astGenerated: File = parse(generatedContent, {allowImportExportEverywhere: true});
 
     return {
         astSource,
