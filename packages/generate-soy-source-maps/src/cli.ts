@@ -27,9 +27,6 @@ export function main(argv: Array<string>): void {
     }
 
     const input = path.resolve(cli.args[0]);
-    const output = program.output ? path.resolve(cli.args[1]) : path.dirname(input);
-
-    if (!existFile(output)) return;
 
     if (isDir(input)) {
         glob(path.join(input, '/**/*.soy'), {}, (er, files: Array<string>) => {
@@ -40,16 +37,26 @@ export function main(argv: Array<string>): void {
             if (!files.length) return;
 
             for (let i = 0; i < files.length; i++) {
+                let output = resolveOutput(files[i], cli.args);
+
+                if (!existFile(output)) return;
+
                 evaluateFile(files[i], output);
             }
         });
     } else {
+        let output = resolveOutput(input, cli.args);
+
         evaluateFile(input, output);
     }
 }
 
+function resolveOutput(input: string, args: string[]) {
+    return program.output ? path.resolve(args[1]) : path.dirname(input);
+}
+
 function evaluateFile(input: string, output: string) {
-    if (!resolveFile(input)) return;
+    if (!evaluateFilePath(input)) return;
 
     const sourceContent: string = loadFile(input);
     const generatedContent: string = loadFile(`${input}.js`);
@@ -71,7 +78,7 @@ function evaluateGeneratedFile(content: string, fileName: string): string {
     return content.concat('\n' + SourceMapping + fileName);
 }
 
-function resolveFile(input: string): boolean {
+function evaluateFilePath(input: string): boolean {
     const sourceName: string = path.basename(input);
     const output: string = path.dirname(input);
     const extname: string = path.extname(input);
