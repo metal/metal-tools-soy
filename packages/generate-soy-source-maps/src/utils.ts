@@ -58,28 +58,24 @@ export function closest(
         }
     }
 
-    const traverse = (node: S.Node, depth: number = 0) => {
+    const traverse = (node: S.Node) => {
         if (!node) return;
-
-        if (node.type === type) {
-            if (getEnter(enter)(node, parentNode[depth - 1])) {
-                return;
-            }
-        }
 
         if (whitelistParent.includes(node.type)) {
             parentNode.push(node);
+        }
 
-            if (node.body && Array.isArray(node.body)) {
-                depth++;
+        if (node.type === type) {
+            if (getEnter(enter)(node, parentNode[parentNode.length - 1])) {
+                return;
             }
         }
 
         if (node.body) {
             if (Array.isArray(node.body)) {
-                node.body.forEach((node: S.Node) => traverse(node, depth));
+                node.body.forEach((node: S.Node) => traverse(node));
             } else {
-                traverse(node.body, depth);
+                traverse(node.body);
             }
         }
     };
