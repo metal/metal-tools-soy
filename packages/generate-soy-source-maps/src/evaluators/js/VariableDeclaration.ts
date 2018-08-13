@@ -79,6 +79,9 @@ function EvaluateParamDeclaration(
     
             return false;
         });
+
+        if (!parentTemplate) return false;
+
         const { name: parentName } = <Identifier>parentTemplate.node.id;
 
         return createMapping(
