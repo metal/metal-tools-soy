@@ -7,6 +7,7 @@
 
 export const RegexSourceMapping: RegExp = /\/\/# sourceMappingURL=([A-Za-z0-9_.]+$)/g;
 export const SCall: string = 'Call';
+export const SDelTemplate: string = 'DelTemplate';
 export const SInterpolation: string = 'Interpolation';
 export const SLetStatement: string = 'LetStatement';
 export const SourceMapping: string = '//# sourceMappingURL=';

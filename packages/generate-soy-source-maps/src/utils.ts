@@ -24,6 +24,10 @@ export function isValidName(name: string): boolean {
     return /\$/.test(name);
 }
 
+export function isValidDelTemplate(name: string): boolean {
+    return name.startsWith('__deltemplate__');
+}
+
 export function sortPartialMapping(mapping: PartialMapping[]) {
     return mapping.sort((a, b) => {
         if (a.original.line > b.original.line) {

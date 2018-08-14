@@ -17,12 +17,22 @@ import {
     MemberExpression
 } from "@babel/types";
 import { createMapping } from '../../mapped';
-import { isValidName, isValidLetStatement, getLetName } from '../../utils';
+import { isValidName, isValidLetStatement, getLetName, isValidDelTemplate } from '../../utils';
 import { NodePath } from "@babel/traverse";
 import { PartialMapping, Mapping } from "../../global";
-import { STemplate, SLetStatement, SParamDeclaration } from '../../constants';
+import { STemplate, SLetStatement, SParamDeclaration, SDelTemplate } from '../../constants';
 
 type Evaluate = Array<Mapping|boolean> | boolean;
+
+function evaluateTemplateName(name: string): string {
+    const nameWitoutDelTemplate = name.replace('__deltemplate__', '');
+    const nameSplit = nameWitoutDelTemplate.split('_');
+    const parsedName = `${nameSplit[0]}.${nameSplit[1]}`;
+
+    if (nameSplit[2]) parsedName.concat(`.${nameSplit[2]}`);
+
+    return parsedName;
+}
 
 function EvaluateTemplate(
     declaration: VariableDeclarator,
@@ -30,8 +40,6 @@ function EvaluateTemplate(
 ): Evaluate {
     const { loc } = declaration;
     const { name } = <Identifier>declaration.id;
-
-    if(!isValidName(name)) return false;
 
     if (isFunctionExpression(<FunctionExpression>declaration.init)) {
         const Identifier = <Identifier>(<FunctionExpression>declaration.init).id;
@@ -42,12 +50,23 @@ function EvaluateTemplate(
             if (name !== nameInit) return false;
         }
 
-        return createMapping(
-            partialMapping,
-            STemplate,
-            name.substring(1),
-            loc
-        );
+        if(isValidName(name)) {
+            // 1. An possible Template.
+            return createMapping(
+                partialMapping,
+                STemplate,
+                name.substring(1),
+                loc
+            );
+        } else if (isValidDelTemplate(name)) {
+            // 1.1 An possible DelTemplate.
+            return createMapping(
+                partialMapping,
+                SDelTemplate,
+                evaluateTemplateName(name),
+                loc,
+            );
+        };
     }
 
     return false;
@@ -72,7 +91,7 @@ function EvaluateParamDeclaration(
                 const { node } = path;
                 const { name } = <Identifier>node.id;
     
-                if(!isValidName(name)) return false;
+                if(!isValidName(name) && !isValidDelTemplate(name)) return false;
     
                 return true;
             }
@@ -89,7 +108,9 @@ function EvaluateParamDeclaration(
             SParamDeclaration,
             name,
             loc,
-            `null.${parentName.substring(1)}`
+            isValidName(parentName) 
+                ? `null.${parentName.substring(1)}` 
+                : evaluateTemplateName(parentName)
         );
     }
 
@@ -140,6 +161,7 @@ export default function(
             // VariableDeclaration : BindingIdentifier Initializer
 
             // 1. An possible Template.
+            // 1.1 An possible DelTemplate.
             let template = EvaluateTemplate(declar, partialMapping);
 
             if (template) return template;

@@ -7,19 +7,31 @@
 
 import { createPartialMapping } from '../../mapped';
 import { FileName, Evaluation, TemplateName } from '../../global';
-import { implTemplateName } from '../../utils';
 import { types as S } from 'soyparser';
 import ParamDeclaration from './partial/ParamDeclaration';
 
+function evaluateTemplateName(
+    id: TemplateName,
+    variant?: S.Interpolation | null
+): string {
+    const { name, namespace } = id;
+
+    const parsedName = `${namespace}.${name}`;
+    
+    if (variant) parsedName.concat(`.${variant}`);
+
+    return parsedName;
+}
+
 function evaluateTemplateParamDeclaration(
     id: TemplateName,
-    node: S.Template,
+    node: S.Template | S.DelTemplate,
     source: FileName
 ): Evaluation {
     if (node.params) {
-        const { name, namespace } = id;
+        const { variant } = <S.DelTemplate>node;
         const partialMapping: Evaluation = [];
-        const templateName = implTemplateName(name, namespace);
+        const templateName = evaluateTemplateName(id, variant);
 
         node.params.forEach((param: S.ParamDeclaration) => {
             partialMapping.push(...ParamDeclaration(param, templateName,source));
@@ -32,20 +44,19 @@ function evaluateTemplateParamDeclaration(
 }
 
 export function TemplateEvaluation(
-    node: S.Template,
+    name: string,
+    node: S.Template | S.DelTemplate,
     source: FileName
 ): Evaluation {
-    const { mark, id, type } = node;
-    const { start, end } = mark;
-    const parent: string = id.name;
+    const { mark: { start, end }, id, type } = node;
 
     return [
         ...createPartialMapping({
             end,
-            name: id.name,
+            name,
             source,
             start,
-            parent,
+            parent: name,
             type
         }),
         ...evaluateTemplateParamDeclaration(
@@ -60,7 +71,10 @@ export default function(
     node: S.Template,
     source: FileName
 ): Evaluation {
+    const { id: { name } } = node;
+
     return TemplateEvaluation(
+        name,
         node,
         source
     );
