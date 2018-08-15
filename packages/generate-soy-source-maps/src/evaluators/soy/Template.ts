@@ -55,7 +55,7 @@ export function TemplateEvaluation(
             end,
             name,
             source,
-            start,
+            start: node.doc ? node.doc.mark.end : start,
             parent: name,
             type
         }),
