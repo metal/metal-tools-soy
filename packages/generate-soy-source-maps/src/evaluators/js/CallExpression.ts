@@ -112,7 +112,7 @@ function EvaluateCall(
                 loc,
                 nameMap,
                 partialMapping
-            );;
+            );
         }
     }
 
