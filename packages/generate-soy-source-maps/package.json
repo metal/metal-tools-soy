@@ -1,6 +1,6 @@
 {
   "name": "generate-soy-source-maps",
-  "version": "0.1.6-alpha",
+  "version": "0.2.7-alpha",
   "main": "lib/index.js",
   "license": "MIT",
   "bin": {
