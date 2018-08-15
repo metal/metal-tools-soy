@@ -7,5 +7,6 @@
 
 export { default as Call } from "./Call";
 export { default as DelTemplate } from "./DelTemplate";
+export { default as LetStatement } from "./LetStatement";
 export { default as Param } from "./Param";
 export { default as Template } from "./Template";

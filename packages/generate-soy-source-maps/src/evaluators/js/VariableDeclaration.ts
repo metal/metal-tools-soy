@@ -14,7 +14,9 @@ import {
     VariableDeclaration, 
     VariableDeclarator, 
     isMemberExpression,
-    MemberExpression
+    MemberExpression,
+    isStringLiteral,
+    StringLiteral
 } from "@babel/types";
 import { createMapping } from '../../mapped';
 import { isValidName, isValidLetStatement, getLetName, isValidDelTemplate } from '../../utils';
@@ -119,24 +121,51 @@ function EvaluateParamDeclaration(
 
 function EvaluateLetStatement(
     declaration: VariableDeclarator,
-    partialMapping: PartialMapping[]
+    partialMapping: PartialMapping[],
+    path: NodePath<VariableDeclaration>
 ): Evaluate {
     const { loc } = declaration;
     const { name } = <Identifier>declaration.id;
 
     if (!isValidLetStatement(name)) return false;
 
-    if (isFunctionExpression(<FunctionExpression>declaration.init)) {
-        const { name: nameInit } = <Identifier>(<FunctionExpression>declaration.init).id;
+    if (
+        isFunctionExpression(<FunctionExpression>declaration.init) ||
+        isStringLiteral(<StringLiteral>declaration.init) ||
+        isMemberExpression(<MemberExpression>declaration.init)
+    ) {
+        if (isFunctionExpression(<FunctionExpression>declaration.init)) {
+            const { name: nameInit } = <Identifier>(<FunctionExpression>declaration.init).id;
 
-        if ( name === nameInit ) {
-            return createMapping(
-                partialMapping,
-                SLetStatement,
-                getLetName(name),
-                loc
-            );
+            if (name !== nameInit) return false;
         }
+
+        const parentNode = <NodePath<VariableDeclarator>>path.findParent((path) => {
+            if (path.isVariableDeclarator()) {
+                const { node } = path;
+                const { name } = <Identifier>node.id;
+
+                if (!isValidName(name) && !isValidDelTemplate(name)) return false;
+
+                return true;
+            }
+
+            return false;
+        });
+
+        if (!parentNode) return false;
+
+        const { name: parentName } = <Identifier>parentNode.node.id;
+        
+        return createMapping(
+            partialMapping,
+            SLetStatement,
+            getLetName(name),
+            loc,
+            isValidName(parentName) 
+                ? `null.${parentName.substring(1)}` 
+                : evaluateTemplateName(parentName)
+        );
     }
 
     return false;
@@ -172,7 +201,7 @@ export default function(
             if (paramDeclaration) return paramDeclaration;
 
             // 3. An possible LetStatement.
-            let letStatement = EvaluateLetStatement(declar, partialMapping);
+            let letStatement = EvaluateLetStatement(declar, partialMapping, path);
 
             if (letStatement) return letStatement;
         }
