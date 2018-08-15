@@ -5,46 +5,25 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { closest, implTemplateName } from '../../utils';
+import { implTemplateName } from '../../utils';
 import { createPartialMapping } from '../../mapped';
-import { Mark, FileName, Evaluation, TemplateName, Index } from '../../global';
-import { SCall, SParam, STemplate } from '../../constants';
+import { FileName, Evaluation, Index } from '../../global';
+import { SParam, STemplate } from '../../constants';
 import { types as S } from 'soyparser';
+import closest from '../../utils/closest';
 
 export function CallEvaluation(
     ast: S.Program,
-    id: TemplateName,
-    mark: Mark,
-    source: FileName,
-    type: string,
+    node: S.Call,
+    source: FileName
 ): Evaluation {
-    const { start, end } = mark;
-    const { name, namespace } = id;
+    const { mark: { start, end }, id: { name, namespace }, type } = node;
     const callName: string = implTemplateName(name, namespace);
-    let parent: string = 'Undefined';
-
     const parentList = [
         SParam,
         STemplate
     ];
-
-    closest(SCall, ast, parentList, (node: any, parentNode: any) => {
-        const { name, namespace } = node.id;
-
-        if (implTemplateName(name, namespace) === callName) {
-            if (parentNode.type === STemplate) {
-                const { name, namespace } = parentNode.id;
-                parent = implTemplateName(name, namespace);
-            } else if (parentNode.type === SParam) {
-                const { name } = parentNode;
-                parent = name;
-            }
-
-            return true;
-        }
-
-        return false;
-    });
+    const parent: string = closest(ast, node, parentList);
 
     const endModify = (end: Index) => {
         if (start.line !== end.line) {
@@ -72,13 +51,9 @@ export default function(
     source: FileName,
     ast: S.Program
 ): Evaluation | boolean {
-    const { mark, id, type } = node;
-
     return CallEvaluation(
         ast,
-        id,
-        mark,
-        source,
-        type
+        node,
+        source
     );
 }

@@ -5,39 +5,20 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { closest, implTemplateName } from '../../utils';
 import { createPartialMapping } from '../../mapped';
 import { FileName, Evaluation } from '../../global';
-import { SParam, SCall } from '../../constants';
+import { SCall } from '../../constants';
 import { types as S } from 'soyparser';
+import closest from '../../utils/closest';
 
 export function ParamEvaluation(
     ast: S.Program,
     node: S.Param,
     source: FileName
 ): Evaluation {
-    const { mark, name, type } = node;
-    const { start, end } = mark;
-
-    let parent: string = 'Undefined';
-
-    const parentList = [
-        SCall
-    ];
-
-    closest(SParam, ast, parentList, (node: any, parentNode: any) => {
-        if (
-            node.name === name &&
-            node.mark === mark
-        ) {
-            const { name, namespace } = parentNode.id;
-            parent = implTemplateName(name, namespace);
-
-            return true;
-        }
-
-        return false;
-    });
+    const { mark: { start, end }, name, type } = node;
+    const parentList = [SCall];
+    const parent: string = closest(ast, node, parentList);
 
     return createPartialMapping({
         end,
