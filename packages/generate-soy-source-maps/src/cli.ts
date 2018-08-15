@@ -92,7 +92,7 @@ function evaluateFilePath(input: string): boolean {
     }
 
     if (!existFile(`${input}.js`)) {
-        throw logger.error('It is not possible to generate the source map without the generated file.');
+        throw logger.error('It is not possible to generate the source map without the generated file.', `${input}.js`);
     }
 
     return true;
