@@ -16,7 +16,7 @@ export function getLetName(name: string): string {
 }
 
 export function isValidLetStatement(name: string): boolean {
-    return /__soy+\d+/.test(name);
+    return /__soy+\d+/.test(name) && !name.startsWith('msg_');
 }
 
 export function isValidName(name: string): boolean {
