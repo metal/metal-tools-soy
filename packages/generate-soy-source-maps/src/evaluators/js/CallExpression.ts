@@ -21,13 +21,12 @@ import {
 } from "@babel/types";
 import { createMapping } from "../../mapped";
 import { 
-    getLetName, 
     isValidLetStatement, 
     isValidName 
 } from "../../utils";
 import { NodePath } from "@babel/traverse";
 import { PartialMapping, Mapping } from "../../global";
-import { SInterpolation, SCall } from "../../constants";
+import { SCall } from "../../constants";
 import traverse from '../../utils/traverseFast';
 
 type Evaluate = Array<Mapping|boolean> | boolean;
@@ -121,19 +120,10 @@ function EvaluateCall(
 }
 
 function EvaluateInterpolation(
-    loc: SourceLocation | null,
     name: string,
-    partialMapping: PartialMapping[]
 ): Evaluate {
     if (isValidLetStatement(name)) {
         // 1. An possible Interpolation.
-
-        return createMapping(
-            partialMapping,
-            SInterpolation,
-            getLetName(name),
-            loc
-        );
     } else {
         // 1.1 An possible Interpolation that call LetStatement.
     };
@@ -155,7 +145,7 @@ export default function(
         if (!node.arguments.length) {
             // 1. An possible Interpolation.
             // 1.1 An possible Interpolation that call LetStatement.
-            let interpolation = EvaluateInterpolation(loc, name, partialMapping);
+            let interpolation = EvaluateInterpolation(name);
 
             if(interpolation) return interpolation;
         } else {
