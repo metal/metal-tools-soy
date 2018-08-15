@@ -135,9 +135,11 @@ function EvaluateLetStatement(
         isMemberExpression(<MemberExpression>declaration.init)
     ) {
         if (isFunctionExpression(<FunctionExpression>declaration.init)) {
-            const { name: nameInit } = <Identifier>(<FunctionExpression>declaration.init).id;
+            if (<Identifier>(<FunctionExpression>declaration.init).id) {
+                const { name: nameInit } = <Identifier>(<FunctionExpression>declaration.init).id;
 
-            if (name !== nameInit) return false;
+                if (name !== nameInit) return false;
+            }
         }
 
         const parentNode = <NodePath<VariableDeclarator>>path.findParent((path) => {
