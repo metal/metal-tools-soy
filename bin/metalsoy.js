@@ -14,7 +14,8 @@ const yargs = require('yargs')
 	})
 	.option('externalMsgFormat', {
 		default: defaultOptions.externalMsgFormat,
-		describe: 'Pattern that should be used to format the extracted external messages from compiled files',
+		describe:
+			'Pattern that should be used to format the extracted external messages from compiled files',
 		type: 'string'
 	})
 	.option('outputDir', {
@@ -24,12 +25,19 @@ const yargs = require('yargs')
 	})
 	.option('skipMetalGeneration', {
 		default: defaultOptions.skipMetalGeneration,
-		describe: 'Passing this will cause soy files to be just compiled, without the addition of metal generated code (like the component class)',
+		describe:
+			'Passing this will cause soy files to be just compiled, without the addition of metal generated code (like the component class)',
+		type: 'boolean'
+	})
+	.option('sourceMaps', {
+		alias: 'm',
+		default: defaultOptions.sourceMaps,
 		type: 'boolean'
 	})
 	.option('soyDeps', {
 		default: defaultOptions.soyDeps,
-		describe: "Soy files that the main source files depend on, but that shouldn't be compiled as well. The soy compiler needs these files.",
+		describe:
+			'Soy files that the main source files depend on, but that shouldn`t be compiled as well. The soy compiler needs these files.',
 		type: 'array'
 	})
 	.option('src', {
