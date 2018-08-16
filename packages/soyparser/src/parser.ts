@@ -133,6 +133,19 @@ const call = nodeMap(
       .skip(spaced(closeCmd('call'))))
 );
 
+const delCall = nodeMap(
+  S.DelCall,
+  P.string('{delcall')
+    .skip(P.whitespace)
+    .then(templateName),
+  optional(P.seq(P.whitespace, P.string('variant='))
+    .then(interpolation('"'))),
+  P.alt(
+    spaced(closingBrace).result([]),
+    rbrace.then(spaced(param).many())
+      .skip(spaced(closeCmd('delcall'))))
+)
+
 const attribute = nodeMap(
   S.Attribute,
   attributeName.skip(P.string('="')),
@@ -333,6 +346,7 @@ function bodyFor(name: string, ...inter: Array<String>): P.Parser<S.Body> {
         P.alt(
           literal,
           call,
+          delCall,
           letStatement,
           otherCmd('if', 'elseif', 'else'),
           otherCmd('foreach', 'ifempty'),

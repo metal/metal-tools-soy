@@ -361,6 +361,29 @@ export function Call(mark: Mark, id: TemplateName, body: Array<Param> = []): Cal
   };
 }
 
+export interface DelCall extends Node {
+  body: Array<Param>,
+  id: TemplateName,
+  variant: Interpolation | null,
+  type: 'DelCall'
+}
+
+export function DelCall(
+  mark: Mark,
+  id: TemplateName,
+  variant: Interpolation | null,
+  body: Array<Param> = [])
+  : DelCall {
+
+  return {
+    body,
+    mark,
+    id,
+    variant,
+    type: 'DelCall'
+  };
+}
+
 export interface OtherCmd extends Node {
   body: Body
 }
