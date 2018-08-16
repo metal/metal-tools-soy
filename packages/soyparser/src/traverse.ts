@@ -12,6 +12,7 @@ export type Visit<T> = VisitFunction<T> | VisitObject<T>;
 export interface Visitor {
   BooleanLiteral?: Visit<S.BooleanLiteral>;
   Call?: Visit<S.Call>;
+  DellCall?: Visit<S.DelCall>;
   DelTemplate?: Visit<S.DelTemplate>;
   FunctionCall?: Visit<S.FunctionCall>;
   Interpolation?: Visit<S.Interpolation>;
@@ -27,7 +28,7 @@ export interface Visitor {
   StringLiteral?: Visit<S.StringLiteral>;
   Template?: Visit<S.Template>;
   Ternary?: Visit<S.Ternary>;
-  [propName: string]: Visit<S.Node> | undefined;
+  [propName: string]: Visit<any> | undefined;
 }
 
 function noop() {}
