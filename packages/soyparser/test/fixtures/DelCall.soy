@@ -1,0 +1,24 @@
+{namespace Test}
+
+/**
+ * Test
+ */
+{template .Test}
+	{@param name: string}
+	{@param title: string}
+
+	{delcall Test.First variant="foo"}
+		{param name: $name /}
+		{param title: $title /}
+	{/delcall}
+{/template}
+
+{deltemplate Test.First variant="'foo'"}
+	{@param name: string}
+	{@param title: string}
+
+	<div>
+		<h1>{$title}</h1>
+		<h2>{$name}</h2>
+	</div>
+{/deltemplate}
