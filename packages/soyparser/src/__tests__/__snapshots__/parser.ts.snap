@@ -267,6 +267,313 @@ Object {
 }
 `;
 
+exports[`Soy Parser should parse delcall 1`] = `
+Object {
+  "body": Array [
+    Object {
+      "attributes": Array [],
+      "body": Array [
+        Object {
+          "body": Array [
+            Object {
+              "body": Object {
+                "mark": Object {
+                  "end": Object {
+                    "column": 21,
+                    "line": 11,
+                    "offset": 155,
+                  },
+                  "start": Object {
+                    "column": 16,
+                    "line": 11,
+                    "offset": 150,
+                  },
+                },
+                "name": "name",
+                "type": "Reference",
+              },
+              "mark": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 11,
+                  "offset": 158,
+                },
+                "start": Object {
+                  "column": 3,
+                  "line": 11,
+                  "offset": 137,
+                },
+              },
+              "name": "name",
+              "type": "Param",
+            },
+            Object {
+              "body": Object {
+                "mark": Object {
+                  "end": Object {
+                    "column": 23,
+                    "line": 12,
+                    "offset": 181,
+                  },
+                  "start": Object {
+                    "column": 17,
+                    "line": 12,
+                    "offset": 175,
+                  },
+                },
+                "name": "title",
+                "type": "Reference",
+              },
+              "mark": Object {
+                "end": Object {
+                  "column": 26,
+                  "line": 12,
+                  "offset": 184,
+                },
+                "start": Object {
+                  "column": 3,
+                  "line": 12,
+                  "offset": 161,
+                },
+              },
+              "name": "title",
+              "type": "Param",
+            },
+          ],
+          "id": Object {
+            "name": "First",
+            "namespace": "Test",
+          },
+          "mark": Object {
+            "end": Object {
+              "column": 1,
+              "line": 14,
+              "offset": 197,
+            },
+            "start": Object {
+              "column": 2,
+              "line": 10,
+              "offset": 100,
+            },
+          },
+          "type": "DelCall",
+          "variant": Object {
+            "content": "foo",
+            "mark": Object {
+              "end": Object {
+                "column": 35,
+                "line": 10,
+                "offset": 133,
+              },
+              "start": Object {
+                "column": 30,
+                "line": 10,
+                "offset": 128,
+              },
+            },
+            "type": "Interpolation",
+          },
+        },
+      ],
+      "doc": Object {
+        "about": "Test",
+        "mark": Object {
+          "end": Object {
+            "column": 1,
+            "line": 6,
+            "offset": 34,
+          },
+          "start": Object {
+            "column": 1,
+            "line": 3,
+            "offset": 18,
+          },
+        },
+        "params": Array [],
+        "type": "SoyDoc",
+      },
+      "id": Object {
+        "name": "Test",
+        "namespace": null,
+      },
+      "mark": Object {
+        "end": Object {
+          "column": 12,
+          "line": 14,
+          "offset": 208,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 3,
+          "offset": 18,
+        },
+      },
+      "params": Array [
+        Object {
+          "mark": Object {
+            "end": Object {
+              "column": 23,
+              "line": 7,
+              "offset": 73,
+            },
+            "start": Object {
+              "column": 2,
+              "line": 7,
+              "offset": 52,
+            },
+          },
+          "name": "name",
+          "paramType": "string",
+          "required": true,
+          "type": "ParamDeclaration",
+        },
+        Object {
+          "mark": Object {
+            "end": Object {
+              "column": 24,
+              "line": 8,
+              "offset": 97,
+            },
+            "start": Object {
+              "column": 2,
+              "line": 8,
+              "offset": 75,
+            },
+          },
+          "name": "title",
+          "paramType": "string",
+          "required": true,
+          "type": "ParamDeclaration",
+        },
+      ],
+      "type": "Template",
+    },
+    Object {
+      "body": Array [
+        Object {
+          "content": "$title",
+          "mark": Object {
+            "end": Object {
+              "column": 15,
+              "line": 21,
+              "offset": 320,
+            },
+            "start": Object {
+              "column": 7,
+              "line": 21,
+              "offset": 312,
+            },
+          },
+          "type": "Interpolation",
+        },
+        Object {
+          "content": "$name",
+          "mark": Object {
+            "end": Object {
+              "column": 14,
+              "line": 22,
+              "offset": 339,
+            },
+            "start": Object {
+              "column": 7,
+              "line": 22,
+              "offset": 332,
+            },
+          },
+          "type": "Interpolation",
+        },
+      ],
+      "doc": null,
+      "id": Object {
+        "name": "First",
+        "namespace": "Test",
+      },
+      "mark": Object {
+        "end": Object {
+          "column": 15,
+          "line": 24,
+          "offset": 367,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 16,
+          "offset": 210,
+        },
+      },
+      "params": Array [
+        Object {
+          "mark": Object {
+            "end": Object {
+              "column": 23,
+              "line": 17,
+              "offset": 273,
+            },
+            "start": Object {
+              "column": 2,
+              "line": 17,
+              "offset": 252,
+            },
+          },
+          "name": "name",
+          "paramType": "string",
+          "required": true,
+          "type": "ParamDeclaration",
+        },
+        Object {
+          "mark": Object {
+            "end": Object {
+              "column": 24,
+              "line": 18,
+              "offset": 297,
+            },
+            "start": Object {
+              "column": 2,
+              "line": 18,
+              "offset": 275,
+            },
+          },
+          "name": "title",
+          "paramType": "string",
+          "required": true,
+          "type": "ParamDeclaration",
+        },
+      ],
+      "type": "DelTemplate",
+      "variant": Object {
+        "content": "'foo'",
+        "mark": Object {
+          "end": Object {
+            "column": 40,
+            "line": 16,
+            "offset": 249,
+          },
+          "start": Object {
+            "column": 33,
+            "line": 16,
+            "offset": 242,
+          },
+        },
+        "type": "Interpolation",
+      },
+    },
+  ],
+  "mark": Object {
+    "end": Object {
+      "column": 15,
+      "line": 24,
+      "offset": 367,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "namespace": "Test",
+  "type": "Program",
+}
+`;
+
 exports[`Soy Parser should parse deltemplates 1`] = `
 Object {
   "body": Array [
