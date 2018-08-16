@@ -339,7 +339,7 @@ function bodyFor(name: string, ...inter: Array<String>): P.Parser<S.Body> {
   const bodyParser: P.Parser<S.Body> = P.lazy(() =>
     html.then(P.alt(
       closeCmd(name).result([]),
-      P.alt(...inter.map(openCmd))
+      P.alt(...inter.map((name) => openCmd(<string>name)))
         .result([])
         .then(bodyParser),
       P.seqMap(
