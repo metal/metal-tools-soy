@@ -93,9 +93,7 @@ function EvaluateParamDeclaration(
                 const { node } = path;
                 const { name } = <Identifier>node.id;
     
-                if(!isValidName(name) && !isValidDelTemplate(name)) return false;
-    
-                return true;
+                if(isValidName(name) && isValidDelTemplate(name)) return true;
             }
     
             return false;
@@ -147,9 +145,7 @@ function EvaluateLetStatement(
                 const { node } = path;
                 const { name } = <Identifier>node.id;
 
-                if (!isValidName(name) && !isValidDelTemplate(name)) return false;
-
-                return true;
+                if (isValidName(name) && isValidDelTemplate(name)) return true;
             }
 
             return false;
