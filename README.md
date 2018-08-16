@@ -64,6 +64,16 @@ $ metalsoy --skipMetalGeneration
 
 Passing this will cause soy files to be just compiled, without the addition of metal generated code (like the component class).
 
+#### sourceMaps
+
+```sh
+$ metalsoy --sourceMaps
+```
+
+Passing this will cause source maps to be created for the soy files.
+
+> The source map generator for soy files are in alpha, you can find problems. [Learn more here](https://github.com/matuzalemsteles/generate-soy-source-maps).
+
 #### soyDeps
 
 ```sh
