@@ -1002,9 +1002,11 @@ eslint-plugin-liferayportal@^1.0.0:
   dependencies:
     requireindex "~1.1.0"
 
-eslint-plugin-no-for-of-loops@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-no-for-of-loops/-/eslint-plugin-no-for-of-loops-1.0.0.tgz#a13d91a8f1922f7fefedeab351dc0055994601f6"
+eslint-plugin-typescript@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-typescript/-/eslint-plugin-typescript-0.12.0.tgz#e23d58cb27fe28e89fc641a1f20e8d862cb99aef"
+  dependencies:
+    requireindex "~1.1.0"
 
 eslint-scope@^3.7.1:
   version "3.7.3"

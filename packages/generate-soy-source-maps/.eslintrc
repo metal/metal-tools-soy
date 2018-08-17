@@ -1,16 +1,18 @@
 {
 	"parser": "typescript-eslint-parser",
 	"env": {
-		"browser": true,
 		"node": true,
 		"es6": true,
 		"jest": true
 	},
 	"extends": "liferay",
 	"plugins": [
-		"no-for-of-loops"
+		"typescript"
 	],
 	"rules": {
-		"no-for-of-loops/no-for-of-loops": 2
+		"new-cap": "off",
+		"no-undef": "off",
+		"require-jsdoc": "off",
+		"typescript/no-unused-vars": "error"
 	}
 }
