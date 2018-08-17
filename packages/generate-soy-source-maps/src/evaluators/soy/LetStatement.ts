@@ -5,10 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { createPartialMapping } from '../../mapped';
-import { FileName, Evaluation } from '../../global';
-import { STemplate, SDelTemplate } from '../../constants';
-import { types as S } from 'soyparser';
+import {createPartialMapping} from '../../mapped';
+import {FileName, Evaluation} from '../../global';
+import {STemplate, SDelTemplate} from '../../constants';
+import {types as S} from 'soyparser';
 import closest from '../../utils/closest';
 
 function LetStatementEvaluation(
@@ -16,11 +16,12 @@ function LetStatementEvaluation(
 	node: S.LetStatement,
 	source: FileName
 ): Evaluation {
-	const { mark: { end, start }, name, type } = node;
-	const parentList = [
-		SDelTemplate,
-		STemplate
-	];
+	const {
+		mark: {end, start},
+		name,
+		type,
+	} = node;
+	const parentList = [SDelTemplate, STemplate];
 	const parent: string = closest(ast, node, parentList);
 
 	return createPartialMapping({
@@ -29,7 +30,7 @@ function LetStatementEvaluation(
 		source,
 		start,
 		parent,
-		type
+		type,
 	});
 }
 
@@ -38,9 +39,5 @@ export default function(
 	source: FileName,
 	ast: S.Program
 ): Evaluation {
-	return LetStatementEvaluation(
-		ast,
-		node,
-		source
-	);
+	return LetStatementEvaluation(ast, node, source);
 }

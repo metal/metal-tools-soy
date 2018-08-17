@@ -5,32 +5,29 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { types as S } from 'soyparser';
-import { Visitor, Visit } from '../global';
+import {types as S} from 'soyparser';
+import {Visitor, Visit} from '../global';
 
-function noop() {};
+function noop() {}
 
 export function getEnter<T>(handler: Visit<T> | undefined): Visit<T> {
-    if (typeof handler === 'function') {
-        return handler;
-    }
+	if (typeof handler === 'function') {
+		return handler;
+	}
 
-    return noop;
-};
+	return noop;
+}
 
-export default function traverseSoy(
-    node: S.Node,
-    visitor: Visitor
-): void {
-    const handler = visitor[node.type];
+export default function traverseSoy(node: S.Node, visitor: Visitor): void {
+	const handler = visitor[node.type];
 
-    getEnter(handler)(node);
+	getEnter(handler)(node);
 
-    if (node.body) {
-        if (Array.isArray(node.body)) {
-            node.body.forEach(node => traverseSoy(node, visitor))
-        } else {
-            traverseSoy(node.body, visitor);
-        }
-    }
+	if (node.body) {
+		if (Array.isArray(node.body)) {
+			node.body.forEach(node => traverseSoy(node, visitor));
+		} else {
+			traverseSoy(node.body, visitor);
+		}
+	}
 }

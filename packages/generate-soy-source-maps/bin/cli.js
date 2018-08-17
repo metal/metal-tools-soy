@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-const { main } = require('../lib/cli');
+const {main} = require('../lib/cli');
 
 main(process.argv);
