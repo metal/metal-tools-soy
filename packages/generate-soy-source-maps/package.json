@@ -18,8 +18,12 @@
   "homepage": "https://github.com/matuzalemsteles/generate-soy-source-maps",
   "scripts": {
     "compile": "tsc",
-    "build": "babel src -d lib",
-    "test": "jest"
+    "lint": "eslint src/**/*.ts",
+    "prettier-all": "npm run prettier -- --write",
+    "prettier-ci": "npm run prettier -- --list-different",
+    "prettier": "prettier-eslint src/**/*.ts",
+    "test": "jest",
+    "typescript-ci": "tsc --version; tsc --noEmit"
   },
   "dependencies": {
     "@babel/parser": "^7.0.0-rc.1",
@@ -38,7 +42,13 @@
     "@types/node": "^10.5.7",
     "@types/parsimmon": "^1.10.0",
     "@types/signale": "^1.2.0",
+    "eslint": "4.18.2",
+    "eslint-config-liferay": "^2.0.18",
+    "eslint-plugin-no-for-of-loops": "^1.0.0",
     "jest": "^23.4.2",
-    "typescript": "^3.0.1"
+    "prettier": "^1.14.2",
+    "prettier-eslint-cli": "^4.7.1",
+    "typescript": "^3.0.1",
+    "typescript-eslint-parser": "^18.0.0"
   }
 }
