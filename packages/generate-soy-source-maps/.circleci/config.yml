@@ -1,0 +1,61 @@
+workflows:
+  version: 2
+  main:
+    jobs:
+      - build
+      - run-tests:
+          requires:
+            - build
+      - run-checks:
+          requires:
+            - build
+
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8.9.4
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - yarn-v1--{{ .Branch }}--{{ checksum "yarn.lock" }}
+      - run:
+          name: "Install Dependencies"
+          command: yarn install --frozen-lockfile # make sure that lockfile is up-to-date
+      - save_cache:
+          key: yarn-v1--{{ .Branch }}--{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+      - run:
+          name: "Build Assets"
+          command: |
+            yarn build
+      - persist_to_workspace:
+          root: /home/circleci
+          paths:
+            - project
+
+  run-tests:
+    docker:
+      - image: circleci/node:8.9.4
+    steps:
+      - attach_workspace:
+          at: /home/circleci
+      - run:
+          name: "Run Tests"
+          command: |
+            yarn test
+
+  run-checks:
+    docker:
+      - image: circleci/node:8.9.4
+    steps:
+      - attach_workspace:
+          at: /home/circleci
+      - run:
+          name: "Run Checks"
+          command: |
+            yarn prettier-ci
+            yarn lint
+            yarn typescript-ci
