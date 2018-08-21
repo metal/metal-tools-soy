@@ -682,62 +682,6 @@ export default templates;
 /* jshint ignore:end */
 `;
 
-exports[`Compile Soy Pipeline should not add the source map path to the end of the generated file when skipMetalGeneration is true 1`] = `
-// This file was automatically generated from simple.soy.
-// Please don't edit this file by hand.
-
-/**
- * @fileoverview Templates in namespace Simple.
- * @public
- */
-
-goog.module('Simple.incrementaldom');
-
-var incrementalDom = goog.require('incrementaldom');
-var soyIdom = goog.require('soy.idom');
-
-
-/**
- * @param {Object<string, *>=} opt_data
- * @param {Object<string, *>=} opt_ijData
- * @param {Object<string, *>=} opt_ijData_deprecated
- * @return {void}
- * @suppress {checkTypes|uselessCode}
- */
-var $render = function(opt_data, opt_ijData, opt_ijData_deprecated) {
-  opt_ijData = opt_ijData_deprecated || opt_ijData;
-  opt_data = opt_data || {};
-  $hello(opt_data, opt_ijData);
-};
-exports.render = $render;
-if (goog.DEBUG) {
-  $render.soyTemplateName = 'Simple.render';
-}
-
-
-/**
- * @param {Object<string, *>=} opt_data
- * @param {Object<string, *>=} opt_ijData
- * @param {Object<string, *>=} opt_ijData_deprecated
- * @return {void}
- * @suppress {checkTypes|uselessCode}
- */
-var $hello = function(opt_data, opt_ijData, opt_ijData_deprecated) {
-  opt_ijData = opt_ijData_deprecated || opt_ijData;
-  incrementalDom.text('Hello ');
-  soyIdom.print(opt_data.firstName);
-  if (opt_data.lastName) {
-    incrementalDom.text(' ');
-    soyIdom.print(opt_data.lastName);
-  }
-  incrementalDom.text('!');
-};
-exports.hello = $hello;
-if (goog.DEBUG) {
-  $hello.soyTemplateName = 'Simple.hello';
-}
-`;
-
 exports[`Compile Soy Pipeline should not export delegated templates 1`] = `
 /* jshint ignore:start */
 import Component from 'metal-component';
