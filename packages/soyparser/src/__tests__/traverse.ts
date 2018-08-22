@@ -1,26 +1,7 @@
 import * as traverse from '../traverse';
+import * as S from '../types';
 
 describe('visit', () => {
-  const nodeNames = [
-    'BooleanLiteral',
-    'Call',
-    'DelTemplate',
-    'FunctionCall',
-    'Interpolation',
-    'LetStatement',
-    'MapItem',
-    'MapLiteral',
-    'NumberLital',
-    'OtherCmd',
-    'OtherExpression',
-    'Param',
-    'Program',
-    'Reference',
-    'StringLiteral',
-    'Template',
-    'Ternary'
-  ];
-
   function mockIndex() {
     return {
       offset: 0,
@@ -36,46 +17,64 @@ describe('visit', () => {
     };
   }
 
-  function mockAST() {
+  function mockAST(): S.Program {
     return {
       mark: getMark(),
-      body: nodeNames.map(name => ({
+      body: [{
+        attributes: [],
+        body: [],
+        doc: null,
+        id: {
+          name: 'FooTemplate',
+          namespace: null
+        },
         mark: getMark(),
-        type: name
-      })),
-      type: 'TestRoot'
+        params: [],
+        type: 'Template'
+      }],
+      namespace: 'Foo',
+      type: 'Program'
     };
   }
 
   it('should call the visitor for each node', () => {
-    const visitor = {};
-    nodeNames.forEach(name => visitor[name] = jest.fn());
+    const Template = jest.fn();
+    const Foo = jest.fn();
+
+    const visitor = {
+      Template,
+      Foo
+    };
 
     traverse.visit(mockAST(), visitor);
 
-    Object.keys(visitor).forEach(key => {
-      const visitFunc = visitor[key];
-
-      expect(visitFunc).toBeCalled();
-    });
+    expect(Template).toBeCalled();
+    expect(Foo).not.toBeCalled();
   });
 
   it('should call enter and exit for each node', () => {
-    const visitor = {};
-    nodeNames.forEach(name => {
-      visitor[name] = {
-        enter: jest.fn(),
-        exit: jest.fn()
-      };
-    });
+    const templateEnter = jest.fn();
+    const templateExit = jest.fn();
+    const fooEnter = jest.fn();
+    const fooExit = jest.fn();
+
+    const visitor = {
+      Template: {
+        enter: templateEnter,
+        exit: templateExit
+      },
+      Foo: {
+        enter: fooEnter,
+        exit: fooExit
+      }
+    };
 
     traverse.visit(mockAST(), visitor);
 
-    Object.keys(visitor).forEach(key => {
-      const visitObj = visitor[key];
+    expect(templateEnter).toBeCalled();
+    expect(fooEnter).not.toBeCalled();
 
-      expect(visitObj.enter).toBeCalled();
-      expect(visitObj.exit).toBeCalled();
-    });
+    expect(templateExit).toBeCalled();
+    expect(fooExit).not.toBeCalled();
   });
 });

@@ -1,6 +1,34 @@
 import * as P from 'parsimmon';
 import {TemplateName} from './util';
 
+export type NodeTypes = {
+  'Attribute': Attribute,
+  'Call': Call,
+  'DelCall': DelCall,
+  'Interpolation': Interpolation,
+  'LetStatement': LetStatement,
+  'Literal': Literal,
+  'OtherCmd': OtherCmd,
+  'MapLiteral': MapLiteral,
+  'MapItem': MapItem,
+  'StringLiteral': StringLiteral,
+  'NumberLiteral': NumberLiteral,
+  'BooleanLiteral': BooleanLiteral,
+  'OtherExpression': OtherExpression,
+  'Param': Param,
+  'ParamDeclaration': ParamDeclaration,
+  'Program': Program,
+  'Reference': Reference,
+  'Ternary': Ternary,
+  'FunctionCall': FunctionCall,
+  'SoyDoc': SoyDoc,
+  'Template': Template,
+  'DelTemplate': DelTemplate,
+  'Other': OtherCmd
+};
+
+export type NodeType = keyof NodeTypes;
+
 export type Cmd
   = Call
   | Interpolation
@@ -23,7 +51,7 @@ export type Expression
 export interface Node {
   body?: Body,
   mark: Mark,
-  type: string
+  type: NodeType
 }
 
 export interface Mark {
@@ -385,6 +413,7 @@ export function DelCall(
 }
 
 export interface OtherCmd extends Node {
+  name: string
   body: Body
 }
 
@@ -392,6 +421,7 @@ export function OtherCmd(mark: Mark, name: string, body: Body = []): OtherCmd {
   return {
     body,
     mark,
-    type: name.charAt(0).toUpperCase() + name.slice(1)
+    name,
+    type: 'Other'
   };
 }
