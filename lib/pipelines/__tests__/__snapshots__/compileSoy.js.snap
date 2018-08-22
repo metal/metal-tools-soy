@@ -85,6 +85,93 @@ export default templates;
 /* jshint ignore:end */
 `;
 
+exports[`Compile Soy Pipeline should add to the end of the generated file the path to the source map 1`] = `
+/* jshint ignore:start */
+import Component from 'metal-component';
+import Soy from 'metal-soy';
+
+var templates;
+goog.loadModule(function(exports) {
+  var soy = goog.require('soy');
+  var soydata = goog.require('soydata');
+  // This file was automatically generated from simple.soy.
+  // Please don't edit this file by hand.
+
+  /**
+   * @fileoverview Templates in namespace Simple.
+   * @public
+   */
+
+  goog.module('Simple.incrementaldom');
+
+  var incrementalDom = goog.require('incrementaldom');
+  var soyIdom = goog.require('soy.idom');
+
+
+  /**
+   * @param {Object<string, *>=} opt_data
+   * @param {Object<string, *>=} opt_ijData
+   * @param {Object<string, *>=} opt_ijData_deprecated
+   * @return {void}
+   * @suppress {checkTypes|uselessCode}
+   */
+  var $render = function(opt_data, opt_ijData, opt_ijData_deprecated) {
+    opt_ijData = opt_ijData_deprecated || opt_ijData;
+    opt_data = opt_data || {};
+    $hello(opt_data, opt_ijData);
+  };
+  exports.render = $render;
+  if (goog.DEBUG) {
+    $render.soyTemplateName = 'Simple.render';
+  }
+
+
+  /**
+   * @param {Object<string, *>=} opt_data
+   * @param {Object<string, *>=} opt_ijData
+   * @param {Object<string, *>=} opt_ijData_deprecated
+   * @return {void}
+   * @suppress {checkTypes|uselessCode}
+   */
+  var $hello = function(opt_data, opt_ijData, opt_ijData_deprecated) {
+    opt_ijData = opt_ijData_deprecated || opt_ijData;
+    incrementalDom.text('Hello ');
+    soyIdom.print(opt_data.firstName);
+    if (opt_data.lastName) {
+      incrementalDom.text(' ');
+      soyIdom.print(opt_data.lastName);
+    }
+    incrementalDom.text('!');
+  };
+  exports.hello = $hello;
+  if (goog.DEBUG) {
+    $hello.soyTemplateName = 'Simple.hello';
+  }
+
+  exports.render.params = [];
+  exports.render.types = {};
+  exports.hello.params = ["firstName", "lastName"];
+  exports.hello.types = {
+    "firstName": "any",
+    "lastName": "any"
+  };
+  templates = exports;
+  return exports;
+
+});
+
+class Simple extends Component {}
+Soy.register(Simple, templates);
+export {
+  Simple,
+  templates
+};
+export default templates;
+/* jshint ignore:end */
+
+//# sourceMappingURL=simple.soy.js.map
+`;
+
 exports[`Compile Soy Pipeline should automatically generate and export component class using SoyRenderer 1`] = `
 /* jshint ignore:start */
 import Component from 'metal-component';
