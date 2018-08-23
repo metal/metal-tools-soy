@@ -274,19 +274,59 @@ Object {
       "attributes": Array [],
       "body": Array [
         Object {
+          "attributes": Array [],
+          "body": Array [],
+          "id": Object {
+            "name": "First",
+            "namespace": "Test",
+          },
+          "mark": Object {
+            "end": Object {
+              "column": 3,
+              "line": 13,
+              "offset": 134,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 11,
+              "offset": 108,
+            },
+          },
+          "type": "DelCall",
+        },
+        Object {
+          "attributes": Array [
+            Object {
+              "mark": Object {
+                "end": Object {
+                  "column": 36,
+                  "line": 13,
+                  "offset": 167,
+                },
+                "start": Object {
+                  "column": 23,
+                  "line": 13,
+                  "offset": 154,
+                },
+              },
+              "name": "variant",
+              "type": "Attribute",
+              "value": "foo",
+            },
+          ],
           "body": Array [
             Object {
               "body": Object {
                 "mark": Object {
                   "end": Object {
-                    "column": 21,
-                    "line": 11,
-                    "offset": 155,
+                    "column": 22,
+                    "line": 14,
+                    "offset": 190,
                   },
                   "start": Object {
-                    "column": 16,
-                    "line": 11,
-                    "offset": 150,
+                    "column": 17,
+                    "line": 14,
+                    "offset": 185,
                   },
                 },
                 "name": "name",
@@ -294,14 +334,14 @@ Object {
               },
               "mark": Object {
                 "end": Object {
-                  "column": 24,
-                  "line": 11,
-                  "offset": 158,
+                  "column": 25,
+                  "line": 14,
+                  "offset": 193,
                 },
                 "start": Object {
-                  "column": 3,
-                  "line": 11,
-                  "offset": 137,
+                  "column": 4,
+                  "line": 14,
+                  "offset": 172,
                 },
               },
               "name": "name",
@@ -311,14 +351,14 @@ Object {
               "body": Object {
                 "mark": Object {
                   "end": Object {
-                    "column": 23,
-                    "line": 12,
-                    "offset": 181,
+                    "column": 24,
+                    "line": 15,
+                    "offset": 217,
                   },
                   "start": Object {
-                    "column": 17,
-                    "line": 12,
-                    "offset": 175,
+                    "column": 18,
+                    "line": 15,
+                    "offset": 211,
                   },
                 },
                 "name": "title",
@@ -326,14 +366,14 @@ Object {
               },
               "mark": Object {
                 "end": Object {
-                  "column": 26,
-                  "line": 12,
-                  "offset": 184,
+                  "column": 27,
+                  "line": 15,
+                  "offset": 220,
                 },
                 "start": Object {
-                  "column": 3,
-                  "line": 12,
-                  "offset": 161,
+                  "column": 4,
+                  "line": 15,
+                  "offset": 197,
                 },
               },
               "name": "title",
@@ -346,33 +386,177 @@ Object {
           },
           "mark": Object {
             "end": Object {
-              "column": 1,
-              "line": 14,
-              "offset": 197,
+              "column": 3,
+              "line": 18,
+              "offset": 237,
             },
             "start": Object {
-              "column": 2,
-              "line": 10,
-              "offset": 100,
+              "column": 3,
+              "line": 13,
+              "offset": 134,
             },
           },
           "type": "DelCall",
-          "variant": Object {
-            "content": "foo",
-            "mark": Object {
-              "end": Object {
-                "column": 35,
-                "line": 10,
-                "offset": 133,
+        },
+        Object {
+          "attributes": Array [
+            Object {
+              "mark": Object {
+                "end": Object {
+                  "column": 36,
+                  "line": 18,
+                  "offset": 270,
+                },
+                "start": Object {
+                  "column": 23,
+                  "line": 18,
+                  "offset": 257,
+                },
               },
-              "start": Object {
-                "column": 30,
-                "line": 10,
-                "offset": 128,
-              },
+              "name": "variant",
+              "type": "Attribute",
+              "value": "foo",
             },
-            "type": "Interpolation",
+            Object {
+              "mark": Object {
+                "end": Object {
+                  "column": 47,
+                  "line": 18,
+                  "offset": 281,
+                },
+                "start": Object {
+                  "column": 37,
+                  "line": 18,
+                  "offset": 271,
+                },
+              },
+              "name": "data",
+              "type": "Attribute",
+              "value": "all",
+            },
+          ],
+          "body": Array [],
+          "id": Object {
+            "name": "First",
+            "namespace": "Test",
           },
+          "mark": Object {
+            "end": Object {
+              "column": 3,
+              "line": 20,
+              "offset": 288,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 18,
+              "offset": 237,
+            },
+          },
+          "type": "DelCall",
+        },
+        Object {
+          "attributes": Array [
+            Object {
+              "mark": Object {
+                "end": Object {
+                  "column": 47,
+                  "line": 20,
+                  "offset": 332,
+                },
+                "start": Object {
+                  "column": 23,
+                  "line": 20,
+                  "offset": 308,
+                },
+              },
+              "name": "allowemptydefault",
+              "type": "Attribute",
+              "value": "true",
+            },
+          ],
+          "body": Array [
+            Object {
+              "body": Object {
+                "mark": Object {
+                  "end": Object {
+                    "column": 22,
+                    "line": 21,
+                    "offset": 355,
+                  },
+                  "start": Object {
+                    "column": 17,
+                    "line": 21,
+                    "offset": 350,
+                  },
+                },
+                "name": "name",
+                "type": "Reference",
+              },
+              "mark": Object {
+                "end": Object {
+                  "column": 25,
+                  "line": 21,
+                  "offset": 358,
+                },
+                "start": Object {
+                  "column": 4,
+                  "line": 21,
+                  "offset": 337,
+                },
+              },
+              "name": "name",
+              "type": "Param",
+            },
+            Object {
+              "body": Object {
+                "mark": Object {
+                  "end": Object {
+                    "column": 24,
+                    "line": 22,
+                    "offset": 382,
+                  },
+                  "start": Object {
+                    "column": 18,
+                    "line": 22,
+                    "offset": 376,
+                  },
+                },
+                "name": "title",
+                "type": "Reference",
+              },
+              "mark": Object {
+                "end": Object {
+                  "column": 27,
+                  "line": 22,
+                  "offset": 385,
+                },
+                "start": Object {
+                  "column": 4,
+                  "line": 22,
+                  "offset": 362,
+                },
+              },
+              "name": "title",
+              "type": "Param",
+            },
+          ],
+          "id": Object {
+            "name": "First",
+            "namespace": "Test",
+          },
+          "mark": Object {
+            "end": Object {
+              "column": 2,
+              "line": 24,
+              "offset": 400,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 20,
+              "offset": 288,
+            },
+          },
+          "type": "DelCall",
         },
       ],
       "doc": Object {
@@ -399,8 +583,8 @@ Object {
       "mark": Object {
         "end": Object {
           "column": 12,
-          "line": 14,
-          "offset": 208,
+          "line": 25,
+          "offset": 418,
         },
         "start": Object {
           "column": 1,
@@ -448,120 +632,12 @@ Object {
       ],
       "type": "Template",
     },
-    Object {
-      "body": Array [
-        Object {
-          "content": "$title",
-          "mark": Object {
-            "end": Object {
-              "column": 15,
-              "line": 21,
-              "offset": 320,
-            },
-            "start": Object {
-              "column": 7,
-              "line": 21,
-              "offset": 312,
-            },
-          },
-          "type": "Interpolation",
-        },
-        Object {
-          "content": "$name",
-          "mark": Object {
-            "end": Object {
-              "column": 14,
-              "line": 22,
-              "offset": 339,
-            },
-            "start": Object {
-              "column": 7,
-              "line": 22,
-              "offset": 332,
-            },
-          },
-          "type": "Interpolation",
-        },
-      ],
-      "doc": null,
-      "id": Object {
-        "name": "First",
-        "namespace": "Test",
-      },
-      "mark": Object {
-        "end": Object {
-          "column": 15,
-          "line": 24,
-          "offset": 367,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 16,
-          "offset": 210,
-        },
-      },
-      "params": Array [
-        Object {
-          "mark": Object {
-            "end": Object {
-              "column": 23,
-              "line": 17,
-              "offset": 273,
-            },
-            "start": Object {
-              "column": 2,
-              "line": 17,
-              "offset": 252,
-            },
-          },
-          "name": "name",
-          "paramType": "string",
-          "required": true,
-          "type": "ParamDeclaration",
-        },
-        Object {
-          "mark": Object {
-            "end": Object {
-              "column": 24,
-              "line": 18,
-              "offset": 297,
-            },
-            "start": Object {
-              "column": 2,
-              "line": 18,
-              "offset": 275,
-            },
-          },
-          "name": "title",
-          "paramType": "string",
-          "required": true,
-          "type": "ParamDeclaration",
-        },
-      ],
-      "type": "DelTemplate",
-      "variant": Object {
-        "content": "'foo'",
-        "mark": Object {
-          "end": Object {
-            "column": 40,
-            "line": 16,
-            "offset": 249,
-          },
-          "start": Object {
-            "column": 33,
-            "line": 16,
-            "offset": 242,
-          },
-        },
-        "type": "Interpolation",
-      },
-    },
   ],
   "mark": Object {
     "end": Object {
-      "column": 15,
-      "line": 24,
-      "offset": 367,
+      "column": 12,
+      "line": 25,
+      "offset": 418,
     },
     "start": Object {
       "column": 1,
