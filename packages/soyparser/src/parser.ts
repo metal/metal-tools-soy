@@ -133,23 +133,22 @@ const call = nodeMap(
       .skip(spaced(closeCmd('call'))))
 );
 
+const attribute = nodeMap(
+  S.Attribute,
+  attributeName.skip(P.string('="')),
+  withAny(dquote)
+);
+
 const delCall = nodeMap(
   S.DelCall,
   P.string('{delcall')
     .skip(P.whitespace)
     .then(templateName),
-  optional(P.seq(P.whitespace, P.string('variant='))
-    .then(interpolation('"'))),
+  spaced(attribute).many(),
   P.alt(
     spaced(closingBrace).result([]),
     rbrace.then(spaced(param).many())
       .skip(spaced(closeCmd('delcall'))))
-)
-
-const attribute = nodeMap(
-  S.Attribute,
-  attributeName.skip(P.string('="')),
-  withAny(dquote)
 );
 
 const paramDeclaration = nodeMap(
