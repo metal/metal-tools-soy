@@ -364,14 +364,14 @@ export function Call(mark: Mark, id: TemplateName, body: Array<Param> = []): Cal
 export interface DelCall extends Node {
   body: Array<Param>,
   id: TemplateName,
-  variant: Interpolation | null,
+  attributes: Array<Attribute>,
   type: 'DelCall'
 }
 
 export function DelCall(
   mark: Mark,
   id: TemplateName,
-  variant: Interpolation | null,
+  attributes: Array<Attribute>,
   body: Array<Param> = [])
   : DelCall {
 
@@ -379,7 +379,7 @@ export function DelCall(
     body,
     mark,
     id,
-    variant,
+    attributes,
     type: 'DelCall'
   };
 }
