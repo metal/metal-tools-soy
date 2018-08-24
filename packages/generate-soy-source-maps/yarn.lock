@@ -3498,9 +3498,9 @@ source-map@^0.7.3:
   version "0.7.3"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.7.3.tgz#5302f8169031735226544092e64981f751750383"
 
-soyparser@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/soyparser/-/soyparser-1.0.3.tgz#2203f335c6c35d39ea1e752aca2cc72c86e6bec8"
+soyparser@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/soyparser/-/soyparser-2.0.0.tgz#7e9a088fc4134507bff1666b6202b8602cee02c5"
   dependencies:
     parsimmon "^1.2.0"
 

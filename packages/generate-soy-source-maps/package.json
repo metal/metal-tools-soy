@@ -32,7 +32,7 @@
     "glob": "^7.1.2",
     "signale": "^1.2.1",
     "source-map": "^0.7.3",
-    "soyparser": "^1.0.3"
+    "soyparser": "^2.0.0"
   },
   "devDependencies": {
     "@babel/types": "^7.0.0-rc.1",
