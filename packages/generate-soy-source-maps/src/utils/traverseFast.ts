@@ -6,9 +6,18 @@
  */
 
 import {BaseNode} from '@babel/types';
-import {getEnter} from './traverseSoy';
-import {Visitor} from '../global';
+import {Visitor, Visit} from '../global';
 import * as t from '@babel/types';
+
+function noop() {}
+
+function getEnter<T>(handler: Visit<T> | undefined): Visit<T> {
+	if (typeof handler === 'function') {
+		return handler;
+	}
+
+	return noop;
+}
 
 export default function traverse(node: BaseNode, visitor: Visitor): void {
 	if (!node) return;

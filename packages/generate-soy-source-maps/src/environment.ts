@@ -8,11 +8,11 @@
 import {File} from '@babel/types';
 import {getKeys, sortPartialMapping} from './utils';
 import {Mapping, FileName, Visitor, PartialMapping} from './global';
+import {types as S} from 'soyparser';
+import {visit as traverseSoy} from 'soyparser/lib/traverse';
 import * as evaluatorsJs from './evaluators/js';
 import * as evaluatorsSoy from './evaluators/soy';
-import * as S from 'soyparser/lib/types';
 import traverseJs from '@babel/traverse';
-import traverseSoy from './utils/traverseSoy';
 
 export default function(
 	astSoy: S.Program,
