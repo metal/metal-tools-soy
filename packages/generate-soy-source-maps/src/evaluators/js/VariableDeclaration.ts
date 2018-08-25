@@ -33,18 +33,9 @@ import {
 	SParamDeclaration,
 	SDelTemplate,
 } from '../../constants';
+import findTemplateParent, {evaluateTemplateName} from './shared/findTemplateParent';
 
 type Evaluate = Array<Mapping | boolean> | boolean;
-
-function evaluateTemplateName(name: string): string {
-	const nameWitoutDelTemplate = name.replace('__deltemplate__', '');
-	const nameSplit = nameWitoutDelTemplate.split('_');
-	const parsedName = `${nameSplit[0]}.${nameSplit[1]}`;
-
-	if (nameSplit[2]) parsedName.concat(`.${nameSplit[2]}`);
-
-	return parsedName;
-}
 
 function EvaluateTemplate(
 	declaration: VariableDeclarator,
@@ -100,33 +91,16 @@ function EvaluateParamDeclaration(
 		isCallExpression(<CallExpression>declaration.init) ||
 		isMemberExpression(<MemberExpression>declaration.init)
 	) {
-		const parentTemplate = <NodePath<VariableDeclarator>>path.findParent(
-			path => {
-				if (path.isVariableDeclarator()) {
-					const {node} = path;
-					const {name} = <Identifier>node.id;
+		const parentName = findTemplateParent(path);
 
-					if (isValidName(name) && isValidDelTemplate(name)) {
-						return true;
-					}
-				}
-
-				return false;
-			}
-		);
-
-		if (!parentTemplate) return false;
-
-		const {name: parentName} = <Identifier>parentTemplate.node.id;
+		if (!parentName) return false;
 
 		return createMapping(
 			partialMapping,
 			SParamDeclaration,
 			name,
 			loc,
-			isValidName(parentName)
-				? `null.${parentName.substring(1)}`
-				: evaluateTemplateName(parentName)
+			parentName
 		);
 	}
 
@@ -158,33 +132,16 @@ function EvaluateLetStatement(
 			}
 		}
 
-		const parentNode = <NodePath<VariableDeclarator>>path.findParent(
-			path => {
-				if (path.isVariableDeclarator()) {
-					const {node} = path;
-					const {name} = <Identifier>node.id;
+		const parentName = findTemplateParent(path);
 
-					if (isValidName(name) && isValidDelTemplate(name)) {
-						return true;
-					}
-				}
-
-				return false;
-			}
-		);
-
-		if (!parentNode) return false;
-
-		const {name: parentName} = <Identifier>parentNode.node.id;
+		if (!parentName) return false;
 
 		return createMapping(
 			partialMapping,
 			SLetStatement,
 			getLetName(name),
 			loc,
-			isValidName(parentName)
-				? `null.${parentName.substring(1)}`
-				: evaluateTemplateName(parentName)
+			parentName
 		);
 	}
 
