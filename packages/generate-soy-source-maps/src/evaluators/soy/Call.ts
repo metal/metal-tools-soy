@@ -5,12 +5,23 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {implTemplateName} from '../../utils';
 import {createPartialMapping} from '../../mapped';
-import {FileName, Evaluation, Index} from '../../global';
-import {SParam, STemplate} from '../../constants';
+import {FileName, Evaluation} from '../../global';
+import {implTemplateName} from '../../utils';
+import {SParam, STemplate, SDelTemplate} from '../../constants';
 import {types as S} from 'soyparser';
 import closest from '../../utils/closest';
+
+export function fixLocEnd({start, end}: S.Mark) {
+	if (start.line !== end.line) {
+		return {
+			line: end.line - 1,
+			column: end.column,
+		};
+	}
+
+	return end;
+}
 
 export function CallEvaluation(
 	ast: S.Program,
@@ -23,22 +34,11 @@ export function CallEvaluation(
 		type,
 	} = node;
 	const callName: string = implTemplateName(name, namespace);
-	const parentList = [SParam, STemplate];
+	const parentList = [SParam, STemplate, SDelTemplate];
 	const parent: string = closest(ast, node, parentList);
 
-	const endModify = (end: Index) => {
-		if (start.line !== end.line) {
-			return {
-				line: end.line - 1,
-				column: end.column,
-			};
-		}
-
-		return end;
-	};
-
 	return createPartialMapping({
-		end: endModify(end),
+		end: fixLocEnd({start, end}),
 		name: callName,
 		source,
 		start,
