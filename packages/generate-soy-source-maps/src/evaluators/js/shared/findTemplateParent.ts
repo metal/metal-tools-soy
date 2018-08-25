@@ -25,9 +25,9 @@ export default function findTemplateParent(path: NodePath) {
 			const {node} = path;
 			const {name} = <Identifier>node.id;
 
-			if (isValidName(name) && isValidDelTemplate(name)) {
-				return true;
-			}
+			if (!isValidName(name) && !isValidDelTemplate(name)) return false;
+
+			return true;
 		}
 
 		return false;
