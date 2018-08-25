@@ -62,8 +62,8 @@ jobs:
       - run:
           name: "Run Checks"
           command: |
-            yarn prettier-ci
             yarn lint -- --format junit -o reports/junit/js-lint-results.xml
+            yarn prettier-ci
             yarn typescript-ci
       - store_test_results:
           path: reports/junit
