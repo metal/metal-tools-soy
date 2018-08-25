@@ -5,9 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { isValidName, isValidDelTemplate } from "../../../utils";
-import { NodePath } from "@babel/traverse";
-import { VariableDeclarator, Identifier } from "@babel/types";
+import {isValidName, isValidDelTemplate} from '../../../utils';
+import {NodePath} from '@babel/traverse';
+import {VariableDeclarator, Identifier} from '@babel/types';
 
 export function evaluateTemplateName(name: string): string {
 	const nameWitoutDelTemplate = name.replace('__deltemplate__', '');
@@ -19,23 +19,19 @@ export function evaluateTemplateName(name: string): string {
 	return parsedName;
 }
 
-export default function findTemplateParent(
-	path: NodePath
-) {
-	const parentNode = <NodePath<VariableDeclarator>>path.findParent(
-		path => {
-			if (path.isVariableDeclarator()) {
-				const {node} = path;
-				const {name} = <Identifier>node.id;
+export default function findTemplateParent(path: NodePath) {
+	const parentNode = <NodePath<VariableDeclarator>>path.findParent(path => {
+		if (path.isVariableDeclarator()) {
+			const {node} = path;
+			const {name} = <Identifier>node.id;
 
-				if (isValidName(name) && isValidDelTemplate(name)) {
-					return true;
-				}
+			if (isValidName(name) && isValidDelTemplate(name)) {
+				return true;
 			}
-
-			return false;
 		}
-	);
+
+		return false;
+	});
 
 	if (!parentNode) return false;
 

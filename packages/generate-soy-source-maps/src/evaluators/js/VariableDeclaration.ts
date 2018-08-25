@@ -33,7 +33,9 @@ import {
 	SParamDeclaration,
 	SDelTemplate,
 } from '../../constants';
-import findTemplateParent, {evaluateTemplateName} from './shared/findTemplateParent';
+import findTemplateParent, {
+	evaluateTemplateName,
+} from './shared/findTemplateParent';
 
 type Evaluate = Array<Mapping | boolean> | boolean;
 
