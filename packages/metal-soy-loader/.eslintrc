@@ -1,9 +1,0 @@
-{
-	"env": {
-		"node": true
-	},
-	"extends": "liferay",
-	"rules": {
-		"no-invalid-this": "off"
-	}
-}

@@ -1,4 +1,4 @@
-# metal-tools-soy
+# Metal soy compiler
 
 [![Build Status](https://travis-ci.org/metal/metal-tools-soy.svg?branch=master)](https://travis-ci.org/metal/metal-tools-soy)
 
