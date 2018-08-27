@@ -28,7 +28,7 @@ describe('metal-soy-loader', function() {
 									'../../src/index.js'
 								),
 								options: {
-									src: 'test/fixtures/*.soy',
+									src: path.join(__dirname, '../../test/fixtures/*.soy'),
 								},
 							},
 						},
@@ -69,5 +69,5 @@ describe('metal-soy-loader', function() {
 				done();
 			}
 		);
-	});
+	}, 15000);
 });
