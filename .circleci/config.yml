@@ -1,0 +1,71 @@
+workflows:
+  version: 2
+  main:
+    jobs:
+      - build
+      - run-tests:
+          requires:
+            - build
+      - run-checks:
+          requires:
+            - build
+
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8.9.4
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - yarn-v1--{{ .Branch }}--{{ checksum "yarn.lock" }}
+      - run:
+          name: "Install Dependencies"
+          command: yarn lerna
+      - save_cache:
+          key: yarn-v1--{{ .Branch }}--{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+      - run:
+          name: "Build Assets"
+          command: |
+            yarn compile
+      - persist_to_workspace:
+          root: /home/circleci
+          paths:
+            - project
+
+  run-tests:
+    docker:
+      - image: circleci/node:8.9.4
+    steps:
+      - attach_workspace:
+          at: /home/circleci
+      - run:
+          name: "Run Tests"
+          command: |
+            yarn test -- --ci --reporters=default --reporters=jest-junit
+          environment:
+            JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
+      - store_test_results:
+          path: reports/junit
+      - store_artifacts:
+          path: reports/junit
+
+  run-checks:
+    docker:
+      - image: circleci/node:8.9.4
+    steps:
+      - attach_workspace:
+          at: /home/circleci
+      - run:
+          name: "Run Checks"
+          command: |
+            yarn lint -- --format junit -o reports/junit/js-lint-results.xml
+            yarn prettier-ci
+            yarn typescript-ci
+      - store_test_results:
+          path: reports/junit
+      - store_artifacts:
+          path: reports/junit
