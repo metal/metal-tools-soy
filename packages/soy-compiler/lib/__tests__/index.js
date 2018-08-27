@@ -83,9 +83,7 @@ describe('Metal Tools - Soy', function() {
 			});
 		});
 
-		it('should compile specific soy files to js with source map', function(
-			done
-		) {
+		it('should compile specific soy files to js with source map', function(done) {
 			const stream = metalToolsSoy({
 				dest: 'test/fixtures/soy',
 				sourceMaps: true,
@@ -102,9 +100,7 @@ describe('Metal Tools - Soy', function() {
 			});
 		});
 
-		it('should emit error and end stream when the soy jar compiler throws an error', function(
-			done
-		) {
+		it('should emit error and end stream when the soy jar compiler throws an error', function(done) {
 			const stream = metalToolsSoy({
 				src: 'test/fixtures/soy/compileError.soy',
 				dest: 'test/fixtures/soy'

@@ -5,10 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {createMapping} from '../../mapped';
-import {ObjectExpression, ObjectProperty, Identifier} from '@babel/types';
-import {PartialMapping, Mapping} from '../../global';
-import {SParam} from '../../constants';
+import { createMapping } from '../../mapped';
+import { ObjectExpression, ObjectProperty, Identifier } from '@babel/types';
+import { PartialMapping, Mapping } from '../../global';
+import { SParam } from '../../constants';
 
 type Evaluate = Array<Mapping | boolean>;
 
@@ -17,15 +17,12 @@ function EvaluateObjectProperty(
 	parent: string,
 	partialMapping: PartialMapping[]
 ): Evaluate {
-	const {name} = <Identifier>node.key;
-	const {loc} = <Identifier>node.value;
+	const { name } = <Identifier>node.key;
+	const { loc } = <Identifier>node.value;
 
 	if (
 		!partialMapping.find(
-			map =>
-				map.name === name &&
-				map.type === SParam &&
-				map.parent === parent
+			map => map.name === name && map.type === SParam && map.parent === parent
 		)
 	) {
 		return [false];
@@ -45,11 +42,7 @@ export default function(
 		if (prop.type === 'ObjectProperty') {
 			// 1. An possible Param inside of the Call inside.
 			// 1.1 An possible Param inside of the Call outside.
-			let objectProperty = EvaluateObjectProperty(
-				prop,
-				parent,
-				partialMapping
-			);
+			let objectProperty = EvaluateObjectProperty(prop, parent, partialMapping);
 
 			mapping.push(...objectProperty);
 		}

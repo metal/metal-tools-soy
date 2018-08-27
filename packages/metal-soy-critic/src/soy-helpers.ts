@@ -1,22 +1,22 @@
-import {types as S} from 'soyparser';
+import { types as S } from 'soyparser';
 
 export function fullName(node: S.Call | S.Template | S.DelTemplate): string {
-  const namespace = node.id.namespace || '';
-  return `${namespace}.${node.id.name}`;
+	const namespace = node.id.namespace || '';
+	return `${namespace}.${node.id.name}`;
 }
 
 export function isCall(node: S.Node): node is S.Call {
-  return node.type === 'Call';
+	return node.type === 'Call';
 }
 
 export function isInterpolation(node: S.Node): node is S.Interpolation {
-  return node.type === 'Interpolation';
+	return node.type === 'Interpolation';
 }
 
 export function isReference(node: S.Node): node is S.Reference {
-  return node.type === 'Reference';
+	return node.type === 'Reference';
 }
 
 export function isFunctionCall(node: S.Node): node is S.FunctionCall {
-  return node.type === 'FunctionCall';
+	return node.type === 'FunctionCall';
 }

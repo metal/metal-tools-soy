@@ -5,14 +5,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {FileName, Evaluation} from '../../global';
-import {TemplateEvaluation} from './Template';
-import {types as S} from 'soyparser';
+import { FileName, Evaluation } from '../../global';
+import { TemplateEvaluation } from './Template';
+import { types as S } from 'soyparser';
 
 export default function(node: S.DelTemplate, source: FileName): Evaluation {
 	const {
-		id: {name, namespace},
-		variant,
+		id: { name, namespace },
+		variant
 	} = node;
 	const DelTemplate = `${namespace}.${name}`;
 

@@ -3,107 +3,110 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as process from 'process';
 
-const CONFIG_FILE_NAMES = [
-  '.soycriticrc',
-  '.soycriticrc.json',
-];
+const CONFIG_FILE_NAMES = ['.soycriticrc', '.soycriticrc.json'];
 
 export interface CallToImportConfig {
-  regex: string
-  replace: string
+	regex: string;
+	replace: string;
 }
 
 export interface ImplicitParamsMap {
-  [nameOrRegex: string]: string | Array<string>
+	[nameOrRegex: string]: string | Array<string>;
 }
 
 export interface Config {
-  callToImport: Array<CallToImportConfig>
-  implicitParams: ImplicitParamsMap
+	callToImport: Array<CallToImportConfig>;
+	implicitParams: ImplicitParamsMap;
 }
 
 export const DEFAULT_CONFIG: Config = {
-  callToImport: [{regex: '(.*)',replace: '{$1}'}],
-  implicitParams: {}
+	callToImport: [{ regex: '(.*)', replace: '{$1}' }],
+	implicitParams: {}
 };
 
 export function validateConfig(config: Config): Config {
-  if (!Array.isArray(config.callToImport)) {
-    throw new Error('callToImport is not a valid config array.');
-  }
+	if (!Array.isArray(config.callToImport)) {
+		throw new Error('callToImport is not a valid config array.');
+	}
 
-  for (const item of config.callToImport) {
-    if (!isRegex(item.regex)) {
-      throw new Error(`callToImport.regex "${item.regex}" is not a valid RegExp.`);
-    }
+	for (const item of config.callToImport) {
+		if (!isRegex(item.regex)) {
+			throw new Error(
+				`callToImport.regex "${item.regex}" is not a valid RegExp.`
+			);
+		}
 
-    if (!isRegex(item.replace)) {
-      throw new Error(`callToImport.replace "${item.replace}" is not a valid replace string.`);
-    }
-  }
+		if (!isRegex(item.replace)) {
+			throw new Error(
+				`callToImport.replace "${item.replace}" is not a valid replace string.`
+			);
+		}
+	}
 
-  for (const key in config.implicitParams) {
-    if (!isRegex(key)) {
-      throw new Error(`"${key}" is not a valid RegExp.`);
-    }
-  }
+	for (const key in config.implicitParams) {
+		if (!isRegex(key)) {
+			throw new Error(`"${key}" is not a valid RegExp.`);
+		}
+	}
 
-  return config;
+	return config;
 }
 
 export function convertConfig(config: any): Config {
-  if (config.callToImportRegex && config.callToImportReplace) {
-    config.callToImport = [
-      {
-        regex: config.callToImportRegex,
-        replace: config.callToImportReplace
-      }
-    ];
+	if (config.callToImportRegex && config.callToImportReplace) {
+		config.callToImport = [
+			{
+				regex: config.callToImportRegex,
+				replace: config.callToImportReplace
+			}
+		];
 
-    console.log(chalk.yellow('CONFIG API HAS CHANGED, PLEASE UPDATE\n'));
-    console.log('\tYour callToImport configuration is outdated, update it to new API.\n');
-  }
- 
- return config;
+		console.log(chalk.yellow('CONFIG API HAS CHANGED, PLEASE UPDATE\n'));
+		console.log(
+			'\tYour callToImport configuration is outdated, update it to new API.\n'
+		);
+	}
+
+	return config;
 }
 
 export function readConfig(): Config {
-  const filePath = getConfigFilePath();
-  let config = {};
+	const filePath = getConfigFilePath();
+	let config = {};
 
-  if (filePath) {
-    const buffer = fs.readFileSync(filePath);
+	if (filePath) {
+		const buffer = fs.readFileSync(filePath);
 
-    config = JSON.parse(buffer.toString('utf8'));
-  }
-  
-  config = convertConfig(config);
-  
-  return validateConfig({...DEFAULT_CONFIG, ...config});
+		config = JSON.parse(buffer.toString('utf8'));
+	}
+
+	config = convertConfig(config);
+
+	return validateConfig({ ...DEFAULT_CONFIG, ...config });
 }
 
 export function getConfigFilePath(): string | null {
-  let currentPath = process.cwd();
+	let currentPath = process.cwd();
 
-  while (currentPath !== '/') {
-    for (const fileName of CONFIG_FILE_NAMES) {
-      const nextPath = path.join(currentPath, '/', fileName);
+	while (currentPath !== '/') {
+		for (const fileName of CONFIG_FILE_NAMES) {
+			const nextPath = path.join(currentPath, '/', fileName);
 
-      if (fs.existsSync(nextPath)) {
-        return nextPath;
-      }
-    }
-    currentPath = path.dirname(currentPath);
-  }
+			if (fs.existsSync(nextPath)) {
+				return nextPath;
+			}
+		}
+		currentPath = path.dirname(currentPath);
+	}
 
-  return null;
+	return null;
 }
 
 export function isRegex(regex: string): boolean {
-  try {
-    new RegExp(regex);
-  } catch(e) {
-    return false;
-  }
-  return true;
+	try {
+		new RegExp(regex);
+	} catch (e) {
+		return false;
+	}
+	return true;
 }

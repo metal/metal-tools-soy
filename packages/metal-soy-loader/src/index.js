@@ -20,7 +20,7 @@ export default function metalSoyLoader(contents) {
 		resourcePath = resourcePath.substring(0, resourcePath.indexOf('.js'));
 
 		contents = fs.readFileSync(resourcePath, {
-			encoding: 'utf8',
+			encoding: 'utf8'
 		});
 	}
 

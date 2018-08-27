@@ -2,7 +2,7 @@ import md5 from 'md5';
 import compileSoy from 'metal-tools-soy/lib/pipelines/compileSoy';
 import path from 'path';
 import vfs from 'vinyl-fs';
-import {EventEmitter} from 'metal-events';
+import { EventEmitter } from 'metal-events';
 
 /**
  * SoyCompiler class.
@@ -54,7 +54,7 @@ class SoyCompiler extends EventEmitter {
 
 		const stream = vfs.src(src).pipe(
 			compileSoy({
-				soyDeps,
+				soyDeps
 			}).on('error', this.handleError_.bind(this))
 		);
 

@@ -306,9 +306,9 @@ function replaceTemplateRequires() {
 			id,
 			methodName
 		) {
-			return `Soy.getTemplate('${importMap[
-				id
-			]}.incrementaldom', '${methodName}')`;
+			return `Soy.getTemplate('${
+				importMap[id]
+			}.incrementaldom', '${methodName}')`;
 		});
 
 		file.contents = new Buffer(contents);

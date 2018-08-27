@@ -5,12 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {File} from '@babel/types';
-import {Mapping} from './global';
-import {parse} from '@babel/parser';
+import { File } from '@babel/types';
+import { Mapping } from './global';
+import { parse } from '@babel/parser';
 import * as sourceMap from 'source-map/source-map';
 import environment from './environment';
-import soyparser, {types as S} from 'soyparser';
+import soyparser, { types as S } from 'soyparser';
 
 function addMapping(
 	mapping: Mapping[],
@@ -29,7 +29,7 @@ function implSourceMap(
 ): sourceMap.SourceMapGenerator {
 	const generator = new sourceMap.SourceMapGenerator({
 		file: sourceName,
-		sourceRoot: input,
+		sourceRoot: input
 	});
 
 	addMapping(mapping, generator);
@@ -42,12 +42,12 @@ function implSourceMap(
 function parser(sourceContent: string, generatedContent: string) {
 	const astSource: S.Program = soyparser(sourceContent);
 	const astGenerated: File = parse(generatedContent, {
-		allowImportExportEverywhere: true,
+		allowImportExportEverywhere: true
 	});
 
 	return {
 		astSource,
-		astGenerated,
+		astGenerated
 	};
 }
 
@@ -60,7 +60,7 @@ interface RunEnvironment {
 function runEnvironment({
 	astGenerated,
 	astSource,
-	sourceName,
+	sourceName
 }: RunEnvironment): Mapping[] {
 	const mapping: Mapping[] = environment(astSource, astGenerated, sourceName);
 
@@ -74,7 +74,7 @@ export default function(
 	sourceName: string
 ): sourceMap.SourceMapGenerator {
 	const parsedContent = parser(sourceContent, generatedContent);
-	const mapping: Mapping[] = runEnvironment({...parsedContent, sourceName});
+	const mapping: Mapping[] = runEnvironment({ ...parsedContent, sourceName });
 	const generator = implSourceMap(input, mapping, sourceContent, sourceName);
 
 	return generator;

@@ -5,58 +5,66 @@ import JSContext from './js-context';
 import * as T from 'babel-types';
 import * as path from 'path';
 import chalk from 'chalk';
-import {joinErrors, toResult, Result} from './util';
-import {Config} from './config';
+import { joinErrors, toResult, Result } from './util';
+import { Config } from './config';
 
 function getExternalSoyCalls(soyContext: SoyContext): Array<string> {
-  const calls: Set<string> = new Set();
-  soyContext.visit({
-    Call(node) {
-      if (node.id.namespace) {
-        calls.add(node.id.namespace);
-      }
-    }
-  });
-  return [...calls];
+	const calls: Set<string> = new Set();
+	soyContext.visit({
+		Call(node) {
+			if (node.id.namespace) {
+				calls.add(node.id.namespace);
+			}
+		}
+	});
+	return [...calls];
 }
 
 function getImportPaths(ast: T.Node): Array<string> {
-  const importPaths: Array<string> = [];
-  jsTraverse(ast, {
-    ImportDeclaration(path) {
-      importPaths.push(path.node.source.value);
-    },
-    ImportSpecifier(path) {
-      importPaths.push(path.node.imported.name);
-    }
-  });
-  
-  return importPaths;
+	const importPaths: Array<string> = [];
+	jsTraverse(ast, {
+		ImportDeclaration(path) {
+			importPaths.push(path.node.source.value);
+		},
+		ImportSpecifier(path) {
+			importPaths.push(path.node.imported.name);
+		}
+	});
+
+	return importPaths;
 }
 
-export default function valdiateCallImports(soyContext: SoyContext, jsContext: JSContext, config: Config): Result {
-  const importNames = getImportPaths(jsContext.ast)
-    .map(importPath => path.parse(importPath).name);
-    
-    const missingImports = getExternalSoyCalls(soyContext)
-    .filter(name => {
-      for (const item of config.callToImport) {
-        let transformedName = transform(name, item.regex, item.replace);
+export default function valdiateCallImports(
+	soyContext: SoyContext,
+	jsContext: JSContext,
+	config: Config
+): Result {
+	const importNames = getImportPaths(jsContext.ast).map(
+		importPath => path.parse(importPath).name
+	);
 
-        if (importNames.find(importName => importName.includes(transformedName))) {
-          return false;
-        }
-      }
+	const missingImports = getExternalSoyCalls(soyContext).filter(name => {
+		for (const item of config.callToImport) {
+			let transformedName = transform(name, item.regex, item.replace);
 
-      return true;
-    });
+			if (
+				importNames.find(importName => importName.includes(transformedName))
+			) {
+				return false;
+			}
+		}
 
-  if (missingImports.length) {
-    return toResult(
-      false,
-      `It looks like the following component calls are missing an ${chalk.yellow('import')}:\n\n` +
-      joinErrors(missingImports));
-  }
+		return true;
+	});
 
-  return toResult(true);
+	if (missingImports.length) {
+		return toResult(
+			false,
+			`It looks like the following component calls are missing an ${chalk.yellow(
+				'import'
+			)}:\n\n` + joinErrors(missingImports)
+		);
+	}
+
+	return toResult(true);
 }

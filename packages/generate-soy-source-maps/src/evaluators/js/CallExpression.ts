@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {default as EvaluteObjectExpression} from './ObjectExpression';
+import { default as EvaluteObjectExpression } from './ObjectExpression';
 import {
 	CallExpression,
 	Expression,
@@ -17,13 +17,13 @@ import {
 	SourceLocation,
 	SpreadElement,
 	StringLiteral,
-	ObjectExpression,
+	ObjectExpression
 } from '@babel/types';
-import {createMapping} from '../../mapped';
-import {isValidLetStatement, isValidName} from '../../utils';
-import {NodePath} from '@babel/traverse';
-import {PartialMapping, Mapping} from '../../global';
-import {SCall} from '../../constants';
+import { createMapping } from '../../mapped';
+import { isValidLetStatement, isValidName } from '../../utils';
+import { NodePath } from '@babel/traverse';
+import { PartialMapping, Mapping } from '../../global';
+import { SCall } from '../../constants';
 import traverse from '../../utils/traverseFast';
 
 type Evaluate = Array<Mapping | boolean> | boolean;
@@ -51,7 +51,7 @@ function CreateMapping(
 ): Evaluate {
 	return [
 		...createMapping(partialMapping, SCall, name, loc),
-		...EvaluteObjectExpression(arg, name, partialMapping),
+		...EvaluteObjectExpression(arg, name, partialMapping)
 	].filter(item => item);
 }
 
@@ -71,14 +71,14 @@ function EvaluateCall(
 
 			traverse(ast, {
 				VariableDeclarator(node) {
-					const {name: nameVar} = <Identifier>node.id;
+					const { name: nameVar } = <Identifier>node.id;
 
 					if (isCallExpression(node.init)) {
 						if (nameVar === name) {
 							CallName = mountCallName(node.init.arguments);
 						}
 					}
-				},
+				}
 			});
 
 			if (!CallName) return false;
@@ -120,11 +120,11 @@ export default function(
 	partialMapping: PartialMapping[],
 	ast: File
 ): Evaluate {
-	const {node} = path;
+	const { node } = path;
 
 	if (node.callee.type === 'Identifier') {
-		const {loc} = node;
-		const {name} = <Identifier>node.callee;
+		const { loc } = node;
+		const { name } = <Identifier>node.callee;
 
 		if (!node.arguments.length) {
 			// 1. An possible Interpolation.

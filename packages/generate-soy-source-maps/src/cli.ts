@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {RegexSourceMapping, SourceMapping} from './constants';
+import { RegexSourceMapping, SourceMapping } from './constants';
 import * as fs from 'fs';
 import * as glob from 'glob';
 import * as logger from 'signale';

@@ -5,5 +5,5 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-export {default as CallExpression} from './CallExpression';
-export {default as VariableDeclaration} from './VariableDeclaration';
+export { default as CallExpression } from './CallExpression';
+export { default as VariableDeclaration } from './VariableDeclaration';

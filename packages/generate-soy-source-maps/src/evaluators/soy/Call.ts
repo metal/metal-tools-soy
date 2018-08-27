@@ -5,18 +5,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {createPartialMapping} from '../../mapped';
-import {FileName, Evaluation} from '../../global';
-import {implTemplateName} from '../../utils';
-import {SParam, STemplate, SDelTemplate} from '../../constants';
-import {types as S} from 'soyparser';
+import { createPartialMapping } from '../../mapped';
+import { FileName, Evaluation } from '../../global';
+import { implTemplateName } from '../../utils';
+import { SParam, STemplate, SDelTemplate } from '../../constants';
+import { types as S } from 'soyparser';
 import closest from '../../utils/closest';
 
-export function fixLocEnd({start, end}: S.Mark) {
+export function fixLocEnd({ start, end }: S.Mark) {
 	if (start.line !== end.line) {
 		return {
 			line: end.line - 1,
-			column: end.column,
+			column: end.column
 		};
 	}
 
@@ -29,21 +29,21 @@ export function CallEvaluation(
 	source: FileName
 ): Evaluation {
 	const {
-		mark: {start, end},
-		id: {name, namespace},
-		type,
+		mark: { start, end },
+		id: { name, namespace },
+		type
 	} = node;
 	const callName: string = implTemplateName(name, namespace);
 	const parentList = [SParam, STemplate, SDelTemplate];
 	const parent: string = closest(ast, node, parentList);
 
 	return createPartialMapping({
-		end: fixLocEnd({start, end}),
+		end: fixLocEnd({ start, end }),
 		name: callName,
 		source,
 		start,
 		parent,
-		type,
+		type
 	});
 }
 

@@ -5,12 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {implTemplateName} from '../utils';
-import {types as S} from 'soyparser';
+import { implTemplateName } from '../utils';
+import { types as S } from 'soyparser';
 
 export function CallClosest(parentNode: S.Call): string {
 	const {
-		id: {name, namespace},
+		id: { name, namespace }
 	} = parentNode;
 
 	return implTemplateName(name, namespace);
@@ -18,8 +18,8 @@ export function CallClosest(parentNode: S.Call): string {
 
 export function DelTemplateClosest(parentNode: S.DelTemplate): string {
 	const {
-		id: {name, namespace},
-		variant,
+		id: { name, namespace },
+		variant
 	} = parentNode;
 	const DelTemplate = implTemplateName(name, namespace);
 
@@ -38,7 +38,7 @@ export function ParamClosest(parentNode: S.Param): string {
 
 export function TemplateClosest(parentNode: S.Template): string {
 	const {
-		id: {name, namespace},
+		id: { name, namespace }
 	} = parentNode;
 
 	return implTemplateName(name, namespace);
@@ -53,7 +53,7 @@ const VisitClosest: Visit = {
 	DelTemplate: DelTemplateClosest,
 	LetStatement: LetStatementClosest,
 	Param: ParamClosest,
-	Template: TemplateClosest,
+	Template: TemplateClosest
 };
 
 export default function closest(

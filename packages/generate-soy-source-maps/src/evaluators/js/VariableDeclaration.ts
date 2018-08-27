@@ -16,25 +16,25 @@ import {
 	isMemberExpression,
 	MemberExpression,
 	isStringLiteral,
-	StringLiteral,
+	StringLiteral
 } from '@babel/types';
-import {createMapping} from '../../mapped';
+import { createMapping } from '../../mapped';
 import {
 	isValidName,
 	isValidLetStatement,
 	getLetName,
-	isValidDelTemplate,
+	isValidDelTemplate
 } from '../../utils';
-import {NodePath} from '@babel/traverse';
-import {PartialMapping, Mapping} from '../../global';
+import { NodePath } from '@babel/traverse';
+import { PartialMapping, Mapping } from '../../global';
 import {
 	STemplate,
 	SLetStatement,
 	SParamDeclaration,
-	SDelTemplate,
+	SDelTemplate
 } from '../../constants';
 import findTemplateParent, {
-	evaluateTemplateName,
+	evaluateTemplateName
 } from './shared/findTemplateParent';
 
 type Evaluate = Array<Mapping | boolean> | boolean;
@@ -43,28 +43,21 @@ function EvaluateTemplate(
 	declaration: VariableDeclarator,
 	partialMapping: PartialMapping[]
 ): Evaluate {
-	const {loc} = declaration;
-	const {name} = <Identifier>declaration.id;
+	const { loc } = declaration;
+	const { name } = <Identifier>declaration.id;
 
 	if (isFunctionExpression(<FunctionExpression>declaration.init)) {
-		const Identifier = <Identifier>(
-			(<FunctionExpression>declaration.init).id
-		);
+		const Identifier = <Identifier>(<FunctionExpression>declaration.init).id;
 
 		if (Identifier) {
-			const {name: nameInit} = Identifier;
+			const { name: nameInit } = Identifier;
 
 			if (name !== nameInit) return false;
 		}
 
 		if (isValidName(name)) {
 			// 1. An possible Template.
-			return createMapping(
-				partialMapping,
-				STemplate,
-				name.substring(1),
-				loc
-			);
+			return createMapping(partialMapping, STemplate, name.substring(1), loc);
 		} else if (isValidDelTemplate(name)) {
 			// 1.1 An possible DelTemplate.
 			return createMapping(
@@ -84,8 +77,8 @@ function EvaluateParamDeclaration(
 	partialMapping: PartialMapping[],
 	path: NodePath<VariableDeclaration>
 ): Evaluate {
-	const {loc} = declaration;
-	const {name} = <Identifier>declaration.id;
+	const { loc } = declaration;
+	const { name } = <Identifier>declaration.id;
 
 	if (!partialMapping.find(map => map.name === name)) return false;
 
@@ -114,8 +107,8 @@ function EvaluateLetStatement(
 	partialMapping: PartialMapping[],
 	path: NodePath<VariableDeclaration>
 ): Evaluate {
-	const {loc} = declaration;
-	const {name} = <Identifier>declaration.id;
+	const { loc } = declaration;
+	const { name } = <Identifier>declaration.id;
 
 	if (!isValidLetStatement(name)) return false;
 
@@ -126,7 +119,7 @@ function EvaluateLetStatement(
 	) {
 		if (isFunctionExpression(<FunctionExpression>declaration.init)) {
 			if (<Identifier>(<FunctionExpression>declaration.init).id) {
-				const {name: nameInit} = <Identifier>(
+				const { name: nameInit } = <Identifier>(
 					(<FunctionExpression>declaration.init).id
 				);
 
@@ -154,7 +147,7 @@ export default function(
 	path: NodePath<VariableDeclaration>,
 	partialMapping: PartialMapping[]
 ): Evaluate {
-	const {node} = path;
+	const { node } = path;
 
 	for (let declar of node.declarations) {
 		let Initializer = declar.init;
@@ -184,11 +177,7 @@ export default function(
 			if (paramDeclaration) return paramDeclaration;
 
 			// 3. An possible LetStatement.
-			let letStatement = EvaluateLetStatement(
-				declar,
-				partialMapping,
-				path
-			);
+			let letStatement = EvaluateLetStatement(declar, partialMapping, path);
 
 			if (letStatement) return letStatement;
 		}

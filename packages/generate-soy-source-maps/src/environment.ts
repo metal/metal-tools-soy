@@ -5,11 +5,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {File} from '@babel/types';
-import {getKeys, sortPartialMapping} from './utils';
-import {Mapping, FileName, Visitor, PartialMapping} from './global';
-import {types as S} from 'soyparser';
-import {visit as traverseSoy} from 'soyparser/lib/traverse';
+import { File } from '@babel/types';
+import { getKeys, sortPartialMapping } from './utils';
+import { Mapping, FileName, Visitor, PartialMapping } from './global';
+import { types as S } from 'soyparser';
+import { visit as traverseSoy } from 'soyparser/lib/traverse';
 import * as evaluatorsJs from './evaluators/js';
 import * as evaluatorsSoy from './evaluators/soy';
 import traverseJs from '@babel/traverse';

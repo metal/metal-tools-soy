@@ -12,9 +12,9 @@ import {
 	Index,
 	Mapping,
 	PartialMapping,
-	Status,
+	Status
 } from './global';
-import {SourceLocation} from '@babel/types';
+import { SourceLocation } from '@babel/types';
 
 export function implMapping({
 	column,
@@ -23,19 +23,19 @@ export function implMapping({
 	source,
 	status,
 	parent,
-	type,
+	type
 }: ImplPartialMapping): PartialMapping {
 	return {
 		generated: {},
 		source,
 		original: {
 			line,
-			column,
+			column
 		},
 		name,
 		status,
 		parent,
-		type,
+		type
 	};
 }
 
@@ -54,7 +54,7 @@ export function createPartialMapping({
 	source,
 	start,
 	parent,
-	type,
+	type
 }: CreatePartialMapping): Evaluation {
 	return [
 		implMapping({
@@ -64,7 +64,7 @@ export function createPartialMapping({
 			name,
 			status: 'start',
 			parent,
-			type,
+			type
 		}),
 		start.line !== end.line &&
 			implMapping({
@@ -74,22 +74,22 @@ export function createPartialMapping({
 				name,
 				status: 'end',
 				parent,
-				type,
-			}),
+				type
+			})
 	].filter(item => item);
 }
 
 export function fillMapping(
-	{name, original, parent, source, status, type}: PartialMapping,
+	{ name, original, parent, source, status, type }: PartialMapping,
 	loc: Index
 ): Mapping {
 	return {
 		generated: {
-			...loc,
+			...loc
 		},
 		name: `${type} ${parent} ${name} ${status}`,
 		original,
-		source,
+		source
 	};
 }
 
@@ -109,7 +109,7 @@ export function createMapping(
 
 	const mapping = [
 		fillMapping(mappedStart, loc.start),
-		isEnd && fillMapping(mappedEnd, loc.end),
+		isEnd && fillMapping(mappedEnd, loc.end)
 	].filter(item => item);
 
 	partialMapping.splice(partialMapping.indexOf(mappedStart), 1);

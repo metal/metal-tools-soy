@@ -5,10 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {createPartialMapping} from '../../mapped';
-import {FileName, Evaluation} from '../../global';
-import {SCall} from '../../constants';
-import {types as S} from 'soyparser';
+import { createPartialMapping } from '../../mapped';
+import { FileName, Evaluation } from '../../global';
+import { SCall } from '../../constants';
+import { types as S } from 'soyparser';
 import closest from '../../utils/closest';
 
 export function ParamEvaluation(
@@ -17,9 +17,9 @@ export function ParamEvaluation(
 	source: FileName
 ): Evaluation {
 	const {
-		mark: {start, end},
+		mark: { start, end },
 		name,
-		type,
+		type
 	} = node;
 	const parentList = [SCall];
 	const parent: string = closest(ast, node, parentList);
@@ -30,7 +30,7 @@ export function ParamEvaluation(
 		source,
 		start,
 		parent,
-		type,
+		type
 	});
 }
 

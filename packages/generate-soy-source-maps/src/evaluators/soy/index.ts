@@ -5,8 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-export {default as Call} from './Call';
-export {default as DelTemplate} from './DelTemplate';
-export {default as LetStatement} from './LetStatement';
-export {default as Param} from './Param';
-export {default as Template} from './Template';
+export { default as Call } from './Call';
+export { default as DelTemplate } from './DelTemplate';
+export { default as LetStatement } from './LetStatement';
+export { default as Param } from './Param';
+export { default as Template } from './Template';

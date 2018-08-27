@@ -5,9 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {createPartialMapping} from '../../../mapped';
-import {Mark, FileName, Evaluation} from '../../../global';
-import {types as S} from 'soyparser';
+import { createPartialMapping } from '../../../mapped';
+import { Mark, FileName, Evaluation } from '../../../global';
+import { types as S } from 'soyparser';
 
 export function ParamDeclarationEvaluation(
 	mark: Mark,
@@ -16,7 +16,7 @@ export function ParamDeclarationEvaluation(
 	source: FileName,
 	type: string
 ): Evaluation {
-	const {start, end} = mark;
+	const { start, end } = mark;
 
 	return createPartialMapping({
 		end,
@@ -24,7 +24,7 @@ export function ParamDeclarationEvaluation(
 		source,
 		start,
 		parent,
-		type,
+		type
 	});
 }
 
@@ -33,7 +33,7 @@ export default function(
 	parent: string,
 	source: FileName
 ): Evaluation {
-	const {mark, name, type} = node;
+	const { mark, name, type } = node;
 
 	return ParamDeclarationEvaluation(mark, name, parent, source, type);
 }

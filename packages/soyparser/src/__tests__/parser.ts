@@ -1,88 +1,88 @@
-import {getFixture} from '../../test/util';
+import { getFixture } from '../../test/util';
 import soyParser from '../parser';
 
 describe('Soy Parser', () => {
-  test('should parse file correctly', () => {
-    const input = getFixture('Test.soy');
+	test('should parse file correctly', () => {
+		const input = getFixture('Test.soy');
 
-    expect(soyParser(input)).toMatchSnapshot();
-  });
+		expect(soyParser(input)).toMatchSnapshot();
+	});
 
-  test('should fail to parse file', () => {
-    const input = getFixture('Invalid.soy');
+	test('should fail to parse file', () => {
+		const input = getFixture('Invalid.soy');
 
-    expect(() => soyParser(input)).toThrow();
-  });
+		expect(() => soyParser(input)).toThrow();
+	});
 
-  test('should parse nested calls', () => {
-    const input = getFixture('NestedCalls.soy');
+	test('should parse nested calls', () => {
+		const input = getFixture('NestedCalls.soy');
 
-    expect(soyParser(input)).toMatchSnapshot();
-  });
+		expect(soyParser(input)).toMatchSnapshot();
+	});
 
-  test('should parse delcall', () => {
-    const input = getFixture('DelCall.soy');
+	test('should parse delcall', () => {
+		const input = getFixture('DelCall.soy');
 
-    expect(soyParser(input)).toMatchSnapshot();
-  });
+		expect(soyParser(input)).toMatchSnapshot();
+	});
 
-  test('should parse deltemplates', () => {
-    const input = getFixture('DelTemplate.soy');
+	test('should parse deltemplates', () => {
+		const input = getFixture('DelTemplate.soy');
 
-    expect(soyParser(input)).toMatchSnapshot();
-  });
+		expect(soyParser(input)).toMatchSnapshot();
+	});
 
-  test('should parse private templates', () => {
-    const input = getFixture('PrivateTemplate.soy');
+	test('should parse private templates', () => {
+		const input = getFixture('PrivateTemplate.soy');
 
-    expect(soyParser(input)).toMatchSnapshot();
-  });
+		expect(soyParser(input)).toMatchSnapshot();
+	});
 
-  test('should parse param names with underscores', () => {
-    const input = getFixture('UnderscoreParam.soy');
+	test('should parse param names with underscores', () => {
+		const input = getFixture('UnderscoreParam.soy');
 
-    expect(soyParser(input)).toMatchSnapshot();
-  });
+		expect(soyParser(input)).toMatchSnapshot();
+	});
 
-  test('should parse param declarations', () => {
-    const input = getFixture('ParamDeclarations.soy');
+	test('should parse param declarations', () => {
+		const input = getFixture('ParamDeclarations.soy');
 
-    expect(soyParser(input)).toMatchSnapshot();
-  });
+		expect(soyParser(input)).toMatchSnapshot();
+	});
 
-  test('should parse all template attributes', () => {
-    const input = getFixture('TemplateAttributes.soy');
+	test('should parse all template attributes', () => {
+		const input = getFixture('TemplateAttributes.soy');
 
-    expect(soyParser(input)).toMatchSnapshot();
-  });
+		expect(soyParser(input)).toMatchSnapshot();
+	});
 
-  test('should parse maps in params', () => {
-    const input = getFixture('MapParam.soy');
+	test('should parse maps in params', () => {
+		const input = getFixture('MapParam.soy');
 
-    expect(soyParser(input)).toMatchSnapshot();
-  });
+		expect(soyParser(input)).toMatchSnapshot();
+	});
 
-  test('should parse let statements in params', () => {
-    const input = getFixture('LetStatements.soy');
+	test('should parse let statements in params', () => {
+		const input = getFixture('LetStatements.soy');
 
-    expect(soyParser(input)).toMatchSnapshot();
-  });
+		expect(soyParser(input)).toMatchSnapshot();
+	});
 
-  test('should parse template docs', () => {
-    const input = getFixture('DocParams.soy');
+	test('should parse template docs', () => {
+		const input = getFixture('DocParams.soy');
 
-    expect(soyParser(input)).toMatchSnapshot();
-  });
+		expect(soyParser(input)).toMatchSnapshot();
+	});
 
-  test('should parse template name with an underscore', () => {
-    const input = getFixture('TemplateName.soy');
+	test('should parse template name with an underscore', () => {
+		const input = getFixture('TemplateName.soy');
 
-    expect(soyParser(input)).toMatchSnapshot();
-  });
+		expect(soyParser(input)).toMatchSnapshot();
+	});
 
-  test('should parse literal tags', () => {
-    const input = getFixture('Literal.soy');
+	test('should parse literal tags', () => {
+		const input = getFixture('Literal.soy');
 
-    expect(soyParser(input)).toMatchSnapshot();
-  });
+		expect(soyParser(input)).toMatchSnapshot();
+	});
 });

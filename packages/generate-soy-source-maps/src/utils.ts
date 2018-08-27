@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {PartialMapping} from './global';
+import { PartialMapping } from './global';
 
 export function implTemplateName(
 	name: string,

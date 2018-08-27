@@ -5,8 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {BaseNode} from '@babel/types';
-import {Visitor, Visit} from '../global';
+import { BaseNode } from '@babel/types';
+import { Visitor, Visit } from '../global';
 import * as t from '@babel/types';
 
 function noop() {}

@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {implTemplateName} from '../utils';
+import { implTemplateName } from '../utils';
 
 describe('Utils', () => {
 	it('should return the implementation of the Template Name', () => {

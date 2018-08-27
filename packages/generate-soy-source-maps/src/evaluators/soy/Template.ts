@@ -5,16 +5,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {createPartialMapping} from '../../mapped';
-import {FileName, Evaluation, TemplateName} from '../../global';
-import {types as S} from 'soyparser';
+import { createPartialMapping } from '../../mapped';
+import { FileName, Evaluation, TemplateName } from '../../global';
+import { types as S } from 'soyparser';
 import ParamDeclaration from './partial/ParamDeclaration';
 
 function evaluateTemplateName(
 	id: TemplateName,
 	variant?: S.Interpolation | null
 ): string {
-	const {name, namespace} = id;
+	const { name, namespace } = id;
 
 	const parsedName = `${namespace}.${name}`;
 
@@ -29,14 +29,12 @@ function evaluateTemplateParamDeclaration(
 	source: FileName
 ): Evaluation {
 	if (node.params) {
-		const {variant} = <S.DelTemplate>node;
+		const { variant } = <S.DelTemplate>node;
 		const partialMapping: Evaluation = [];
 		const templateName = evaluateTemplateName(id, variant);
 
 		node.params.forEach((param: S.ParamDeclaration) => {
-			partialMapping.push(
-				...ParamDeclaration(param, templateName, source)
-			);
+			partialMapping.push(...ParamDeclaration(param, templateName, source));
 		});
 
 		return partialMapping;
@@ -51,9 +49,9 @@ export function TemplateEvaluation(
 	source: FileName
 ): Evaluation {
 	const {
-		mark: {start, end},
+		mark: { start, end },
 		id,
-		type,
+		type
 	} = node;
 
 	return [
@@ -63,15 +61,15 @@ export function TemplateEvaluation(
 			source,
 			start: node.doc ? node.doc.mark.end : start,
 			parent: name,
-			type,
+			type
 		}),
-		...evaluateTemplateParamDeclaration(id, node, source),
+		...evaluateTemplateParamDeclaration(id, node, source)
 	];
 }
 
 export default function(node: S.Template, source: FileName): Evaluation {
 	const {
-		id: {name},
+		id: { name }
 	} = node;
 
 	return TemplateEvaluation(name, node, source);
