@@ -6,3 +6,5 @@ node_modules
 *.log
 package-lock.json
 .gradle
+.DS_Store
+test-report.xml
