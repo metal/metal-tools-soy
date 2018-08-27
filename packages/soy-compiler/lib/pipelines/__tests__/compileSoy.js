@@ -25,7 +25,12 @@ expect.addSnapshotSerializer({
 });
 
 describe('Compile Soy Pipeline', function() {
+	beforeAll(() => {
+		process.chdir(path.resolve(__dirname, '../../../'));
+	});
+
 	afterAll(function(done) {
+		process.chdir(process.cwd());
 		del(outputDir).then(function() {
 			done();
 		});

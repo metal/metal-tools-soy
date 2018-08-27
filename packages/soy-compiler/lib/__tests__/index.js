@@ -4,8 +4,13 @@ const del = require('del');
 const fs = require('fs');
 const metalToolsSoy = require('../../index');
 const vfs = require('vinyl-fs');
+const path = require('path');
 
 describe('Metal Tools - Soy', function() {
+	beforeAll(() => {
+		process.chdir(path.resolve(__dirname, '../../'));
+	});
+
 	beforeEach(function() {
 		const stream = {
 			pipe: function() {
@@ -20,6 +25,10 @@ describe('Metal Tools - Soy', function() {
 
 	afterEach(function() {
 		restoreStream();
+	});
+
+	afterAll(() => {
+		process.chdir(process.cwd());
 	});
 
 	it('should compile soy files from/to "src" folder by default', function() {
