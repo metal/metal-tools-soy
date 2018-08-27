@@ -4,7 +4,7 @@ import jsTraverse from 'babel-traverse';
 import JSContext from './js-context';
 import * as T from 'babel-types';
 import * as path from 'path';
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 import {joinErrors, toResult, Result} from './util';
 import {Config} from './config';
 

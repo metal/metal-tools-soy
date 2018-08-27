@@ -1,6 +1,6 @@
 import {fullName} from './soy-helpers';
 import {toResult, Result, joinErrors} from './util';
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 import {types as S} from 'soyparser';
 import SoyContext from './soy-context';
 

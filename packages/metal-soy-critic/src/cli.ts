@@ -1,7 +1,7 @@
 import {Result} from './util';
 import * as fs from 'fs';
 import * as path from 'path';
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 import * as program from 'commander';
 import validateFile from './validate-file';
 import * as glob from 'glob';

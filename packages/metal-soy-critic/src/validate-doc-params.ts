@@ -1,5 +1,5 @@
 import {joinErrors, toResult, Result} from './util';
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 import SoyContext from './soy-context';
 
 export default function validateDocParams(soyContext: SoyContext): Result {

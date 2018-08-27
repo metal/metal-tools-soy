@@ -1,5 +1,5 @@
 import {difference, joinErrors, toResult, Result} from './util';
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 import SoyContext from './soy-context';
 import JSContext from './js-context';
 

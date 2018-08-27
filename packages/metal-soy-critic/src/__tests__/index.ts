@@ -5,7 +5,7 @@ describe('cli', () => {
   function runCliFrom(bin: string, cwd: string, ...args: Array<string>): Promise<[number, string]> {
     return new Promise((resolve, reject) => {
       const output: Array<string> = [];
-      const child = child_process.fork(bin, args, {cwd, silent: true});
+      const child = child_process.fork(path.resolve(__dirname, '../../', bin), args, {cwd, silent: true});
 
       child.stdout.on('data', data => {
         output.push(data.toString());
@@ -18,7 +18,7 @@ describe('cli', () => {
   }
 
   function runCli(...args: Array<string>): Promise<[number, string]> {
-    return runCliFrom('./lib/index.js', process.cwd(), ...args);
+    return runCliFrom('./lib/index.js', path.resolve(__dirname, '../../'), ...args);
   }
 
   test('should print usage without args', async () => {
@@ -65,8 +65,8 @@ describe('cli', () => {
 
   test('should run using config file', async () => {
     const [exitCode, output] = await runCliFrom(
-      '../../../lib/index.js',
-       './test/fixtures/config',
+      './lib/index.js',
+      path.resolve(__dirname, '../../', './test/fixtures/config'),
       '../TransformedImport.soy');
 
     expect(exitCode).toBe(0);
@@ -75,8 +75,8 @@ describe('cli', () => {
 
   test('should fail with invalid config file', async () => {
     const [exitCode, output] = await runCliFrom(
-      '../../../lib/index.js',
-       './test/fixtures/invalid-config',
+      './lib/index.js',
+      path.resolve(__dirname, '../../', './test/fixtures/invalid-config'),
       '../TransformedImport.soy');
 
     expect(exitCode).toBe(1);

@@ -1,6 +1,6 @@
 import {joinErrors, toResult, Result} from './util';
 import SoyContext from './soy-context';
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 import JSContext from './js-context';
 
 function isInternalName(name: string): boolean {

@@ -1,31 +1,32 @@
 import * as process from 'process';
 import * as Config from '../config';
+import * as path from 'path';
 
 describe('config', () => {
   describe('getConfigFilePath', () => {
-    const cwd = process.cwd();
+    const cwd = path.resolve(__dirname, '../../');
 
     afterAll(() => {
       process.chdir(cwd);
     });
 
     it('should return null if no file is found', () => {
-      const path = Config.getConfigFilePath();
+      const Path = Config.getConfigFilePath();
 
-      expect(path).toBeNull();
+      expect(Path).toBeNull();
     });
 
     it('should return a string if a file is found', () => {
-      process.chdir('./test/fixtures/config');
+      process.chdir(path.resolve(cwd, './test/fixtures/config'));
 
-      const path = Config.getConfigFilePath();
+      const Path = Config.getConfigFilePath();
 
-      expect(path).toMatch(/\.soycriticrc/);
+      expect(Path).toMatch(/\.soycriticrc/);
     });
   });
 
   describe('readConfig', () => {
-    const cwd = process.cwd();
+    const cwd = path.resolve(__dirname, '../../');
 
     afterEach(() => {
       process.chdir(cwd);

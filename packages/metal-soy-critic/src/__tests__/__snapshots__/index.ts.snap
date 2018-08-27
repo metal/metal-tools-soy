@@ -32,13 +32,13 @@ exports[`cli should print usage without args 1`] = `
 "
   Usage: index [options] <path>
 
-
   Options:
 
     -V, --version          output the version number
     -i, --ignore <ignore>  A glob to ignore files, if passed a directory
     -v, --verbose          Output for all files
     -h, --help             output usage information
+
 "
 `;
 
