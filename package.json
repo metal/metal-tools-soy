@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "devDependencies": {
+    "coveralls": "^3.0.0",
+    "lerna": "^3.1.4"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}

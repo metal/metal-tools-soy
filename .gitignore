@@ -1,0 +1,8 @@
+build
+coverage
+lib
+node_modules
+**/*.soy.js
+*.log
+package-lock.json
+.gradle
