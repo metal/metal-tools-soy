@@ -22,13 +22,16 @@ jobs:
             - yarn-v1--{{ .Branch }}--{{ checksum "yarn.lock" }}
       - run:
           name: "Install Dependencies"
-          command: yarn lerna
+          command: yarn install --frozen-lockfile # make sure that lockfile is up-to-date
       - save_cache:
           key: yarn-v1--{{ .Branch }}--{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
       - run:
-          name: "Build Assets"
+          name: "Build packages"
+          command: yarn lerna
+      - run:
+          name: "Compile packages"
           command: |
             yarn compile
       - persist_to_workspace:
