@@ -5,10 +5,10 @@ stages:
 after_success: npm run coveralls
 
 before_install:
-  - nvm install 8
   - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.9.4
   - export PATH=$HOME/.yarn/bin:$PATH
   - npm install -g lerna@3.1.4
+  - npm run lerna
 
 cache:
   yarn: true
@@ -17,6 +17,7 @@ install:
   - yarn
 
 language: node_js
+node_js: '8'
 
 jobs:
   include:
@@ -24,7 +25,6 @@ jobs:
       script:
         - npm run lint
         - npm run prettier-ci
-        - npm run typescript-ci
 
     - stage: test
       script:
