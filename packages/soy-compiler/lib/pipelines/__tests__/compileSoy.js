@@ -26,10 +26,12 @@ expect.addSnapshotSerializer({
 
 describe('Compile Soy Pipeline', function() {
 	beforeAll(() => {
+		jest.setTimeout(15000);
 		process.chdir(path.resolve(__dirname, '../../../'));
 	});
 
 	afterAll(function(done) {
+		jest.setTimeout(5000);
 		process.chdir(process.cwd());
 		del(outputDir).then(function() {
 			done();

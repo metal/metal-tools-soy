@@ -1,19 +1,14 @@
 {
-    "compilerOptions": {
-        "lib": ["es2016"],
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "noUnusedLocals": true,
-        "noFallthroughCasesInSwitch": true,
-        "noImplicitReturns": true,
-        "noUnusedParameters": true,
-        "outDir": "./lib",
-        "strict": true,
-        "target": "es6",
-        "allowJs": true
-    },
-    "exclude": [
-        "node_modules",
-        "**/__tests__/*"
-    ]
+	"compilerOptions": {
+		"lib": ["es5", "es6", "es7"],
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"noUnusedLocals": true,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitReturns": true,
+		"noUnusedParameters": true,
+		"strict": true,
+		"target": "es6",
+		"allowJs": true
+	}
 }

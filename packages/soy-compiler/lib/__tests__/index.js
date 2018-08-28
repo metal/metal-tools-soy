@@ -8,6 +8,7 @@ const path = require('path');
 
 describe('Metal Tools - Soy', function() {
 	beforeAll(() => {
+		jest.setTimeout(15000);
 		process.chdir(path.resolve(__dirname, '../../'));
 	});
 
@@ -28,6 +29,7 @@ describe('Metal Tools - Soy', function() {
 	});
 
 	afterAll(() => {
+		jest.setTimeout(5000);
 		process.chdir(process.cwd());
 	});
 
