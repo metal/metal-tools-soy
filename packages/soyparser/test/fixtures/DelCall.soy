@@ -1,0 +1,25 @@
+{namespace Test}
+
+/**
+ * Test
+ */
+{template .Test}
+	{@param name: string}
+	{@param title: string}
+
+	<div>
+		{delcall Test.First /}
+
+		{delcall Test.First variant="foo"}
+			{param name: $name /}
+			{param title: $title /}
+		{/delcall}
+
+		{delcall Test.First variant="foo" data="all" /}
+
+		{delcall Test.First allowemptydefault="true"}
+			{param name: $name /}
+			{param title: $title /}
+		{/delcall}
+	</div>
+{/template}

@@ -1,108 +1,52 @@
-# metal-tools-soy
+# ⚙️ Metal tools soy  &middot; [![CircleCI](https://circleci.com/gh/metal/metal-tools-soy.svg?style=svg)](https://circleci.com/gh/metal/metal-tools-soy) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/metal/metal-tools-soy)
 
-[![Build Status](https://travis-ci.org/metal/metal-tools-soy.svg?branch=master)](https://travis-ci.org/metal/metal-tools-soy)
+Metal tools soy follows the approach of a monorepo containing the main packages that has as principle to improve the experience of the developer who is developing with [Soy template (Closure Template)](https://developers.google.com/closure/templates/).
 
-Tool that can be used to compile metal soy files.
+## Contributing
 
-## CLI
+Feel free to open up problems or send pull requests. We will always be looking at these problems and we will be responding whenever possible.
 
-### Install
+> Before opening a issue make sure it exists.
 
-```sh
-$ npm install --global metal-tools-soy
-```
+### Good First Issues
 
-### Use
+If you want to contribute to this project and do not know where to start [good first issues](https://github.com/metal/metal-tools-soy/labels/good%20first%20issue) is a great place to start.
 
-```sh
-$ metalsoy
-```
+### Setup
 
-### Options
+1. Install NodeJS >= [v6.11.0](http://nodejs.org/dist/v6.11.0/), if you don't have it yet.
 
-You can see information about the available options by typing `$ metalsoy --help` in the command line.
+2. Install global dependencies:
 
-#### dest
+  ```
+  [sudo] npm install -g yarn
+  ```
 
-```sh
-$ metalsoy --dest folderName
-```
+3. Install project dependencies:
 
-The directory where the compiled files will be stored.
+  ```
+  yarn install
+  ```
 
-#### externalMsgFormat
+4. Install dependencies for each package and link them together:
 
-```sh
-$ metalsoy --externalMsgFormat format
-```
+  ```
+  npm run lerna
+  ```
 
-Pattern that should be used to format the extracted external messages from compiled files.
+5. Build all packages
 
-#### help
+  ```
+  npm run compile
+  ```
 
-```sh
-$ metalsoy --help
-```
+6. Run tests:
 
-Shows help information for all options, including default values.
+  ```
+  npm run test
+  ```
 
-#### outputDir
 
-```sh
-$ metalsoy --outputDir folderName
-```
+## License
 
-Temp directoy used to compile soy files.
-
-Note: this option does not determine where the final `.soy.js` files are placed, see `--dest` option.
-
-#### skipMetalGeneration
-
-```sh
-$ metalsoy --skipMetalGeneration
-```
-
-Passing this will cause soy files to be just compiled, without the addition of metal generated code (like the component class).
-
-#### sourceMaps
-
-```sh
-$ metalsoy --sourceMaps
-```
-
-Passing this will cause source maps to be created for the soy files.
-
-> The source map generator for soy files are in alpha, you can find problems. [Learn more here](https://github.com/matuzalemsteles/generate-soy-source-maps).
-
-#### soyDeps
-
-```sh
-$ metalsoy --soyDeps node_modules/metal*/src/**/*.soy
-```
-
-Soy files that the main source files depend on, but that shouldn't be compiled. The soy compiler needs these files.
-
-#### src
-
-```sh
-$ metalsoy --src src/**/*.soy
-```
-
-The path globs to the soy files to be compiled.
-
-#### version
-
-```sh
-$ metalsoy --version
-```
-
-Displays current version of metal-tools-soy.
-
-## SoyToIncrementalDomSrcCompiler
-
-This project uses the `SoyToIncrementalDomSrcCompiler` to compile the soy files to metal using Incremental DOM. Since the compiler is not independently released, the process to update it in this project is as follows:
-
-1. Clone the [https://github.com/google/closure-templates](google/closure-templates) repository
-2. Update the `<version>` value inside `pom.xml` to the date of the latest commit that is going to get released using `yyyy-mm-dd` as the date format
-3. Run `mvn install` on the root folder
-4. Copy the generated file from `~/.m2/repository/com/google/template/soy/{version}/soy-{version}-SoyToIncrementalDomSrcCompiler.jar` to the `jar` folder in this project
+BSD License © Liferay, Inc.

@@ -1,15 +1,29 @@
 {
-	"extends": "liferay",
+	"parser": "typescript-eslint-parser",
 	"env": {
 		"node": true,
 		"es6": true,
 		"jest": true
 	},
+	"extends": "liferay",
+	"plugins": [
+		"typescript"
+	],
 	"rules": {
+		"new-cap": "off",
+		"no-undef": "off",
+		"require-jsdoc": "off",
+		"typescript/no-unused-vars": "error",
+		"valid-jsdoc": "off",
 		"comma-dangle": "off",
 		"max-len": "off",
 		"no-invalid-this": "off",
 		"object-curly-spacing": "off",
-		"require-jsdoc": "off"
+		"camelcase": "off",
+		"no-var": "off",
+		"no-useless-escape": "off",
+		"no-mixed-spaces-and-tabs": "off",
+		"no-unused-vars": "off",
+		"no-case-declarations": "off"
 	}
 }

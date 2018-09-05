@@ -1,0 +1,43 @@
+{
+  "name": "generate-soy-source-maps",
+  "version": "0.2.7-alpha",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "bin": {
+    "soy-sourcemaps": "./bin/cli.js"
+  },
+  "author": "Matuzalém Teles <matuzalemteles@gmail.com>",
+  "files": [
+    "lib",
+    "bin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matuzalemsteles/generate-soy-source-maps.git"
+  },
+  "homepage": "https://github.com/matuzalemsteles/generate-soy-source-maps",
+  "scripts": {
+    "compile": "tsc",
+    "typescript-ci": "tsc --version; tsc --noEmit"
+  },
+  "dependencies": {
+    "@babel/parser": "^7.0.0-rc.1",
+    "@babel/traverse": "^7.0.0-rc.1",
+    "commander": "^2.17.1",
+    "glob": "^7.1.2",
+    "signale": "^1.2.1",
+    "source-map": "^0.7.3",
+    "soyparser": "^2.0.0"
+  },
+  "devDependencies": {
+    "@babel/types": "^7.0.0-rc.1",
+    "@types/babel__parser": "^7.0.0",
+    "@types/babel__traverse": "^7.0.0",
+    "@types/glob": "^5.0.35",
+    "@types/jest": "^23.3.1",
+    "@types/node": "^10.5.7",
+    "@types/parsimmon": "^1.10.0",
+    "@types/signale": "^1.2.0",
+    "typescript": "^3.0.1"
+  }
+}

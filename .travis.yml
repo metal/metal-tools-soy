@@ -1,4 +1,30 @@
-language: node_js
+stages:
+  - lint
+  - test
 
-node_js:
-  - "8"
+before_install:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.9.4
+  - export PATH=$HOME/.yarn/bin:$PATH
+
+cache:
+  yarn: true
+
+install:
+  - yarn
+  - yarn lerna
+
+language: node_js
+node_js: '8'
+
+jobs:
+  include:
+    - stage: lint
+      script:
+        - npm run lint
+        - npm run prettier-ci
+
+    - stage: test
+      after_success: npm run coveralls
+      script:
+        - npm run compile
+        - npm run test

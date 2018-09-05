@@ -1,2 +1,10 @@
+build
+coverage
+lib
 node_modules
-test/fixtures/**/*.soy.js
+**/*.soy.js
+*.log
+package-lock.json
+.gradle
+.DS_Store
+test-report.xml

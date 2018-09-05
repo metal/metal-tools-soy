@@ -1,0 +1,12 @@
+{namespace Child}
+
+/**
+ * This renders the component's whole content.
+ */
+{template .render}
+	<div class="child">
+		Child component
+
+		{call GrandChild.render /}
+	</div>
+{/template}
