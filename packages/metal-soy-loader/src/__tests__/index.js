@@ -67,6 +67,6 @@ describe('metal-soy-loader', function() {
 				}
 			);
 		},
-		15000
+		20000
 	);
 });
