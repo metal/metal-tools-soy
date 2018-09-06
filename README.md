@@ -1,4 +1,4 @@
-# ⚙️ Metal tools soy  &middot; [![CircleCI](https://circleci.com/gh/metal/metal-tools-soy.svg?style=svg)](https://circleci.com/gh/metal/metal-tools-soy) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/metal/metal-tools-soy)
+# ⚙️ Metal tools soy  &middot; [![Build Status](https://travis-ci.org/metal/metal-tools-soy.svg?branch=master)](https://travis-ci.org/metal/metal-tools-soy) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/metal/metal-tools-soy)
 
 Metal tools soy follows the approach of a monorepo containing the main packages that has as principle to improve the experience of the developer who is developing with [Soy template (Closure Template)](https://developers.google.com/closure/templates/).
 
