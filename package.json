@@ -20,7 +20,8 @@
   "scripts": {
     "lint": "eslint *.js lib/**/*.js",
     "precommit": "lint-staged",
-    "test": "jest"
+    "test": "jest",
+    "test:debug": "node --inspect node_modules/.bin/jest --watch  --runInBand"
   },
   "bin": {
     "metalsoy": "./bin/metalsoy.js"
