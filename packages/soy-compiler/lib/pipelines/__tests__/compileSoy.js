@@ -72,45 +72,6 @@ describe('Compile Soy Pipeline', function() {
 		});
 	});
 
-	it('should accept dotted namespaces', function(done) {
-		const stream = vfs
-			.src([
-				'test/fixtures/soy/dotted/dottedNamespace.soy',
-				'test/fixtures/soy/dotted/tada.soy'
-			])
-			.pipe(compileSoy());
-
-		const files = [];
-
-		stream.on('data', function(file) {
-			files.push(file);
-		});
-
-		stream.on('end', function() {
-			expect(files[0].relative).toBe('dottedNamespace.soy.js');
-
-			expect(files[1].relative).toBe('tada.soy.js');
-
-			const contents = files[0].contents.toString();
-
-			expect(
-				contents.indexOf(
-					`goog.module('com.metaljs.soy.dottedNamespace.incrementaldom');`
-				)
-			).not.toBe(-1);
-
-			expect(
-				contents.indexOf(
-					`var $templateAlias1 = Soy.getTemplate('com.metaljs.soy.tada.incrementaldom', 'render');`
-				)
-			).not.toBe(-1);
-
-			expect(contents).toMatchSnapshot();
-
-			done();
-		});
-	});
-
 	it('should not throw error if no files are provided for compilation', function(
 		done
 	) {
@@ -257,7 +218,48 @@ describe('Compile Soy Pipeline', function() {
 		});
 	});
 
-	it('should not generate component class if no render template is declared', function(done) {
+	it('should accept extending compound namespaces', function(done) {
+		const stream = vfs
+			.src([
+				'test/fixtures/soy/compound/compound.soy',
+				'test/fixtures/soy/compound/tada.soy'
+			])
+			.pipe(compileSoy());
+
+		const files = [];
+
+		stream.on('data', function(file) {
+			files.push(file);
+		});
+
+		stream.on('end', function() {
+			expect(files[0].relative).toBe('compound.soy.js');
+
+			expect(files[1].relative).toBe('tada.soy.js');
+
+			const contents = files[0].contents.toString();
+
+			expect(
+				contents.indexOf(
+					`goog.module('com.metaljs.soy.compound.incrementaldom');`
+				)
+			).not.toBe(-1);
+
+			expect(
+				contents.indexOf(
+					`var $templateAlias1 = Soy.getTemplate('com.metaljs.soy.tada.incrementaldom', 'render');`
+				)
+			).not.toBe(-1);
+
+			expect(contents).toMatchSnapshot();
+
+			done();
+		});
+	});
+
+	it('should not generate component class if no render template is declared', function(
+		done
+	) {
 		const stream = vfs
 			.src('test/fixtures/soy/noRender.soy')
 			.pipe(compileSoy());
