@@ -72,9 +72,7 @@ describe('Compile Soy Pipeline', function() {
 		});
 	});
 
-	it('should not throw error if no files are provided for compilation', function(
-		done
-	) {
+	it('should not throw error if no files are provided for compilation', function(done) {
 		const stream = vfs
 			.src('test/fixtures/soy/simple.soy')
 			.pipe(ignore.exclude('*.soy'))
@@ -257,9 +255,7 @@ describe('Compile Soy Pipeline', function() {
 		});
 	});
 
-	it('should not generate component class if no render template is declared', function(
-		done
-	) {
+	it('should not generate component class if no render template is declared', function(done) {
 		const stream = vfs
 			.src('test/fixtures/soy/noRender.soy')
 			.pipe(compileSoy());
