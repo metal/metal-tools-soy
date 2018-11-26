@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Compile Soy Pipeline should accept dotted namespaces 1`] = `
+exports[`Compile Soy Pipeline should accept extending compound namespaces 1`] = `
 "/* jshint ignore:start */
 import Component from 'metal-component';
 import Soy from 'metal-soy';
@@ -9,15 +9,15 @@ var templates;
 goog.loadModule(function(exports) {
 var soy = goog.require('soy');
 var soydata = goog.require('soydata');
-// This file was automatically generated from dottedNamespace.soy.
+// This file was automatically generated from compound.soy.
 // Please don't edit this file by hand.
 
 /**
- * @fileoverview Templates in namespace com.metaljs.soy.dottedNamespace.
+ * @fileoverview Templates in namespace com.metaljs.soy.compound.
  * @public
  */
 
-goog.module('com.metaljs.soy.dottedNamespace.incrementaldom');
+goog.module('com.metaljs.soy.compound.incrementaldom');
 
 var soyIdom = goog.require('soy.idom');
 
@@ -38,7 +38,7 @@ var $render = function(opt_data, opt_ijData, opt_ijData_deprecated) {
 };
 exports.render = $render;
 if (goog.DEBUG) {
-  $render.soyTemplateName = 'com.metaljs.soy.dottedNamespace.render';
+  $render.soyTemplateName = 'com.metaljs.soy.compound.render';
 }
 
 exports.render.params = [];
@@ -48,9 +48,9 @@ return exports;
 
 });
 
-class commetaljssoydottedNamespace extends Component {}
-Soy.register(commetaljssoydottedNamespace, templates);
-export { commetaljssoydottedNamespace, templates };
+class commetaljssoycompound extends Component {}
+Soy.register(commetaljssoycompound, templates);
+export { commetaljssoycompound, templates };
 export default templates;
 /* jshint ignore:end */
 "
