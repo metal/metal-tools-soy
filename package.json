@@ -8,7 +8,7 @@
     "prettier-all": "npm run prettier -- --write",
     "prettier-ci": "npm run prettier -- --list-different",
     "prettier": "prettier-eslint 'packages/*/{src,lib}/**/*.{ts,js}'",
-    "test": "jest && cd packages/gulp-soynode && gulp test",
+    "test": "npm run compile && jest && cd packages/gulp-soynode && gulp test",
     "typescript-ci": "lerna run typescript-ci"
   },
   "devDependencies": {
