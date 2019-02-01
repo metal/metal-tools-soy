@@ -127,7 +127,7 @@ describe('Metal Tools - Soy', function() {
 			});
 		});
 
-		it.skip(
+		it(
 			'should emit end event when rendering large number of files',
 			function(done) {
 				const stream = metalToolsSoy({
