@@ -66,7 +66,10 @@ module.exports = function(options) {
 			)
 		),
 		gulpif(options.sourceMaps, generateSourceMap()),
-		through.obj()
+		through.obj(function(file, encoding, flush) {
+			this.emit('data', file);
+			flush();
+		}),
 	);
 };
 
