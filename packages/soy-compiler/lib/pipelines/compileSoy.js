@@ -69,7 +69,7 @@ module.exports = function(options) {
 		through.obj(function(file, encoding, flush) {
 			this.emit('data', file);
 			flush();
-		}),
+		})
 	);
 };
 
