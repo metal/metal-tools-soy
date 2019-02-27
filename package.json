@@ -59,7 +59,7 @@
     "js-beautify": "^1.6.14",
     "lint-staged": "^8.1.4",
     "merge": "^1.2.0",
-    "prettier": "^1.6.0"
+    "prettier": "^1.16.4"
   },
   "husky": {
     "hooks": {

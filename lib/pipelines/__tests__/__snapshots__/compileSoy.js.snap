@@ -893,6 +893,102 @@ export default templates;
 /* jshint ignore:end */
 `;
 
+exports[`Compile Soy Pipeline should replace external messages from goog.getMsg calls if an externalMsgFormat has been specified and replace the params placeholders 1`] = `
+/* jshint ignore:start */
+import Component from 'metal-component';
+import Soy from 'metal-soy';
+
+var templates;
+goog.loadModule(function(exports) {
+  var soy = goog.require('soy');
+  var soydata = goog.require('soydata');
+  // This file was automatically generated from messagesParams.soy.
+  // Please don't edit this file by hand.
+
+  /**
+   * @fileoverview Templates in namespace Messages.
+   * @public
+   */
+
+  goog.module('Messages.incrementaldom');
+
+  goog.require('goog.soy.data.SanitizedContent');
+  goog.require('goog.string');
+  var incrementalDom = goog.require('incrementaldom');
+  goog.require('soy.asserts');
+  var soyIdom = goog.require('soy.idom');
+
+
+  /**
+   * @param {{
+   *  bar: (!goog.soy.data.SanitizedContent|null|string|undefined),
+   *  foo: (function()|null|undefined)
+   * }} opt_data
+   * @param {Object<string, *>=} opt_ijData
+   * @param {Object<string, *>=} opt_ijData_deprecated
+   * @return {void}
+   * @suppress {checkTypes}
+   */
+  function $render(opt_data, opt_ijData, opt_ijData_deprecated) {
+    opt_ijData = opt_ijData_deprecated || opt_ijData;
+    opt_data = opt_data || {};
+    /** @type {!goog.soy.data.SanitizedContent|null|string|undefined} */
+    var bar = soy.asserts.assertType(opt_data.bar == null || (goog.isString(opt_data.bar) || opt_data.bar instanceof goog.soy.data.SanitizedContent), 'bar', opt_data.bar, '!goog.soy.data.SanitizedContent|null|string|undefined');
+    /** @type {function()|null|undefined} */
+    var foo = soy.asserts.assertType(opt_data.foo == null || goog.isFunction(opt_data.foo), 'foo', opt_data.foo, 'function()|null|undefined');
+    /** @desc  */
+    var MSG_EXTERNAL_513333936694089537 = I18n.translate('you-are-about-to-report-a-violation-of-our-x.-all-reports-are-strictly-x');
+    MSG_EXTERNAL_513333936694089537 = MSG_EXTERNAL_513333936694089537.replace(/{(\\d+)}/g, '\\x01$1\\x01');
+
+    var lastIndex_6 = 0,
+      partRe_6 = /\\x01\\d+\\x01/g,
+      match_6;
+    do {
+      match_6 = partRe_6.exec(MSG_EXTERNAL_513333936694089537) || undefined;
+      incrementalDom.text(goog.string.unescapeEntities(MSG_EXTERNAL_513333936694089537.substring(lastIndex_6, match_6 && match_6.index)));
+      lastIndex_6 = partRe_6.lastIndex;
+      switch (match_6 && match_6[0]) {
+        case '\\u00011\\u0001':
+          soyIdom.print(bar);
+          break;
+        case '\\u00010\\u0001':
+          soyIdom.print(foo);
+          break;
+      }
+    } while (match_6);
+  }
+  exports.render = $render;
+  /**
+   * @typedef {{
+   *  bar: (!goog.soy.data.SanitizedContent|null|string|undefined),
+   *  foo: (function()|null|undefined)
+   * }}
+   */
+  $render.Params;
+  if (goog.DEBUG) {
+    $render.soyTemplateName = 'Messages.render';
+  }
+
+  exports.render.params = ["bar", "foo"];
+  exports.render.types = {
+    "bar": "string",
+    "foo": "html"
+  };
+  templates = exports;
+  return exports;
+
+});
+
+class Messages extends Component {}
+Soy.register(Messages, templates);
+export {
+  Messages,
+  templates
+};
+export default templates;
+/* jshint ignore:end */
+`;
+
 exports[`Compile Soy Pipeline should replace goog.require calls to other namespaced templates with Soy.getTemplate calls 1`] = `
 /* jshint ignore:start */
 import Component from 'metal-component';
