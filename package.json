@@ -46,7 +46,7 @@
     "soyparser": "^1.0.3",
     "stream-combiner": "^0.2.2",
     "stream-consume": "^0.1.0",
-    "through2": "^2.0.0",
+    "through2": "^2.0.5",
     "vinyl-fs": "^2.2.1",
     "yargs": "^8.0.2"
   },
